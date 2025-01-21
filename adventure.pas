@@ -40,6 +40,7 @@ const
 
     MAP_SIZE = 36;
     MAX_INVENTORY = 5;
+    MAX_ITEMS = 1;
 
     STATE_TITLE = 1;
     STATE_GAME  = 2;
@@ -56,16 +57,15 @@ const
 
     ITEM_TORCH          = 0;
 
+    ITEM_DESCRIPTIONS: array [0..MAX_ITEMS-1] of string = ('TORCH');
+
 var 
     current_state    : byte = STATE_TITLE;
     current_location : byte;
     previous_location: byte;
     key_hit          : char;
     game_over        : boolean = FALSE;
-    user_exit        : boolean = FALSE;
     hero             : Tplayer;
-    monster_3        : Tmonster;
-    monster_9        : Tmonster;
     monsters         : Tmonsters;
     armory           : Tarmor;
     current_monster  : ^Tmonster;
@@ -79,20 +79,16 @@ var
 { Prints hero stats }
 procedure Print_Hero_Stats;
 var 
-    str_1, str_2, str_3: string;
     hit_points: byte;
     defence: byte;
     attack: byte;
 begin
     
     hit_points := hero.hit_points;
-    defence    := hero.defence;
-    attack     := hero.attack + armory.weapon;
+    defence    := hero.defence + armory.shield + armory.shield_slot + armory.head + armory.gloves + armory.boots;
+    attack     := hero.attack + armory.weapon + armory.weapon_slot;
     
-    Str(hit_points, str_1);
-    Str(hero.defence, str_2);
-    Str(attack, str_3);
-    Writeln ('Hero stats: HP ' + str_1 + ', DEF ' + str_2 + ', ATT ' + str_3);
+    Writeln ('Hero stats: HP ', hit_points, ', DEF ', defence, ', ATT ', attack);
     
 end;
 
@@ -122,7 +118,6 @@ begin
     dta := armory.shield + armory.shield_slot;
     Str(dta, str_1);
     Writeln ('SHIELD: +', dta);
-    Writeln;
 
 end;
 
@@ -131,19 +126,23 @@ end;
 procedure Print_Inventory;
 var
     i : byte;
-    count : byte = 0;
+    count : byte;
 begin
+
+    count := 0;
+
     for i := 0 to MAX_INVENTORY - 1 do begin
 
         if inventory_items[i] = TRUE then count := count + 1;
 
     end;
 
+    Writeln;
     Writeln ('Number of items in inventory: ', count);
 
     for i := 0 to MAX_INVENTORY - 1 do begin
 
-        if inventory_items[i] = TRUE then Writeln (i, ' True');
+        if inventory_items[i] = TRUE then Writeln (ITEM_DESCRIPTIONS[i]);
 
     end;
 end;
@@ -153,13 +152,16 @@ end;
 procedure Fight;
 var 
     damage_dealt: byte;
-    str_1: string;
     player_run: boolean = FALSE;
 begin
+    Writeln;
     Writeln('Fighting!');
     Writeln;
     
     repeat 
+
+        Print_Hero_Stats;
+        Print_Monster_Stats(current_location);
     
         { Player attack }
         
@@ -174,8 +176,7 @@ begin
         end else begin
         
             current_monster^.hit_points := current_monster^.hit_points - damage_dealt;
-            Str(damage_dealt, str_1);
-            Writeln ('Your hit: ', str_1);
+            Writeln ('Your hit: ', damage_dealt);
             
         end;
         
@@ -192,8 +193,7 @@ begin
             end else begin
             
                 hero.hit_points := hero.hit_points - damage_dealt;
-                Str(damage_dealt, str_1);
-                Writeln ('Monster hit: ', str_1);
+                Writeln ('Monster hits you: ', damage_dealt);
             
             end;
         
@@ -209,6 +209,7 @@ begin
         if (current_monster^.hit_points > 0) and (hero.hit_points > 0) then begin
         
             Writeln ('Continue [F]ighting or [R]un away');
+            Writeln;
             
             key_hit := ReadKey;
             
@@ -399,7 +400,6 @@ begin
                         begin
 
                             Writeln;
-                            Print_Hero_Stats;
                             Writeln ('This is starting location.');
                             
                             if location_items[current_location] = TRUE then begin
@@ -450,7 +450,6 @@ begin
                         LOCATION_LAKE:
                         begin
                             Writeln;
-                            Print_Hero_Stats;
                             Writeln ('You see a lake with a boat next to it. An island is visible to the east.');
                             
                             if monsters[current_location].hit_points > 0 then begin
@@ -477,7 +476,6 @@ begin
                             key_hit := ReadKey;
                     
                             case key_hit of
-                            
                                 
                                 'G', 'g': begin
                                     if (monsters[current_location].hit_points = 0) and (location_items[current_location] = TRUE) then begin
@@ -515,10 +513,19 @@ begin
                         begin
 
                             Writeln;
-                            Print_Hero_Stats;
                             Writeln ('This is island');
-                            
-                            Write ('You can go [W]est');
+
+                            if inventory_items[ITEM_TORCH] = FALSE then begin
+
+                                Writeln ('Darkness, nothing to see here...');
+                                Writeln ('You can go [W]est');
+
+                            end else begin
+
+                                Writeln ('A torch illuminates part of the island.');
+                                Writeln ('You can go [W]est');
+
+                            end;
                             
                             key_hit := ReadKey;
                     
@@ -544,13 +551,13 @@ begin
                     
                     end;
 
-                until (game_over = TRUE) or (current_state <> STATE_GAME);
+                until (game_over = TRUE) or (current_state <> STATE_GAME); {* REPEAT THROUGH LOCATIONS *}
                 
                 current_state := STATE_TITLE;
             
             end;
         
-        end;
+        end; {* CASE GAME STATE *}
   
     until current_state = STATE_EXIT;
   
