@@ -1,0 +1,40 @@
+Item ids (specific items)
+    1 - dagger (attack + 1)
+    2 - rusty sword (attack + 2)
+    3 - steel sword (attack + 3)
+    4 - diamond sword (attack + 4)
+
+    11 - wooden shield (defence + 1)
+    12 - broken steel shield (defence + 2)
+    13 - solid steel shield (defence + 3)
+
+    21 - glass stone (attack + 1)
+    22 - diamond stone (attack + 2)
+    23 - ruby stone (attack + 3)
+
+    31 - glass stone (defence + 1)
+    32 - diamond stone (defence + 2)
+    33 - ruby stone (defence + 3)
+
+    41 - cotton cap (defence + 1)
+
+    51 - cotton jacket (defence + 1)
+
+    61 - cotton gloves (defence + 1)
+
+    71 - sandals (defence + 1)
+
+    91 - small potion
+    92 - medium potion
+    93 - large potion
+
+Item kinds:
+    0 - weapon
+    1 - shield
+    2 - magic stone for weapon
+    3 - magic stone for sheild
+    4 - head
+    5 - body
+    6 - gloves
+    7 - boots
+    9 - potion
