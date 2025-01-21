@@ -38,26 +38,26 @@ type
 
 const
 
-    MAP_SIZE = 36;
-    MAX_INVENTORY = 5;
-    MAX_ITEMS = 1;
+    MAP_SIZE = 36;                  { size of map }
+    MAX_INVENTORY = 5;              { maximum number of items in backpack }
+    MAX_ITEMS = 1;                  { number of items in game }
 
-    STATE_TITLE = 1;
+    STATE_TITLE = 1;                { state ids }
     STATE_GAME  = 2;
     STATE_EXIT  = 3;
     
-    LOCATION_LAKE   =  9;
+    LOCATION_LAKE   =  9;           { location ids }
     LOCATION_ISLAND = 10;
     LOCATION_START  = 15;
     
-    STARTING_HIT_POINTS = 20;
+    STARTING_HIT_POINTS = 20;       { configuration of hero starting stats }
     STARTING_DEFENCE    = 0;
     STARTING_ATTACK     = 5;
     STARTING_DEXTERITY  = 1;
 
-    ITEM_TORCH          = 0;
+    ITEM_TORCH          = 0;        { item ids }
 
-    ITEM_DESCRIPTIONS: array [0..MAX_ITEMS-1] of string = ('TORCH');
+    ITEM_DESCRIPTIONS: array [0..MAX_ITEMS-1] of string = ('TORCH'); { array with item names }
 
 var 
     current_state    : byte = STATE_TITLE;
