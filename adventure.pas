@@ -39,6 +39,7 @@ type
 const
 
     MAP_SIZE = 36;
+    MAX_INVENTORY = 5;
 
     STATE_TITLE = 1;
     STATE_GAME  = 2;
@@ -48,10 +49,12 @@ const
     LOCATION_ISLAND = 10;
     LOCATION_START  = 15;
     
-    STARTING_HIT_POINTS = 2;
+    STARTING_HIT_POINTS = 20;
     STARTING_DEFENCE    = 0;
     STARTING_ATTACK     = 5;
     STARTING_DEXTERITY  = 1;
+
+    ITEM_TORCH          = 0;
 
 var 
     current_state    : byte = STATE_TITLE;
@@ -68,18 +71,18 @@ var
     current_monster  : ^Tmonster;
     
     location_items   : array [0..MAP_SIZE-1] of boolean;
+    inventory_items  : array [0..MAX_INVENTORY-1] of boolean;
     
     dagger           : Titem;
     
     
-
+{ Prints hero stats }
 procedure Print_Hero_Stats;
 var 
     str_1, str_2, str_3: string;
     hit_points: byte;
     defence: byte;
     attack: byte;
-    
 begin
     
     hit_points := hero.hit_points;
@@ -94,12 +97,55 @@ begin
 end;
 
 
+{ Prints monster stats }
 procedure Print_Monster_Stats(monster_id: byte);
 var str_1, str_2: string;
 begin
     Str(monsters[monster_id].hit_points, str_1);
     Str(monsters[monster_id].defence, str_2);
     Writeln ('Monster stats: HP ' + str_1 + ', DEF ' + str_2);
+end;
+
+
+{ Prints hero armory stats }
+procedure Print_Armory_Stats;
+var
+    str_1: string;
+    dta: byte;
+begin
+    
+    Writeln;
+    Writeln ('Your weapons and armory:');
+    dta := armory.weapon + armory.weapon_slot;
+    Str(dta, str_1);
+    Writeln ('WEAPON: +', dta);
+    dta := armory.shield + armory.shield_slot;
+    Str(dta, str_1);
+    Writeln ('SHIELD: +', dta);
+    Writeln;
+
+end;
+
+
+{ Prints inventory }
+procedure Print_Inventory;
+var
+    i : byte;
+    count : byte = 0;
+begin
+    for i := 0 to MAX_INVENTORY - 1 do begin
+
+        if inventory_items[i] = TRUE then count := count + 1;
+
+    end;
+
+    Writeln ('Number of items in inventory: ', count);
+
+    for i := 0 to MAX_INVENTORY - 1 do begin
+
+        if inventory_items[i] = TRUE then Writeln (i, ' True');
+
+    end;
 end;
 
 
@@ -154,6 +200,7 @@ begin
         end else begin
 
             Writeln ('Monster is dead.');
+            current_monster^.hit_points := 0;
 
         end;
 
@@ -215,6 +262,7 @@ begin
 end;
 
 
+{ Initialisation of hero's equipment}
 procedure Init_Armory;
 begin
 
@@ -229,7 +277,9 @@ begin
     
 end;
 
-procedure Init_Items;
+
+{ Initialisation of weapon characteristics}
+procedure Init_Weapons;
 begin
 
     dagger.id := 1;
@@ -239,21 +289,28 @@ begin
 end;
 
 
+{ Initialisation of locations, contains information on whether or not items have been taken.}
 procedure Init_Locations;
 var
     i: byte;
 begin
 
-    for i := 0 to MAP_SIZE-1 do begin
-
-        location_items[i] := TRUE;
-
-    end;
+    for i := 0 to MAP_SIZE-1 do location_items[i] := TRUE;
 
 end;
 
 
-procedure Add_To_Inventory(item: Titem);
+{ Initialisation of items carried }
+procedure Init_Items;
+var 
+    i: byte;
+begin
+    for i := 0 to MAX_INVENTORY-1 do inventory_items[i] := FALSE;
+end;
+
+
+{ Adding found equipment to the armour worn and weapons used }
+procedure Add_To_Armory(item: Titem);
 begin
 
     case item.kind of
@@ -271,6 +328,15 @@ begin
 
 end;
 
+
+{ Adding items to inventory}
+procedure Add_To_Inventory(item: byte);
+begin
+    inventory_items[item] := TRUE;
+end;
+
+
+{ Main program}
 begin
   
     repeat 
@@ -282,9 +348,10 @@ begin
             
                 Randomize;
                 Init_Monsters;
-                Init_Items;
+                Init_Weapons;
                 Init_Armory;
                 Init_Locations;
+                Init_Items;
             
                 ClrScr;
                 Writeln;
@@ -321,6 +388,8 @@ begin
                 Writeln ('Welcome in game!');
                 Writeln;
                 Writeln ('Press [X] anytime to exit');
+                Writeln ('Press [I] anytime to show your inventory');
+                Writeln ('Press [C] anytime to show your weapon statistics');
                 
                 repeat
                 
@@ -350,19 +419,26 @@ begin
                             key_hit := ReadKey;
                     
                             case key_hit of
-                                'X', 'x': begin
-                                    current_state := STATE_TITLE;
-                                end;
+                                
                                 'N', 'n': begin
                                     current_location := LOCATION_LAKE;
                                 end;
                                 'G', 'g': begin
                                     if location_items[current_location] = TRUE then begin
-                                        Add_To_Inventory(dagger);
+                                        Add_To_Armory(dagger);
                                         location_items[LOCATION_START] := FALSE;
                                     end;
                                 end;
                                 'E', 'e': begin
+                                end;
+                                'C', 'c': begin
+                                    Print_Armory_Stats;
+                                end;
+                                'I', 'i': begin
+                                    Print_Inventory;
+                                end;
+                                'X', 'x': begin
+                                    current_state := STATE_TITLE;
                                 end;
             
                             end;
@@ -375,32 +451,57 @@ begin
                         begin
                             Writeln;
                             Print_Hero_Stats;
-                            Writeln ('This is lake.');
+                            Writeln ('You see a lake with a boat next to it. An island is visible to the east.');
                             
                             if monsters[current_location].hit_points > 0 then begin
                             
                                 Writeln ('Monster appeared!');
                                 Print_Monster_Stats(current_location);
+                                Writeln ('You can [F]ight or go [S]outh, [E]est');
                             
                             end;
-                            
-                            Writeln ('You can [F]ight or go [S]outh, [E]est');
+
+                            if (monsters[current_location].hit_points = 0) and (location_items[current_location] = TRUE) then begin
+
+                                Writeln ('There is an item');
+                                Writeln ('You can [G]et an item or go [S]outh, [E]est');
+
+                            end;
+
+                            if (monsters[current_location].hit_points = 0) and (location_items[current_location] = FALSE) then begin
+
+                                Writeln ('You can go [S]outh, [E]est');
+
+                            end;
                             
                             key_hit := ReadKey;
                     
                             case key_hit of
                             
+                                
+                                'G', 'g': begin
+                                    if (monsters[current_location].hit_points = 0) and (location_items[current_location] = TRUE) then begin
+                                        Add_To_Inventory(ITEM_TORCH);
+                                        location_items[current_location] := FALSE;
+                                    end;
+                                end;
                                 'F', 'f': begin
                                     Fight;
-                                end;
-                                'X', 'x': begin
-                                    current_state := STATE_TITLE;
                                 end;
                                 'S', 's': begin
                                     current_location := LOCATION_START;
                                 end;
                                 'E', 'e': begin
                                     current_location := LOCATION_ISLAND;
+                                end;
+                                'C', 'c': begin
+                                    Print_Armory_Stats;
+                                end;
+                                'I', 'i': begin
+                                    Print_Inventory;
+                                end;
+                                'X', 'x': begin
+                                    current_state := STATE_TITLE;
                                 end;
             
                             end;
@@ -422,14 +523,18 @@ begin
                             key_hit := ReadKey;
                     
                             case key_hit of
-                                'X', 'x': begin
-                                    current_state := STATE_TITLE;
-                                end;
+
                                 'W', 'w': begin
                                     current_location := LOCATION_LAKE;
                                 end;
-                                'G', 'g': begin
-
+                                 'C', 'c': begin
+                                    Print_Armory_Stats;
+                                end;
+                                'I', 'i': begin
+                                    Print_Inventory;
+                                end;
+                                'X', 'x': begin
+                                    current_state := STATE_TITLE;
                                 end;
             
                             end;
