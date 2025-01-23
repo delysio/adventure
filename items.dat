@@ -41,3 +41,14 @@ Item kinds:
 
 Inventory items:
     0 - torch
+    1 - machete
+
+Weapons:
+    0..9: armory.weapon
+    10..19: armory.shield
+    20..29: armory.weapon_slot
+    30..39: armory.shield_slot
+    40..49: armory.head
+    50..59: armory.body
+    60..69: armory.gloves
+    70..79: armory.boots

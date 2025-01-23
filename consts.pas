@@ -1,0 +1,29 @@
+const
+
+    MAP_SIZE        = 35;        { size of map }
+    MAX_ITEM_NUMBER =  4;        { maximum number of items in one location }
+    MAX_INVENTORY   =  4;        { maximum number of items in backpack }
+    MAX_ITEMS       =  1;        { number of items carried }
+    MAX_STORAGE     =  9;        { number of items in storage }
+
+    STATE_TITLE = 1;                { state ids }
+    STATE_GAME  = 2;
+    STATE_EXIT  = 3;
+    
+    LOCATION_LAKE   =  9;           { location ids }
+    LOCATION_ISLAND = 10;
+    LOCATION_BUSHES = 14;
+    LOCATION_START  = 15;
+    
+    STARTING_HIT_POINTS = 20;       { configuration of hero starting stats }
+    STARTING_DEFENCE    = 1;
+    STARTING_ATTACK     = 5;
+    STARTING_DEXTERITY  = 1;
+
+    STARTING_ARMORY     = 0;
+
+    ITEM_TORCH          = 0;        { item ids }
+    ITEM_MACHETE        = 1;
+    ITEM_NONE           = 255;
+
+    ITEM_DESCRIPTIONS: array [0..MAX_ITEMS] of string[10] = ('TORCH', 'MACHETE'); { array with item names }
