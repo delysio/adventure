@@ -14,27 +14,17 @@ var
     success          : boolean;
     hero             : Tplayer;
     monsters         : Tmonsters;
+    weapons          : Tweapons;
     armory           : Tarmor;
     
     location_items   : array [0..MAP_SIZE, 0..MAX_ITEM_NUMBER] of byte;
     inventory_items  : array [0..MAX_INVENTORY] of byte;
     
-    dagger           : Titem;
-    
-
+{$I READKEY.PAS} { This function is only for Turbo Pascal 3.0 }
 {$I INFO.PAS}
 {$I FIGHT.PAS}
 {$I INIT.PAS}
 {$I INVENTRY.PAS}
-
-
-{ This function is only for Turbo Pascal 3.0 }
-{*function ReadKey(ch: char): char;
-begin
-    Read(Kbd, ch);
-    ReadKey := ch;
-end;*}
-
 
 { Main program}
 begin
@@ -113,23 +103,15 @@ begin
                                 'N', 'n': begin
                                     current_location := LOCATION_LAKE;
                                 end;
+                                'E', 'e': begin
+                                    current_location := LOCATION_BUSHES;
+                                end;
                                 'G', 'g': begin
                                     if Item_Exists(current_location) then begin
                                         success := Add_To_Inventory(current_location);
                                     end;
                                 end;
-                                'E', 'e': begin
-                                    current_location := LOCATION_BUSHES;
-                                end;
-                                'C', 'c': begin
-                                    Print_Armory_Stats;
-                                end;
-                                'I', 'i': begin
-                                    Print_Inventory;
-                                end;
-                                'X', 'x': begin
-                                    current_state := STATE_TITLE;
-                                end;
+                                {$I DEFKEYS.PAS}
             
                             end;
                             previous_location := LOCATION_START;
@@ -145,9 +127,12 @@ begin
                             
                             if monsters[current_location].hit_points > 0 then begin
                             
+                                Writeln;
                                 Writeln ('Monster appeared!');
                                 Print_Monster_Stats(current_location);
+                                Writeln;
                                 Writeln ('Press [F] to fight');
+                                Writeln;
                             
                             end;
 
@@ -164,30 +149,22 @@ begin
                     
                             case key_hit of
                                 
-                                'G', 'g': begin
-                                if (monsters[current_location].hit_points=0) and (Item_Exists(current_location)=TRUE) then 
-                                begin
-                                    success := Add_To_Inventory(current_location);
-                                end;
-                                end;
-                                'F', 'f': begin
-                                    Fight;
-                                end;
                                 'S', 's': begin
                                     current_location := LOCATION_START;
                                 end;
                                 'E', 'e': begin
                                     current_location := LOCATION_ISLAND;
                                 end;
-                                'C', 'c': begin
-                                    Print_Armory_Stats;
+                                'F', 'f': begin
+                                    Fight;
                                 end;
-                                'I', 'i': begin
-                                    Print_Inventory;
+                                'G', 'g': begin
+                                    if (monsters[current_location].hit_points=0) and (Item_Exists(current_location)=TRUE) then 
+                                    begin
+                                        success := Add_To_Inventory(current_location);
+                                    end;
                                 end;
-                                'X', 'x': begin
-                                    current_state := STATE_TITLE;
-                                end;
+                                {$I DEFKEYS.PAS}
             
                             end;
                         
@@ -223,24 +200,16 @@ begin
                     
                             case key_hit of
 
+                                'W', 'w': begin
+                                    current_location := LOCATION_LAKE;
+                                end;
                                 'G', 'g': begin
                                     if (Is_In_Inventory(ITEM_TORCH) = TRUE) and (Item_Exists(current_location) = TRUE) then 
                                     begin
                                         success := Add_To_Inventory(current_location);
                                     end;
                                 end;
-                                'W', 'w': begin
-                                    current_location := LOCATION_LAKE;
-                                end;
-                                 'C', 'c': begin
-                                    Print_Armory_Stats;
-                                end;
-                                'I', 'i': begin
-                                    Print_Inventory;
-                                end;
-                                'X', 'x': begin
-                                    current_state := STATE_TITLE;
-                                end;
+                                {$I DEFKEYS.PAS}
             
                             end;
                             previous_location := LOCATION_ISLAND;
@@ -270,33 +239,54 @@ begin
 
                                 end;
 
-                                Writeln ('You can go [E]ast or [W]est');
+                                Writeln ('You can go [S]outh or [W]est');
 
                             end;
                             
                             key_hit := ReadKey;
                     
                             case key_hit of
+                                
+                                'W', 'w': begin
+                                    current_location := LOCATION_START;
+                                end;
+                                'S', 's': begin
+                                    current_location := LOCATION_STREAM;
+                                end;
                                 'G', 'g': begin
                                     if Item_Exists(current_location) = TRUE then begin
                                         success := Add_To_Inventory(current_location);
                                     end;
                                 end;
-                                'W', 'w': begin
-                                    current_location := LOCATION_START;
-                                end;
-                                'C', 'c': begin
-                                    Print_Armory_Stats;
-                                end;
-                                'I', 'i': begin
-                                    Print_Inventory;
-                                end;
-                                'X', 'x': begin
-                                    current_state := STATE_TITLE;
-                                end;
+                                {$I DEFKEYS.PAS}
             
                             end;
                             previous_location := LOCATION_BUSHES;
+                            
+                        end;
+                        LOCATION_STREAM:
+                        begin
+
+                            Writeln;
+                            Writeln ('A small stream runs through the forest. ');
+                            Writeln ('You can go [N]orth');
+                            
+                            key_hit := ReadKey;
+                    
+                            case key_hit of
+                                
+                                'N', 'n': begin
+                                    current_location := LOCATION_BUSHES;
+                                end;
+                                'G', 'g': begin
+                                    if Item_Exists(current_location) = TRUE then begin
+                                        success := Add_To_Inventory(current_location);
+                                    end;
+                                end;
+                                {$I DEFKEYS.PAS}
+            
+                            end;
+                            previous_location := LOCATION_STREAM;
                             
                         end;
                     

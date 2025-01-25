@@ -4,7 +4,7 @@ var i, j: byte;
 begin
     j := 0;
 
-    for i := 0 to MAX_ITEMS do
+    for i := 0 to MAX_INVENTORY do
     begin
         if inventory_items[i] <> ITEM_NONE then
         begin
@@ -53,18 +53,35 @@ begin
     
     Writeln;
     Writeln ('Your weapons and armory:');
+
     value := armory.weapon + armory.weapon_slot;
-    Writeln ('WEAPON: +', value);
-    Writeln ('   weapon slot: +', armory.weapon_slot);
+    Write ('WEAPON: +', value); 
+    if armory.weapon > 0 then begin Writeln (' ', armory.weapon_name); end else begin Writeln end;   
+
+    Write ('   weapon slot: +', armory.weapon_slot);
+    if armory.weapon_slot > 0 then begin Writeln (' ', armory.weapon_slot_name); end else begin Writeln end; 
+
     value := armory.shield + armory.shield_slot;
-    Writeln ('SHIELD: +', value);
-    Writeln ('   shield slot: +', armory.shield_slot);
+    Write ('SHIELD: +', value);
+    if armory.shield > 0 then begin Writeln (' ', armory.shield_name); end else begin Writeln end;
+
+    Write ('   shield slot: +', armory.shield_slot);
+    if armory.shield_slot > 0 then begin Writeln (' ', armory.shield_slot_name); end else begin Writeln end;
+
     value := armory.head + armory.body + armory.gloves + armory.boots;
     Writeln ('ARMORY: +', value);
-    Writeln ('   helmet: +', armory.head);
-    Writeln ('   armour: +', armory.body);
-    Writeln ('   gloves: +', armory.gloves);
-    Writeln ('   boots:  +', armory.boots);
+
+    Write ('   helmet: +', armory.head);
+    if armory.head > 0 then begin Writeln (' ', armory.head_name); end else begin Writeln end;
+
+    Write ('   armour: +', armory.body);
+    if armory.body > 0 then begin Writeln (' ', armory.body_name); end else begin Writeln end;
+
+    Write ('   gloves: +', armory.gloves);
+    if armory.gloves > 0 then begin Writeln (' ', armory.gloves_name); end else begin Writeln end;
+    
+    Write ('   boots:  +', armory.boots);
+    if armory.boots > 0 then begin Writeln (' ', armory.boots_name); end else begin Writeln end;
 
 end;
 
@@ -72,7 +89,7 @@ end;
 { Displays the contents of your inventory and allows you to drop unnecessary items }
 procedure Print_Inventory;
 var
-    i, j, k, m : byte;
+    items_index, descriptions_index, number_of_items, location_index : byte;
     count : byte;
     key: char;
     can_drop: boolean;
@@ -81,29 +98,28 @@ begin
     Writeln;
 
     count := 1;
-    k := 0;
+    number_of_items := 0;
 
     { Print inventory contents }
 
-    for i := 0 to MAX_INVENTORY do begin
+    for items_index := 0 to MAX_INVENTORY do begin
 
-        if inventory_items[i] <> ITEM_NONE then begin
+        if inventory_items[items_index] <> ITEM_NONE then begin
             
-            j := inventory_items[i];
-            Writeln ('[', count, '] ', ITEM_DESCRIPTIONS[j]);
+            descriptions_index := inventory_items[items_index];
+            Writeln ('[', count, '] ', ITEM_DESCRIPTIONS[descriptions_index]);
             count := count + 1;
-            k := k + 1;
+            number_of_items := number_of_items + 1;
         
         end;
 
     end;
 
-    Writeln;
-
     { If the inventory is not empty, allow items to be dropped off }
 
-    if k > 0 then begin
+    if number_of_items > 0 then begin
 
+        Writeln;
         Writeln ('Press the corresponding number to drop the item or [X] to exit inventory');
 
         repeat
@@ -112,21 +128,22 @@ begin
 
         if (key <> 'x') and (key <> 'X') then begin
         
-            i := Ord(key) - Ord('0') - 1;
-            if inventory_items[i] <> ITEM_NONE then begin
+            items_index := Ord(key) - Ord('0') - 1;
+            if inventory_items[items_index] <> ITEM_NONE then begin
 
                 { Check if item can be dropped off }
 
                 can_drop := FALSE;
 
-                for m := 0 to MAX_ITEM_NUMBER do begin
+                for location_index := 0 to MAX_ITEM_NUMBER do begin
 
-                    if location_items[current_location, m] = ITEM_NONE then begin
+                    if location_items[current_location, location_index] = ITEM_NONE then begin
 
-                        j := inventory_items[i];
-                        inventory_items[i] := ITEM_NONE;
-                        location_items[current_location, m] := j;
-                        Writeln ('You have dropped ', ITEM_DESCRIPTIONS[j]);
+                        descriptions_index := inventory_items[items_index];
+                        inventory_items[items_index] := ITEM_NONE;
+                        location_items[current_location, location_index] := descriptions_index;
+                        Writeln;
+                        Writeln ('You have dropped ', ITEM_DESCRIPTIONS[descriptions_index]);
 
                         can_drop := TRUE;
 

@@ -19,13 +19,21 @@ procedure Init_Armory;
 begin
 
     armory.weapon := STARTING_ARMORY;
+    armory.weapon_name := '';
     armory.shield := STARTING_ARMORY;
+    armory.shield_name := '';
     armory.weapon_slot := STARTING_ARMORY;
+    armory.weapon_slot_name := '';
     armory.shield_slot := STARTING_ARMORY;
+    armory.shield_slot_name := '';
     armory.head := STARTING_ARMORY;
+    armory.head_name := '';
     armory.body := STARTING_ARMORY;
+    armory.body_name := '';
     armory.gloves := STARTING_ARMORY;
+    armory.gloves_name := '';
     armory.boots := STARTING_ARMORY;
+    armory.boots_name := '';
     
 end;
 
@@ -34,9 +42,65 @@ end;
 procedure Init_Weapons;
 begin
 
-    dagger.id := 0;
-    dagger.kind := 0;
-    dagger.modifier := 1;
+    { weapons }
+
+    weapons[20].id := 20;                            { dagger }
+    weapons[20].kind := 0;
+    weapons[20].modifier := 1;
+
+    weapons[21].id := 21;                       { short sword }
+    weapons[21].kind := 0;
+    weapons[21].modifier := 3;
+
+    weapons[22].id := 22;                        { long sword }
+    weapons[22].kind := 0;
+    weapons[22].modifier := 5;
+
+    weapons[23].id := 23;                       { elite sword }
+    weapons[23].kind := 0;
+    weapons[23].modifier := 7;
+
+    { shields }
+
+    weapons[30].id := 30;                     { wooden shield }
+    weapons[30].kind := 10;
+    weapons[30].modifier := 1;
+
+    weapons[31].id := 31;                      { steel shield }
+    weapons[31].kind := 10;
+    weapons[31].modifier := 3;
+
+    weapons[32].id := 32;                     { dragon shield }
+    weapons[32].kind := 10;
+    weapons[32].modifier := 5;
+
+    { weapon magic stones }
+
+    weapons[40].id := 40;                    { bronze stone }
+    weapons[40].kind := 20;
+    weapons[40].modifier := 2;
+
+    weapons[41].id := 41;                      { gold stone }
+    weapons[41].kind := 20;
+    weapons[41].modifier := 5;
+
+    weapons[42].id := 42;                   { diamond stone }
+    weapons[42].kind := 20;
+    weapons[42].modifier := 10;
+
+    { shield magic stones }
+
+    weapons[50].id := 50;                    { bronze stone}
+    weapons[50].kind := 20;
+    weapons[50].modifier := 2;
+
+    weapons[51].id := 51;                      { gold stone }
+    weapons[51].kind := 20;
+    weapons[51].modifier := 5;
+
+    weapons[52].id := 52;                   { diamond stone }
+    weapons[52].kind := 20;
+    weapons[52].modifier := 10;
 
 end;
 
@@ -59,6 +123,9 @@ begin
 
     location_items[LOCATION_LAKE, 0] := ITEM_TORCH;
     location_items[LOCATION_ISLAND, 0] := ITEM_MACHETE;
+    location_items[LOCATION_START, 0] := WEAPON_DAGGER;
+    location_items[LOCATION_START, 1] := WEAPON_WOODEN_SHIELD;
+    location_items[LOCATION_START, 2] := ITEM_POTION;
 
 end;
 

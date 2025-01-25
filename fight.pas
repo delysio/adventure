@@ -68,19 +68,23 @@ begin
             Writeln ('Continue [F]ighting or [R]un away');
             Writeln;
             
-            key_hit := ReadKey;
-            
-            case key_hit of 
-            
-                'R', 'r': begin
+            repeat
+
+                key_hit := ReadKey;
                 
-                    Writeln ('You ran...');
-                    player_run := TRUE;
-                    current_location := previous_location;
+                case key_hit of 
+                
+                    'R', 'r': begin
+                    
+                        Writeln ('You ran...');
+                        player_run := TRUE;
+                        current_location := previous_location;
+                    
+                    end;
                 
                 end;
-            
-            end;
+
+            until (key_hit = 'R') or (key_hit = 'r') or (key_hit = 'F') or (key_hit = 'f')
 
         end;
     

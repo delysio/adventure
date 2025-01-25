@@ -1,47 +1,79 @@
-{ Adding found equipment to the armour worn and weapons used }
-procedure Add_To_Armory(item: Titem);
-begin
-
-    case item.kind of
-    
-         0..9: armory.weapon := item.modifier;
-       10..19: armory.shield := item.modifier;
-       20..29: armory.weapon_slot := item.modifier;
-       30..39: armory.shield_slot := item.modifier;
-       40..49: armory.head := item.modifier;
-       50..59: armory.body := item.modifier;
-       60..69: armory.gloves := item.modifier;
-       70..79: armory.boots := item.modifier;
-    
-    end;
-
-end;
-
-
 { Adding items to inventory}
 function Add_To_Inventory(location: byte): boolean;
 var i, j, item: byte;
 begin
 
-    { iteracja po przedmiotach w lokacji }
+    Writeln;
+
+    { iterating on objects in a location }
     for j := 0 to MAX_ITEM_NUMBER do begin
 
         item := location_items[location, j];
 
-        { sprawdz id przedmiotu }
+        { check item id }
         if item <> ITEM_NONE then begin
 
-            { znajdz pierwszy wolny slot w ekwipunku }
-            for i := 0 to MAX_INVENTORY do begin
+            { if id >= 20, it is a weapon or armour }
+            if item >= 20 then begin
 
-                { znaleziono }
-                if inventory_items[i] = ITEM_NONE then begin
+                case item of
 
-                    inventory_items[i] := item;
-                    location_items[location, j] := ITEM_NONE;
-                    Writeln ('You took the ', ITEM_DESCRIPTIONS[item]);
-                    Add_To_Inventory := TRUE;
-                    exit;
+                    20..29: begin 
+                                armory.weapon := weapons[item].modifier; 
+                                armory.weapon_name := ITEM_DESCRIPTIONS[item]; 
+                            end;
+                    30..39: begin 
+                                armory.shield := weapons[item].modifier; 
+                                armory.shield_name := ITEM_DESCRIPTIONS[item]; 
+                            end;
+                    40..49: begin 
+                                armory.weapon_slot := weapons[item].modifier; 
+                                armory.weapon_slot_name := ITEM_DESCRIPTIONS[item]; 
+                            end;
+                    50..59: begin 
+                                armory.shield_slot := weapons[item].modifier; 
+                                armory.shield_slot_name := ITEM_DESCRIPTIONS[item]; 
+                            end;
+                    60..69: begin 
+                                armory.head := weapons[item].modifier; 
+                                armory.head_name := ITEM_DESCRIPTIONS[item]; 
+                            end;
+                    70..79: begin 
+                                armory.body := weapons[item].modifier; 
+                                armory.body_name := ITEM_DESCRIPTIONS[item]; 
+                            end;
+                    80..89: begin 
+                                armory.gloves := weapons[item].modifier; 
+                                armory.gloves_name := ITEM_DESCRIPTIONS[item]; 
+                            end;
+                    90..99: begin 
+                                armory.boots := weapons[item].modifier; 
+                                armory.boots_name := ITEM_DESCRIPTIONS[item]; 
+                            end;
+                    
+                end;
+
+                location_items[location, j] := ITEM_NONE;
+                Writeln ('You equipped the ', ITEM_DESCRIPTIONS[item]);
+                Add_To_Inventory := TRUE;
+                exit;
+
+            { and if not, it is an action item }
+            end else begin
+
+                { find the first free slot in inventory }
+                for i := 0 to MAX_INVENTORY do begin
+
+                    { found }
+                    if inventory_items[i] = ITEM_NONE then begin
+
+                        inventory_items[i] := item;
+                        location_items[location, j] := ITEM_NONE;
+                        Writeln ('You took the ', ITEM_DESCRIPTIONS[item]);
+                        Add_To_Inventory := TRUE;
+                        exit;
+
+                    end;
 
                 end;
 
@@ -86,6 +118,37 @@ begin
     end;
 end;
 
+
+{ Uses potion }
+procedure Drink_Potion;
+var 
+    inventory_counter: byte;
+    potion_found: boolean;
+begin
+    if Is_In_Inventory(ITEM_POTION) = TRUE then begin
+
+        hero.hit_points := hero.hit_points + ITEM_POTION_VALUE;
+        inventory_counter := 0;
+        potion_found := FALSE;
+
+        repeat
+
+            if inventory_items[inventory_counter] = ITEM_POTION then begin
+
+                inventory_items[inventory_counter] := ITEM_NONE;
+                Writeln;
+                Writeln ('You feel a sudden wave of strength');              
+                Organise_Item_Array;
+                potion_found := true;
+                
+            end;
+
+        until (inventory_counter = MAX_INVENTORY) or (potion_found = TRUE);
+        
+    end else begin
+        Writeln ('Oh no! You do not have a strength potion in your inventory.');
+    end;
+end;
 
 { Notifies of visible objects }
 procedure Notify_On_Objects;

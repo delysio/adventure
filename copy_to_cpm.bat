@@ -1,28 +1,52 @@
 @echo off
 
-xcopy f:\!_emulacja\AtariXE\Scene\_Moje\adventure\adventure.pas f:\!_emulacja\CPM\CPM-20230921T170351Z-001\CPM\H\3\ADV.PAS
-xcopy f:\!_emulacja\AtariXE\Scene\_Moje\adventure\consts.pas f:\!_emulacja\CPM\CPM-20230921T170351Z-001\CPM\H\3\CONSTS.PAS
-xcopy f:\!_emulacja\AtariXE\Scene\_Moje\adventure\fight.pas f:\!_emulacja\CPM\CPM-20230921T170351Z-001\CPM\H\3\FIGHT.PAS
-xcopy f:\!_emulacja\AtariXE\Scene\_Moje\adventure\info.pas f:\!_emulacja\CPM\CPM-20230921T170351Z-001\CPM\H\3\INFO.PAS
-xcopy f:\!_emulacja\AtariXE\Scene\_Moje\adventure\init.pas f:\!_emulacja\CPM\CPM-20230921T170351Z-001\CPM\H\3\INIT.PAS
-xcopy f:\!_emulacja\AtariXE\Scene\_Moje\adventure\inventry.pas f:\!_emulacja\CPM\CPM-20230921T170351Z-001\CPM\H\3\INVENTRY.PAS
-xcopy f:\!_emulacja\AtariXE\Scene\_Moje\adventure\types.pas f:\!_emulacja\CPM\CPM-20230921T170351Z-001\CPM\H\3\TYPES.PAS
+set GAME_PATH=f:\!_emulacja\AtariXE\Scene\_Moje\adventure\
+set CPM_PATH=f:\!_emulacja\CPM\CPM-20230921T170351Z-001\CPM\H\3\
+set CPMFS_PATH=f:\!_emulacja\CPM\run-cpm22\
+set REPLACE_FILE=%CPM_PATH%ADV.PAS
 
-f:\!_emulacja\CPM\run-cpm22\cpmfs.exe f:\!_emulacja\CPM\run-cpm22\driveb.dsk ERA ADV.PAS
-f:\!_emulacja\CPM\run-cpm22\cpmfs.exe f:\!_emulacja\CPM\run-cpm22\driveb.dsk ERA CONSTS.PAS
-f:\!_emulacja\CPM\run-cpm22\cpmfs.exe f:\!_emulacja\CPM\run-cpm22\driveb.dsk ERA FIGHT.PAS
-f:\!_emulacja\CPM\run-cpm22\cpmfs.exe f:\!_emulacja\CPM\run-cpm22\driveb.dsk ERA INFO.PAS
-f:\!_emulacja\CPM\run-cpm22\cpmfs.exe f:\!_emulacja\CPM\run-cpm22\driveb.dsk ERA INIT.PAS
-f:\!_emulacja\CPM\run-cpm22\cpmfs.exe f:\!_emulacja\CPM\run-cpm22\driveb.dsk ERA INVENTRY.PAS
-f:\!_emulacja\CPM\run-cpm22\cpmfs.exe f:\!_emulacja\CPM\run-cpm22\driveb.dsk ERA TYPES.PAS
+echo Copying files...
 
-f:\!_emulacja\CPM\run-cpm22\cpmfs.exe f:\!_emulacja\CPM\run-cpm22\driveb.dsk w f:\!_emulacja\CPM\CPM-20230921T170351Z-001\CPM\H\3\ADV.PAS
-f:\!_emulacja\CPM\run-cpm22\cpmfs.exe f:\!_emulacja\CPM\run-cpm22\driveb.dsk w f:\!_emulacja\CPM\CPM-20230921T170351Z-001\CPM\H\3\CONSTS.PAS
-f:\!_emulacja\CPM\run-cpm22\cpmfs.exe f:\!_emulacja\CPM\run-cpm22\driveb.dsk w f:\!_emulacja\CPM\CPM-20230921T170351Z-001\CPM\H\3\FIGHT.PAS
-f:\!_emulacja\CPM\run-cpm22\cpmfs.exe f:\!_emulacja\CPM\run-cpm22\driveb.dsk w f:\!_emulacja\CPM\CPM-20230921T170351Z-001\CPM\H\3\INFO.PAS
-f:\!_emulacja\CPM\run-cpm22\cpmfs.exe f:\!_emulacja\CPM\run-cpm22\driveb.dsk w f:\!_emulacja\CPM\CPM-20230921T170351Z-001\CPM\H\3\INIT.PAS
-f:\!_emulacja\CPM\run-cpm22\cpmfs.exe f:\!_emulacja\CPM\run-cpm22\driveb.dsk w f:\!_emulacja\CPM\CPM-20230921T170351Z-001\CPM\H\3\INVENTRY.PAS
-f:\!_emulacja\CPM\run-cpm22\cpmfs.exe f:\!_emulacja\CPM\run-cpm22\driveb.dsk w f:\!_emulacja\CPM\CPM-20230921T170351Z-001\CPM\H\3\TYPES.PAS
+xcopy %GAME_PATH%adventure.pas %CPM_PATH%ADV.PAS
+xcopy %GAME_PATH%consts.pas %CPM_PATH%CONSTS.PAS
+xcopy %GAME_PATH%fight.pas %CPM_PATH%FIGHT.PAS
+xcopy %GAME_PATH%info.pas %CPM_PATH%INFO.PAS
+xcopy %GAME_PATH%init.pas %CPM_PATH%INIT.PAS
+xcopy %GAME_PATH%inventry.pas %CPM_PATH%INVENTRY.PAS
+xcopy %GAME_PATH%types.pas %CPM_PATH%TYPES.PAS
+xcopy %GAME_PATH%defkeys.pas %CPM_PATH%DEFKEYS.PAS
+
+echo disabling use crt from main files
+
+powershell -Command "(Get-Content %REPLACE_FILE%) -replace 'uses crt;', '{ uses crt; }' | Set-Content %REPLACE_FILE%"
+
+echo Deleting old files from dsk image
+
+%CPMFS_PATH%cpmfs.exe %CPMFS_PATH%driveb.dsk ERA ADV.PAS
+%CPMFS_PATH%cpmfs.exe %CPMFS_PATH%driveb.dsk ERA CONSTS.PAS
+%CPMFS_PATH%cpmfs.exe %CPMFS_PATH%driveb.dsk ERA FIGHT.PAS
+%CPMFS_PATH%cpmfs.exe %CPMFS_PATH%driveb.dsk ERA INFO.PAS
+%CPMFS_PATH%cpmfs.exe %CPMFS_PATH%driveb.dsk ERA INIT.PAS
+%CPMFS_PATH%cpmfs.exe %CPMFS_PATH%driveb.dsk ERA INVENTRY.PAS
+%CPMFS_PATH%cpmfs.exe %CPMFS_PATH%driveb.dsk ERA TYPES.PAS
+%CPMFS_PATH%cpmfs.exe %CPMFS_PATH%driveb.dsk ERA READKEY.PAS
+%CPMFS_PATH%cpmfs.exe %CPMFS_PATH%driveb.dsk ERA DEFKEYS.PAS
+%CPMFS_PATH%cpmfs.exe %CPMFS_PATH%driveb.dsk ERA ADV.COM
+
+echo Writing updated files to dsk image
+
+%CPMFS_PATH%cpmfs.exe %CPMFS_PATH%driveb.dsk w %CPM_PATH%ADV.PAS
+%CPMFS_PATH%cpmfs.exe %CPMFS_PATH%driveb.dsk w %CPM_PATH%CONSTS.PAS
+%CPMFS_PATH%cpmfs.exe %CPMFS_PATH%driveb.dsk w %CPM_PATH%FIGHT.PAS
+%CPMFS_PATH%cpmfs.exe %CPMFS_PATH%driveb.dsk w %CPM_PATH%INFO.PAS
+%CPMFS_PATH%cpmfs.exe %CPMFS_PATH%driveb.dsk w %CPM_PATH%INIT.PAS
+%CPMFS_PATH%cpmfs.exe %CPMFS_PATH%driveb.dsk w %CPM_PATH%INVENTRY.PAS
+%CPMFS_PATH%cpmfs.exe %CPMFS_PATH%driveb.dsk w %CPM_PATH%TYPES.PAS
+%CPMFS_PATH%cpmfs.exe %CPMFS_PATH%driveb.dsk w %CPM_PATH%READKEY.PAS
+%CPMFS_PATH%cpmfs.exe %CPMFS_PATH%driveb.dsk w %CPM_PATH%DEFKEYS.PAS
+
+echo Actual directory of CP/M disk:
+%CPMFS_PATH%cpmfs.exe %CPMFS_PATH%driveb.dsk dir
 
 pause
 
