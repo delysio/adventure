@@ -16,6 +16,7 @@ var
     monsters         : Tmonsters;
     weapons          : Tweapons;
     armory           : Tarmor;
+    key_legal        : boolean;
     
     location_items   : array [0..MAP_SIZE, 0..MAX_ITEM_NUMBER] of byte;
     inventory_items  : array [0..MAX_INVENTORY] of byte;
@@ -55,18 +56,19 @@ begin
 
                 repeat
                 
-                    key_hit := ReadKey;
+                    key_hit := Upcase(ReadKey);
 
-                until (key_hit = 'S') or (key_hit = 's') or (key_hit = 'Q') or (key_hit = 'q');
+                until (key_hit = 'S') or (key_hit = 'Q');
 
                 case key_hit of
                     
-                    'S', 's': current_state := STATE_GAME;
-                    'Q', 'q': current_state := STATE_EXIT;
+                    'S': current_state := STATE_GAME;
+                    'Q': current_state := STATE_EXIT;
                 
                 end;
 
             end;
+
             STATE_GAME:
             begin
                 
@@ -88,25 +90,21 @@ begin
                             Writeln;
                             Writeln ('You are in a forest clearing.');
 
-                            if Item_Exists(current_location) = TRUE then begin
-
-                                Notify_On_Objects;
-
-                            end;
+                            Notify_On_Objects;
                             
                             Writeln ('You can go [N]orth, [E]ast.');
-                            
+
                             key_hit := ReadKey;
-                    
-                            case key_hit of
+
+                            case UpCase(key_hit) of
                                 
-                                'N', 'n': begin
+                                'N': begin
                                     current_location := LOCATION_LAKE;
                                 end;
-                                'E', 'e': begin
+                                'E': begin
                                     current_location := LOCATION_BUSHES;
                                 end;
-                                'G', 'g': begin
+                                'G': begin
                                     if Item_Exists(current_location) then begin
                                         success := Add_To_Inventory(current_location);
                                     end;
@@ -114,6 +112,7 @@ begin
                                 {$I DEFKEYS.PAS}
             
                             end;
+
                             previous_location := LOCATION_START;
                             
                         end;
@@ -128,7 +127,7 @@ begin
                             if monsters[current_location].hit_points > 0 then begin
                             
                                 Writeln;
-                                Writeln ('Monster appeared!');
+                                Writeln ('Drowner appeared!');
                                 Print_Monster_Stats(current_location);
                                 Writeln;
                                 Writeln ('Press [F] to fight');
@@ -136,30 +135,26 @@ begin
                             
                             end;
 
-                            if (monsters[current_location].hit_points = 0) and (Item_Exists(current_location) = TRUE) then 
-                            begin
-
-                                Notify_On_Objects;
-
-                            end;
+                            if monsters[current_location].hit_points = 0 then Notify_On_Objects;
 
                             Writeln ('You can go [S]outh, or sail [E]ast to the island');
                             
                             key_hit := ReadKey;
                     
-                            case key_hit of
+                            case UpCase(key_hit) of
                                 
-                                'S', 's': begin
+                                'S': begin
                                     current_location := LOCATION_START;
                                 end;
-                                'E', 'e': begin
+                                'E': begin
                                     current_location := LOCATION_ISLAND;
                                 end;
-                                'F', 'f': begin
+                                'F': begin
                                     Fight;
                                 end;
-                                'G', 'g': begin
-                                    if (monsters[current_location].hit_points=0) and (Item_Exists(current_location)=TRUE) then 
+                                'G': begin
+                                    if (monsters[current_location].hit_points=0) and (Item_Exists(current_location)=TRUE) 
+                                    then 
                                     begin
                                         success := Add_To_Inventory(current_location);
                                     end;
@@ -185,12 +180,7 @@ begin
                             end else begin
 
                                 Writeln ('A torch illuminates part of the island.');
-                                
-                                if Item_Exists(current_location) = TRUE then begin
-                                
-                                    Notify_On_Objects;
-
-                                end;
+                                Notify_On_Objects;
 
                             end;
 
@@ -198,12 +188,12 @@ begin
                             
                             key_hit := ReadKey;
                     
-                            case key_hit of
+                            case UpCase(key_hit) of
 
-                                'W', 'w': begin
+                                'W': begin
                                     current_location := LOCATION_LAKE;
                                 end;
-                                'G', 'g': begin
+                                'G': begin
                                     if (Is_In_Inventory(ITEM_TORCH) = TRUE) and (Item_Exists(current_location) = TRUE) then 
                                     begin
                                         success := Add_To_Inventory(current_location);
@@ -233,11 +223,7 @@ begin
                                 Writeln ('Using a machete you pave your way through the dense bushes.');
                                 Writeln ('The plants grow back quickly, but you manage to get through.');
 
-                                if Item_Exists(current_location) = TRUE then begin
-
-                                    Notify_On_Objects;
-
-                                end;
+                                Notify_On_Objects;
 
                                 Writeln ('You can go [S]outh or [W]est');
 
@@ -245,15 +231,15 @@ begin
                             
                             key_hit := ReadKey;
                     
-                            case key_hit of
+                            case UpCase(key_hit) of
                                 
-                                'W', 'w': begin
+                                'W': begin
                                     current_location := LOCATION_START;
                                 end;
-                                'S', 's': begin
+                                'S': begin
                                     current_location := LOCATION_STREAM;
                                 end;
-                                'G', 'g': begin
+                                'G': begin
                                     if Item_Exists(current_location) = TRUE then begin
                                         success := Add_To_Inventory(current_location);
                                     end;
@@ -264,21 +250,28 @@ begin
                             previous_location := LOCATION_BUSHES;
                             
                         end;
+
                         LOCATION_STREAM:
                         begin
 
                             Writeln;
                             Writeln ('A small stream runs through the forest. ');
-                            Writeln ('You can go [N]orth');
+
+                            Notify_On_Objects;
+
+                            Writeln ('You can go [N]orth, [S]outh');
                             
                             key_hit := ReadKey;
                     
-                            case key_hit of
+                            case UpCase(key_hit) of
                                 
-                                'N', 'n': begin
+                                'S': begin
+                                    current_location := LOCATION_SPRING;
+                                end;
+                                'N': begin
                                     current_location := LOCATION_BUSHES;
                                 end;
-                                'G', 'g': begin
+                                'G': begin
                                     if Item_Exists(current_location) = TRUE then begin
                                         success := Add_To_Inventory(current_location);
                                     end;
@@ -287,6 +280,125 @@ begin
             
                             end;
                             previous_location := LOCATION_STREAM;
+                            
+                        end;
+
+                        LOCATION_SPRING:
+                        begin
+
+                            Writeln;
+                            Writeln ('You see a rock from which a stream of water flows.');
+
+                            if monsters[current_location].hit_points > 0 then begin
+                            
+                                Writeln;
+                                Writeln ('Striga appeared!');
+                                Print_Monster_Stats(current_location);
+                                Writeln;
+                                Writeln ('Press [F] to fight');
+                                Writeln;
+                            
+                            end;
+
+                            if (monsters[current_location].hit_points = 0) then begin
+
+                                Writeln ('The defeated striga toppled onto the rock crumbling it and revealing a passage');
+                                Writeln ('You can go [N]orth or [E]ast');
+
+                            end else begin
+
+                                Writeln ('You can go [N]orth');
+
+                            end;
+
+                            if monsters[current_location].hit_points = 0 then Notify_On_Objects;
+                            
+                            key_hit := ReadKey;
+                    
+                            case UpCase(key_hit) of
+                                
+                                'N': begin
+                                    current_location := LOCATION_STREAM;
+                                end;
+                                'E': begin
+                                    if (monsters[current_location].hit_points = 0) then begin
+                                        current_location := LOCATION_ROCKS;
+                                    end;
+                                end;
+                                'F': begin
+                                    Fight;
+                                end;
+                                'G': begin
+                                    if (monsters[current_location].hit_points=0) and (Item_Exists(current_location)=TRUE) 
+                                    then begin
+                                        success := Add_To_Inventory(current_location);
+                                    end;
+                                end;
+                                {$I DEFKEYS.PAS}
+            
+                            end;
+                            previous_location := LOCATION_SPRING;
+                            
+                        end;
+
+                        LOCATION_ROCKS:
+                        begin
+
+                            Writeln;
+                            Writeln ('You squeeze between the rocks and see a cave, behind you is spring.');
+
+                            Notify_On_Objects;
+
+                            Writeln ('You can go [N]orth, [W]est');
+                            
+                            key_hit := ReadKey;
+                    
+                            case UpCase(key_hit) of
+                                
+                                'W': begin
+                                    current_location := LOCATION_SPRING;
+                                end;
+                                'N': begin
+                                    current_location := LOCATION_CAVE;
+                                end;
+                                'G': begin
+                                    if Item_Exists(current_location) = TRUE then begin
+                                        success := Add_To_Inventory(current_location);
+                                    end;
+                                end;
+                                {$I DEFKEYS.PAS}
+            
+                            end;
+                            previous_location := LOCATION_ROCKS;
+                            
+                        end;
+
+                        LOCATION_CAVE:
+                        begin
+
+                            Writeln;
+                            Writeln ('The cave is dark, you can barely see what is going on inside.');
+
+                            Notify_On_Objects;
+
+                            Writeln ('You can go [S]outh');
+                            
+                            key_hit := ReadKey;
+                    
+                            case Upcase(key_hit) of
+                                
+                                'S': begin
+                                    current_location := LOCATION_ROCKS;
+                                end;
+                                'G': begin
+                                    if Item_Exists(current_location) = TRUE then begin
+                                        success := Add_To_Inventory(current_location);
+                                    end;
+                                end;
+                                {$I DEFKEYS.PAS}
+            
+                            end;
+                            previous_location := LOCATION_CAVE;
                             
                         end;
                     

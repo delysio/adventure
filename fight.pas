@@ -70,11 +70,11 @@ begin
             
             repeat
 
-                key_hit := ReadKey;
+                key_hit := UpCase(ReadKey);
                 
                 case key_hit of 
                 
-                    'R', 'r': begin
+                    'R': begin
                     
                         Writeln ('You ran...');
                         player_run := TRUE;
@@ -84,7 +84,7 @@ begin
                 
                 end;
 
-            until (key_hit = 'R') or (key_hit = 'r') or (key_hit = 'F') or (key_hit = 'f')
+            until (key_hit = 'R') or (key_hit = 'F')
 
         end;
     

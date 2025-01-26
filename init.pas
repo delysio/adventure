@@ -1,16 +1,15 @@
 { Initialisation of monster characteristics }
 procedure Init_Monsters;
 begin
-
     monsters[LOCATION_LAKE].hit_points := 5;
     monsters[LOCATION_LAKE].defence := 2;
     monsters[LOCATION_LAKE].attack := 5;
     monsters[LOCATION_LAKE].dexterity := 0;
     
-    monsters[9].hit_points := 9;
-    monsters[9].defence := 2;
-    monsters[9].attack := 3;
-    monsters[9].dexterity := 0;
+    monsters[LOCATION_SPRING].hit_points := 9;
+    monsters[LOCATION_SPRING].defence := 5;
+    monsters[LOCATION_SPRING].attack := 9;
+    monsters[LOCATION_SPRING].dexterity := 0;
 end;
 
 
@@ -18,21 +17,21 @@ end;
 procedure Init_Armory;
 begin
 
-    armory.weapon := STARTING_ARMORY;
+    armory.weapon := INITIAL_ARMORY;
     armory.weapon_name := '';
-    armory.shield := STARTING_ARMORY;
+    armory.shield := INITIAL_ARMORY;
     armory.shield_name := '';
-    armory.weapon_slot := STARTING_ARMORY;
+    armory.weapon_slot := INITIAL_ARMORY;
     armory.weapon_slot_name := '';
-    armory.shield_slot := STARTING_ARMORY;
+    armory.shield_slot := INITIAL_ARMORY;
     armory.shield_slot_name := '';
-    armory.head := STARTING_ARMORY;
+    armory.head := INITIAL_ARMORY;
     armory.head_name := '';
-    armory.body := STARTING_ARMORY;
+    armory.body := INITIAL_ARMORY;
     armory.body_name := '';
-    armory.gloves := STARTING_ARMORY;
+    armory.gloves := INITIAL_ARMORY;
     armory.gloves_name := '';
-    armory.boots := STARTING_ARMORY;
+    armory.boots := INITIAL_ARMORY;
     armory.boots_name := '';
     
 end;
@@ -126,6 +125,8 @@ begin
     location_items[LOCATION_START, 0] := WEAPON_DAGGER;
     location_items[LOCATION_START, 1] := WEAPON_WOODEN_SHIELD;
     location_items[LOCATION_START, 2] := ITEM_POTION;
+    location_items[LOCATION_SPRING, 0] := ITEM_POTION;
+    location_items[LOCATION_CAVE, 0] := WEAPON_SHORT_SWORD;
 
 end;
 
@@ -142,8 +143,8 @@ end;
 { Initialises the hero's statistics }
 procedure Init_Hero;
 begin
-    hero.hit_points := STARTING_HIT_POINTS;
-    hero.defence := STARTING_DEFENCE;
-    hero.attack  := STARTING_ATTACK;
-    hero.dexterity := STARTING_DEXTERITY;
+    hero.hit_points := INITIAL_HIT_POINTS;
+    hero.defence := INITIAL_DEFENCE;
+    hero.attack  := INITIAL_ATTACK;
+    hero.dexterity := INITIAL_DEXTERITY;
 end;

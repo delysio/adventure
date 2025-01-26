@@ -15,13 +15,16 @@ const
     LOCATION_BUSHES = 14;
     LOCATION_START  = 15;
     LOCATION_STREAM = 20;
+    LOCATION_SPRING = 26;
+    LOCATION_ROCKS  = 27;
+    LOCATION_CAVE   = 21;
     
-    STARTING_HIT_POINTS = 20;       { configuration of hero starting stats }
-    STARTING_DEFENCE    = 1;
-    STARTING_ATTACK     = 5;
-    STARTING_DEXTERITY  = 1;
+    INITIAL_HIT_POINTS = 50;       { configuration of hero starting stats }
+    INITIAL_DEFENCE    = 1;
+    INITIAL_ATTACK     = 5;
+    INITIAL_DEXTERITY  = 1;
 
-    STARTING_ARMORY     = 0;
+    INITIAL_ARMORY     = 0;
 
     ITEM_TORCH          = 0;        { item ids }
     ITEM_MACHETE        = 1;
@@ -31,12 +34,13 @@ const
     ITEM_POTION_VALUE   = 5;
 
     WEAPON_DAGGER           = 20;
+    WEAPON_SHORT_SWORD      = 21;
     WEAPON_WOODEN_SHIELD    = 30;
 
     ITEM_DESCRIPTIONS: array [0..MAX_ITEMS] of string[13] = (
         'TORCH', 'MACHETE', '', '', '', '', '', '', '', '',
         '', '', '', '', '', '', '', '', '', 'POTION',
-        'DAGGER', '', '', '', '', '', '', '', '', '',
+        'DAGGER', 'SHORT SWORD', '', '', '', '', '', '', '', '',
         'WOODEN SHIELD', '', '', '', '', '', '', '', '', '',
         '', '', '', '', '', '', '', '', '', '',
         '', '', '', '', '', '', '', '', '', '',

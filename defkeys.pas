@@ -1,12 +1,16 @@
-'C', 'c': begin
-    Print_Armory_Stats;
+'C': begin
+    Print_Player_Stats;
+    key_legal := TRUE;
 end;
-'I', 'i': begin
+'I': begin
     Print_Inventory;
+    key_legal := TRUE;
 end;
-'P', 'p': begin
+'P': begin
     Drink_Potion;
+    key_legal := TRUE;
 end;
-'X', 'x': begin
+'X': begin
     current_state := STATE_TITLE;
+    key_legal := TRUE;
 end;

@@ -46,11 +46,13 @@ end;
 
 
 { Prints hero armory stats }
-procedure Print_Armory_Stats;
+procedure Print_Player_Stats;
 var
     value: byte;
 begin
     
+    Writeln;
+    Print_Hero_Stats;
     Writeln;
     Writeln ('Your weapons and armory:');
 

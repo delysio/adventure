@@ -93,7 +93,6 @@ end;
 function Is_In_Inventory(item: byte): boolean;
 var i: byte;
 begin
-
     Is_In_Inventory := FALSE;
     for i := 0 to MAX_INVENTORY do begin
         if inventory_items[i] = item then begin
@@ -101,7 +100,6 @@ begin
             exit;
         end;
     end;
-
 end;
 
 
@@ -131,17 +129,18 @@ begin
         inventory_counter := 0;
         potion_found := FALSE;
 
+        Writeln;
+
         repeat
 
             if inventory_items[inventory_counter] = ITEM_POTION then begin
-
                 inventory_items[inventory_counter] := ITEM_NONE;
-                Writeln;
                 Writeln ('You feel a sudden wave of strength');              
                 Organise_Item_Array;
-                potion_found := true;
-                
+                potion_found := TRUE;
             end;
+
+            inventory_counter := inventory_counter + 1;
 
         until (inventory_counter = MAX_INVENTORY) or (potion_found = TRUE);
         
@@ -155,14 +154,18 @@ procedure Notify_On_Objects;
 var i: byte;
 begin
 
-    i := Random(3);
+    if Item_Exists(current_location) = TRUE then begin
 
-    case i of 
-        0: Write('You see something lying on the ground.');
-        1: Write('There is something shining next to you.');
-        2: Write('Something on the ground caught your eye.');
+        i := Random(3);
+
+        case i of 
+            0: Write('You see something lying on the ground.');
+            1: Write('There is something shining next to you.');
+            2: Write('Something on the ground caught your eye.');
+        end;
+
+        Writeln (' Press [G] to pick up.');    
+
     end;
-
-    Writeln (' Press [G] to pick up.');     
 
 end;
