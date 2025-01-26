@@ -88,13 +88,119 @@ begin
 end;
 
 
+{ Items dropping, param: global item index }
+procedure Drop_Item(item: byte);
+var 
+    location_index: byte;
+    inventory_index: byte;
+    can_drop: boolean;
+begin
+
+    { Items with index >= 20 are weapons or armory }
+    if item >= 20 then begin
+
+        case item of
+
+            20..29: begin 
+                        armory.weapon := INITIAL_ARMORY; 
+                        armory.weapon_name := INITIAL_DESCRIPTION; 
+                    end;
+            30..39: begin 
+                        armory.shield := INITIAL_ARMORY; 
+                        armory.shield_name := INITIAL_DESCRIPTION; 
+                    end;
+            40..49: begin 
+                        armory.weapon_slot := INITIAL_ARMORY; 
+                        armory.weapon_slot_name := INITIAL_DESCRIPTION; 
+                    end;
+            50..59: begin 
+                        armory.shield_slot := INITIAL_ARMORY; 
+                        armory.shield_slot_name := INITIAL_DESCRIPTION; 
+                    end;
+            60..69: begin 
+                        armory.head := INITIAL_ARMORY; 
+                        armory.head_name := INITIAL_DESCRIPTION; 
+                    end;
+            70..79: begin 
+                        armory.body := INITIAL_ARMORY; 
+                        armory.body_name := INITIAL_DESCRIPTION; 
+                    end;
+            80..89: begin 
+                        armory.gloves := INITIAL_ARMORY; 
+                        armory.gloves_name := INITIAL_DESCRIPTION; 
+                    end;
+            90..99: begin 
+                        armory.boots := INITIAL_ARMORY; 
+                        armory.boots_name := INITIAL_DESCRIPTION; 
+                    end;
+            
+        end;
+
+        { wstaw na mapę}
+        for location_index := 0 to MAX_ITEM_NUMBER do begin
+
+            if location_items[current_location, location_index] = ITEM_NONE then begin
+
+                location_items[current_location, location_index] := item;
+
+            end;
+        
+        end;
+
+        Writeln;
+        Writeln ('You have dropped ', ITEM_DESCRIPTIONS[item]);
+
+    end else begin
+
+        if inventory_items[item] <> ITEM_NONE then begin
+
+            { Check if item can be dropped off }
+
+            can_drop := FALSE;
+
+            for location_index := 0 to MAX_ITEM_NUMBER do begin
+
+                if location_items[current_location, location_index] = ITEM_NONE then begin
+
+                    for inventory_index := 0 to MAX_INVENTORY do begin
+
+                        if inventory_items[inventory_index] = item then begin
+
+                            { wyczyść w ekwipunku }
+                            inventory_items[inventory_index] := ITEM_NONE;
+                            { wstaw na mapę}
+                            location_items[current_location, location_index] := item;
+                            Writeln;
+                            Writeln ('You have dropped ', ITEM_DESCRIPTIONS[item]);
+
+                            can_drop := TRUE;
+                            Organise_Item_Array;
+
+                            exit;
+
+                        end;
+
+                    end;
+
+                end;
+
+            end;
+
+            if can_drop = FALSE then Writeln ('You can''t drop this item here.');
+
+        end;
+
+    end;
+    
+end;
+
+
 { Displays the contents of your inventory and allows you to drop unnecessary items }
 procedure Print_Inventory;
 var
-    items_index, descriptions_index, number_of_items, location_index : byte;
+    items_index, descriptions_index, number_of_items, global_index: byte;
     count : byte;
     key: char;
-    can_drop: boolean;
 begin
 
     Writeln;
@@ -130,36 +236,11 @@ begin
 
         if (key <> 'x') and (key <> 'X') then begin
         
+            { indeks przedmiotu w ekwipunku}
             items_index := Ord(key) - Ord('0') - 1;
-            if inventory_items[items_index] <> ITEM_NONE then begin
-
-                { Check if item can be dropped off }
-
-                can_drop := FALSE;
-
-                for location_index := 0 to MAX_ITEM_NUMBER do begin
-
-                    if location_items[current_location, location_index] = ITEM_NONE then begin
-
-                        descriptions_index := inventory_items[items_index];
-                        inventory_items[items_index] := ITEM_NONE;
-                        location_items[current_location, location_index] := descriptions_index;
-                        Writeln;
-                        Writeln ('You have dropped ', ITEM_DESCRIPTIONS[descriptions_index]);
-
-                        can_drop := TRUE;
-
-                        Organise_Item_Array;
-
-                        exit;
-
-                    end;
-
-                end;
-
-                if can_drop = FALSE then Writeln ('You can not drop this item here');
-            
-            end;
+            { indeks przedmiotu globalny}
+            global_index := inventory_items[items_index];
+            Drop_Item(global_index);
 
         end;
 

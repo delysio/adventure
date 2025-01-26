@@ -18,21 +18,21 @@ procedure Init_Armory;
 begin
 
     armory.weapon := INITIAL_ARMORY;
-    armory.weapon_name := '';
+    armory.weapon_name := INITIAL_DESCRIPTION;
     armory.shield := INITIAL_ARMORY;
-    armory.shield_name := '';
+    armory.shield_name := INITIAL_DESCRIPTION;
     armory.weapon_slot := INITIAL_ARMORY;
-    armory.weapon_slot_name := '';
+    armory.weapon_slot_name := INITIAL_DESCRIPTION;
     armory.shield_slot := INITIAL_ARMORY;
-    armory.shield_slot_name := '';
+    armory.shield_slot_name := INITIAL_DESCRIPTION;
     armory.head := INITIAL_ARMORY;
-    armory.head_name := '';
+    armory.head_name := INITIAL_DESCRIPTION;
     armory.body := INITIAL_ARMORY;
-    armory.body_name := '';
+    armory.body_name := INITIAL_DESCRIPTION;
     armory.gloves := INITIAL_ARMORY;
-    armory.gloves_name := '';
+    armory.gloves_name := INITIAL_DESCRIPTION;
     armory.boots := INITIAL_ARMORY;
-    armory.boots_name := '';
+    armory.boots_name := INITIAL_DESCRIPTION;
     
 end;
 
@@ -127,6 +127,7 @@ begin
     location_items[LOCATION_START, 2] := ITEM_POTION;
     location_items[LOCATION_SPRING, 0] := ITEM_POTION;
     location_items[LOCATION_CAVE, 0] := WEAPON_SHORT_SWORD;
+    location_items[LOCATION_CAVE, 1] := ITEM_PERUNS_STONE;
 
 end;
 
@@ -136,6 +137,7 @@ procedure Init_Inventory;
 var 
     i: byte;
 begin
+    target_items_number := 0;
     for i := 0 to MAX_INVENTORY do inventory_items[i] := ITEM_NONE;
 end;
 

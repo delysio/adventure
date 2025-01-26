@@ -6,17 +6,19 @@ uses crt;
 {$I CONSTS.PAS}
 
 var 
-    current_state    : byte;
-    current_location : byte;
-    previous_location: byte;
-    key_hit          : char;
-    game_over        : boolean;
-    success          : boolean;
-    hero             : Tplayer;
-    monsters         : Tmonsters;
-    weapons          : Tweapons;
-    armory           : Tarmor;
-    key_legal        : boolean;
+    current_state       : byte;
+    current_location    : byte;
+    previous_location   : byte;
+    key_hit             : char;
+    game_over           : boolean;
+    success             : boolean;
+    hero                : Tplayer;
+    monsters            : Tmonsters;
+    weapons             : Tweapons;
+    armory              : Tarmor;
+    key_legal           : boolean;
+    target_items_number : byte;
+    index               : byte;
     
     location_items   : array [0..MAP_SIZE, 0..MAX_ITEM_NUMBER] of byte;
     inventory_items  : array [0..MAX_INVENTORY] of byte;
@@ -76,9 +78,18 @@ begin
                 game_over := FALSE;
             
                 Writeln;
-                Writeln ('Welcome in game!');
+                Writeln ('Welcome, traveller! You are a hero traversing the ancient world of central Europe, '); 
+                Writeln ('full of mysterious gods and dangerous monsters. Your goal is to find four artefacts ');
+                Writeln ('of power: The Stone of Perun, the Shield of Mokosha, the Amulet of the Viper and the ');
+                Writeln ('Horn of Svarogus. Each of these artefacts is hidden in remote areas of the realm, ');
+                Writeln ('guarded by monsters or protected by riddles. Get them all so you can confront Rarog ');
+                Writeln ('and restore order to the world.');
                 Writeln;
-                Writeln ('Press anytime [X] exit, [I] inventory, [C] weapon statistics');
+                Writeln ('At the beginning of your journey, the Witch will give you some basic items. You will ');
+                Writeln ('find more and better ones during your adventure.');
+                Writeln;
+                Writeln ('Press anytime: ');
+                Writeln ('[X] - exit, [I] - inventory, [C] - statistics, [P] - restore health');
                 
                 repeat
                 
@@ -88,7 +99,29 @@ begin
                         begin
 
                             Writeln;
-                            Writeln ('You are in a forest clearing.');
+
+                            if Is_In_Inventory(ITEM_PERUNS_STONE) then begin
+
+                                Write ('(Witch) I see you managed to get the Stone of Perun, ');
+                                Writeln ('that''s a big achievement!'); 
+                                Writeln ('(Witch) I''m taking it away, but in return I''m giving you a reward.');
+                                Write ('(Witch) I cast a spell of defence on you. ');
+                                Writeln ('Your ability to defend yourself increases.');
+
+                                hero.defence := hero.defence + 5;
+                                target_items_number := target_items_number + 1;
+
+                                { zabierz kamień peruna }
+                                for index := 0 to MAX_INVENTORY do begin
+                                    if inventory_items[index] = ITEM_PERUNS_STONE then begin
+                                        inventory_items[index] := ITEM_NONE; 
+                                        Organise_Item_Array;
+                                    end;
+                                end;
+
+                            end;
+
+                            Writeln ('You are in a forest clearing next to a witch''s hut.');
 
                             Notify_On_Objects;
                             
@@ -215,7 +248,7 @@ begin
                             if Is_In_Inventory(ITEM_MACHETE) = FALSE then begin
 
                                 Writeln ('There seems to be no passage here.');
-                                Writeln ('The bushes are so dense that you can not go any further...');
+                                Writeln ('The bushes are so dense that you can''t go any further...');
                                 Writeln ('You can go [W]est');
 
                             end else begin
@@ -302,7 +335,9 @@ begin
 
                             if (monsters[current_location].hit_points = 0) then begin
 
-                                Writeln ('The defeated striga toppled onto the rock crumbling it and revealing a passage');
+                                Write ('The defeated striga fell on the rocks and, splitting them open, ');
+                                Writeln ('revealed a passage between them');
+                                Notify_On_Objects;
                                 Writeln ('You can go [N]orth or [E]ast');
 
                             end else begin
@@ -310,8 +345,6 @@ begin
                                 Writeln ('You can go [N]orth');
 
                             end;
-
-                            if monsters[current_location].hit_points = 0 then Notify_On_Objects;
                             
                             key_hit := ReadKey;
                     

@@ -24,10 +24,13 @@ const
     INITIAL_ATTACK     = 5;
     INITIAL_DEXTERITY  = 1;
 
+    INITIAL_DESCRIPTION = '';
+
     INITIAL_ARMORY     = 0;
 
     ITEM_TORCH          = 0;        { item ids }
     ITEM_MACHETE        = 1;
+    ITEM_PERUNS_STONE   = 15;
     ITEM_POTION         = 19;
     ITEM_NONE           = 255;
 
@@ -39,7 +42,7 @@ const
 
     ITEM_DESCRIPTIONS: array [0..MAX_ITEMS] of string[13] = (
         'TORCH', 'MACHETE', '', '', '', '', '', '', '', '',
-        '', '', '', '', '', '', '', '', '', 'POTION',
+        '', '', '', '', '', 'PERUN''S STONE', '', '', '', 'POTION',
         'DAGGER', 'SHORT SWORD', '', '', '', '', '', '', '', '',
         'WOODEN SHIELD', '', '', '', '', '', '', '', '', '',
         '', '', '', '', '', '', '', '', '', '',

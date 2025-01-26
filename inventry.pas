@@ -16,37 +16,56 @@ begin
             { if id >= 20, it is a weapon or armour }
             if item >= 20 then begin
 
+                { najpierw wyrzuć, jeśli coś tej samej klasy jest niesione }
+
+                if (weapons[item].kind = 0) and (armory.weapon > 0) then Drop_Item(armory.weapon_id);
+                if (weapons[item].kind = 1) and (armory.shield > 0) then Drop_Item(armory.shield_id);
+                if (weapons[item].kind = 2) and (armory.weapon_slot > 0) then Drop_Item(armory.weapon_slot_id);
+                if (weapons[item].kind = 3) and (armory.shield_slot > 0) then Drop_Item(armory.shield_slot_id);
+                if (weapons[item].kind = 4) and (armory.head > 0) then Drop_Item(armory.head_id);
+                if (weapons[item].kind = 5) and (armory.body > 0) then Drop_Item(armory.body_id);
+                if (weapons[item].kind = 6) and (armory.gloves > 0) then Drop_Item(armory.gloves_id);
+                if (weapons[item].kind = 7) and (armory.boots > 0) then Drop_Item(armory.boots_id);
+
                 case item of
 
                     20..29: begin 
+                                armory.weapon_id := item;
                                 armory.weapon := weapons[item].modifier; 
                                 armory.weapon_name := ITEM_DESCRIPTIONS[item]; 
                             end;
                     30..39: begin 
+                                armory.shield_id := item;
                                 armory.shield := weapons[item].modifier; 
                                 armory.shield_name := ITEM_DESCRIPTIONS[item]; 
                             end;
                     40..49: begin 
+                                armory.weapon_slot_id := item;
                                 armory.weapon_slot := weapons[item].modifier; 
                                 armory.weapon_slot_name := ITEM_DESCRIPTIONS[item]; 
                             end;
                     50..59: begin 
+                                armory.shield_slot_id := item;
                                 armory.shield_slot := weapons[item].modifier; 
                                 armory.shield_slot_name := ITEM_DESCRIPTIONS[item]; 
                             end;
                     60..69: begin 
+                                armory.head_id := item;
                                 armory.head := weapons[item].modifier; 
                                 armory.head_name := ITEM_DESCRIPTIONS[item]; 
                             end;
                     70..79: begin 
+                                armory.body_id := item;
                                 armory.body := weapons[item].modifier; 
                                 armory.body_name := ITEM_DESCRIPTIONS[item]; 
                             end;
                     80..89: begin 
+                                armory.gloves_id := item;
                                 armory.gloves := weapons[item].modifier; 
                                 armory.gloves_name := ITEM_DESCRIPTIONS[item]; 
                             end;
                     90..99: begin 
+                                armory.boots_id := item;
                                 armory.boots := weapons[item].modifier; 
                                 armory.boots_name := ITEM_DESCRIPTIONS[item]; 
                             end;
@@ -148,6 +167,7 @@ begin
         Writeln ('Oh no! You do not have a strength potion in your inventory.');
     end;
 end;
+
 
 { Notifies of visible objects }
 procedure Notify_On_Objects;

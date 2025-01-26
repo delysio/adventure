@@ -7,18 +7,18 @@ set REPLACE_FILE=%CPM_PATH%ADV.PAS
 
 echo Copying files...
 
-xcopy %GAME_PATH%adventure.pas %CPM_PATH%ADV.PAS
-xcopy %GAME_PATH%consts.pas %CPM_PATH%CONSTS.PAS
-xcopy %GAME_PATH%fight.pas %CPM_PATH%FIGHT.PAS
-xcopy %GAME_PATH%info.pas %CPM_PATH%INFO.PAS
-xcopy %GAME_PATH%init.pas %CPM_PATH%INIT.PAS
-xcopy %GAME_PATH%inventry.pas %CPM_PATH%INVENTRY.PAS
-xcopy %GAME_PATH%types.pas %CPM_PATH%TYPES.PAS
-xcopy %GAME_PATH%defkeys.pas %CPM_PATH%DEFKEYS.PAS
+copy %GAME_PATH%adventure.pas %CPM_PATH%ADV.PAS
+copy %GAME_PATH%consts.pas %CPM_PATH%CONSTS.PAS
+copy %GAME_PATH%fight.pas %CPM_PATH%FIGHT.PAS
+copy %GAME_PATH%info.pas %CPM_PATH%INFO.PAS
+copy %GAME_PATH%init.pas %CPM_PATH%INIT.PAS
+copy %GAME_PATH%inventry.pas %CPM_PATH%INVENTRY.PAS
+copy %GAME_PATH%types.pas %CPM_PATH%TYPES.PAS
+copy %GAME_PATH%defkeys.pas %CPM_PATH%DEFKEYS.PAS
 
 echo disabling use crt from main files
 
-powershell -Command "(Get-Content %REPLACE_FILE%) -replace 'uses crt;', '{ uses crt; }' | Set-Content %REPLACE_FILE%"
+powershell -Command "(Get-Content %REPLACE_FILE%) -replace 'uses crt;', '{X-}' | Set-Content %REPLACE_FILE%"
 
 echo Deleting old files from dsk image
 
