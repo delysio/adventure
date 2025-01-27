@@ -22,8 +22,8 @@ begin
     
         { Player attack }
 
-        damage := Random(hero.attack) + armory.weapon + armory.weapon_slot + armory.head + armory.body;
-        damage := damage + armory.gloves + armory.boots - Random(monsters[current_location].defence);
+        damage := Random(hero.attack) + armory.weapon + armory.weapon_slot + Random(hero.dexterity);
+        damage := damage - Random(monsters[current_location].defence);
         
         if damage <= 0 then begin
 

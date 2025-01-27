@@ -53,8 +53,7 @@ begin
                 Writeln;
                 Writeln ('Adventure by NG');
                 Writeln;
-                Writeln ('Press [S] to start');
-                Writeln ('Press [Q] to exit');
+                Writeln ('Press [S] to start, [Q] to exit to OS.');
 
                 repeat
                 
@@ -77,19 +76,7 @@ begin
                 current_location := LOCATION_START;
                 game_over := FALSE;
             
-                Writeln;
-                Writeln ('Welcome, traveller! You are a hero traversing the ancient world of central Europe, '); 
-                Writeln ('full of mysterious gods and dangerous monsters. Your goal is to find four artefacts ');
-                Writeln ('of power: The Stone of Perun, the Shield of Mokosha, the Amulet of the Viper and the ');
-                Writeln ('Horn of Svarogus. Each of these artefacts is hidden in remote areas of the realm, ');
-                Writeln ('guarded by monsters or protected by riddles. Get them all so you can confront Rarog ');
-                Writeln ('and restore order to the world.');
-                Writeln;
-                Writeln ('At the beginning of your journey, the Witch will give you some basic items. You will ');
-                Writeln ('find more and better ones during your adventure.');
-                Writeln;
-                Writeln ('Press anytime: ');
-                Writeln ('[X] - exit, [I] - inventory, [C] - statistics, [P] - restore health');
+                {$I INTRO.PAS }
                 
                 repeat
                 
@@ -125,7 +112,7 @@ begin
 
                             Notify_On_Objects;
                             
-                            Writeln ('You can go [N]orth, [E]ast.');
+                            Writeln ('You can go [N]orth, [W]est.');
 
                             key_hit := ReadKey;
 
@@ -134,7 +121,7 @@ begin
                                 'N': begin
                                     current_location := LOCATION_LAKE;
                                 end;
-                                'E': begin
+                                'W': begin
                                     current_location := LOCATION_BUSHES;
                                 end;
                                 'G': begin
@@ -205,14 +192,16 @@ begin
 
                             Writeln;
                             Writeln ('Paddling hard you reached the island.');
+                            Writeln ('A mysterious darkness has shrouded the entire island.');
 
                             if Is_In_Inventory(ITEM_TORCH) = FALSE then begin
 
-                                Writeln ('Darkness, nothing to see here...');
+                                Writeln ('With absolutely nothing visible, it is better not to explore it in the dark.');
 
                             end else begin
 
-                                Writeln ('A torch illuminates part of the island.');
+                                Write ('It''s fortunate that you have a torch with you, which allows you ');
+                                Writeln ('to at least look around.');
                                 Notify_On_Objects;
 
                             end;
@@ -243,13 +232,15 @@ begin
                         begin
 
                             Writeln;
-                            Writeln ('Ahead of you is a thicket of bushes');
+                            Writeln ('Ahead of you is a thicket of bushes. The surrounding marshes are full of ');
+                            Writeln ('mist and treacherous paths. You can hear the quiet chirps of the russets ');
+                            Writeln ('as they try to lure you into the refuse.');
 
                             if Is_In_Inventory(ITEM_MACHETE) = FALSE then begin
 
                                 Writeln ('There seems to be no passage here.');
                                 Writeln ('The bushes are so dense that you can''t go any further...');
-                                Writeln ('You can go [W]est');
+                                Writeln ('You can go [E]est');
 
                             end else begin
 
@@ -258,7 +249,7 @@ begin
 
                                 Notify_On_Objects;
 
-                                Writeln ('You can go [S]outh or [W]est');
+                                Writeln ('You can go [S]outh or [E]ast');
 
                             end;
                             
@@ -266,11 +257,13 @@ begin
                     
                             case UpCase(key_hit) of
                                 
-                                'W': begin
+                                'E': begin
                                     current_location := LOCATION_START;
                                 end;
                                 'S': begin
-                                    current_location := LOCATION_STREAM;
+                                    if Is_In_Inventory(ITEM_MACHETE) then begin
+                                        current_location := LOCATION_STREAM;
+                                    end;
                                 end;
                                 'G': begin
                                     if Item_Exists(current_location) = TRUE then begin
@@ -288,21 +281,25 @@ begin
                         begin
 
                             Writeln;
-                            Writeln ('A small stream runs through the forest. ');
+                            Writeln ('A narrow stream meandering between the rocks whispers soothingly. The');
+                            Writeln ('water is crystal clear, and you can see the glittering stones at its bottom.');
 
                             Notify_On_Objects;
 
-                            Writeln ('You can go [N]orth, [S]outh');
+                            Writeln ('You can go [N]orth, [S]outh, [E]ast');
                             
                             key_hit := ReadKey;
                     
                             case UpCase(key_hit) of
-                                
+
+                                'N': begin
+                                    current_location := LOCATION_BUSHES;
+                                end;
                                 'S': begin
                                     current_location := LOCATION_SPRING;
                                 end;
-                                'N': begin
-                                    current_location := LOCATION_BUSHES;
+                                'E': begin
+                                    current_location := LOCATION_FOREST_1;
                                 end;
                                 'G': begin
                                     if Item_Exists(current_location) = TRUE then begin
@@ -320,7 +317,8 @@ begin
                         begin
 
                             Writeln;
-                            Writeln ('You see a rock from which a stream of water flows.');
+                            Writeln ('You see a rock from which a stream of water flows. The sun shines brightly');
+                            Writeln ('and the wind carries the scent of flowers.');
 
                             if monsters[current_location].hit_points > 0 then begin
                             
@@ -335,7 +333,7 @@ begin
 
                             if (monsters[current_location].hit_points = 0) then begin
 
-                                Write ('The defeated striga fell on the rocks and, splitting them open, ');
+                                Writeln ('The defeated striga fell on the rocks and, splitting them open, ');
                                 Writeln ('revealed a passage between them');
                                 Notify_On_Objects;
                                 Writeln ('You can go [N]orth or [E]ast');
@@ -374,11 +372,95 @@ begin
                             
                         end;
 
+                        LOCATION_FOREST_1:
+                        begin
+
+                            Writeln;
+                            Writeln ('The dark forest surrounds you on almost all sides. You hear wolves howling');
+                            Writeln ('and leaves rustling.');
+
+                            if monsters[current_location].hit_points > 0 then begin
+                            
+                                Writeln;
+                                Writeln ('Bies appeared!');
+                                Print_Monster_Stats(current_location);
+                                Writeln;
+                                Writeln ('Press [F] to fight');
+                                Writeln;
+                            
+                            end;
+
+                            if (monsters[current_location].hit_points = 0) then begin
+
+                                Notify_On_Objects;
+
+                            end;
+
+                            Writeln ('You can go [E]ast, [S]outh');
+                            
+                            key_hit := ReadKey;
+                    
+                            case UpCase(key_hit) of
+                                
+                                'E': begin
+                                    current_location := LOCATION_STREAM;
+                                end;
+                                'S': begin
+                                    current_location := LOCATION_FOREST_2;
+                                end;
+                                'F': begin
+                                    Fight;
+                                end;
+                                'G': begin
+                                    if (monsters[current_location].hit_points=0) and (Item_Exists(current_location)=TRUE) 
+                                    then begin
+                                        success := Add_To_Inventory(current_location);
+                                    end;
+                                end;
+                                {$I DEFKEYS.PAS}
+            
+                            end;
+                            previous_location := LOCATION_FOREST_1;
+                            
+                        end;
+
+                        LOCATION_FOREST_2:
+                        begin
+
+                            Writeln;
+                            Writeln ('The forest seems to stretch across the country, if it wasn''t for the good');
+                            Writeln ('weather, the nutritious fruits of the forest, it would be difficult to get');
+                            Writeln ('through.');
+
+                            Notify_On_Objects;
+
+                            Writeln ('You can go [N]orth');
+                            
+                            key_hit := ReadKey;
+                    
+                            case UpCase(key_hit) of
+
+                                'N': begin
+                                    current_location := LOCATION_FOREST_1;
+                                end;
+                                'G': begin
+                                    if Item_Exists(current_location) = TRUE then begin
+                                        success := Add_To_Inventory(current_location);
+                                    end;
+                                end;
+                                {$I DEFKEYS.PAS}
+            
+                            end;
+                            previous_location := LOCATION_FOREST_2;
+                            
+                        end;
+
                         LOCATION_ROCKS:
                         begin
 
                             Writeln;
-                            Writeln ('You squeeze between the rocks and see a cave, behind you is spring.');
+                            Writeln ('Squeezing between the narrow rocks takes almost an eternity, fortunately');
+                            Writeln ('a cave can be seen in the distance.');
 
                             Notify_On_Objects;
 
@@ -412,7 +494,14 @@ begin
                             Writeln;
                             Writeln ('The cave is dark, you can barely see what is going on inside.');
 
-                            Notify_On_Objects;
+                            if Is_In_Inventory(ITEM_TORCH) then begin
+
+                                Writeln ('You light a torch and admire the engravings on the rocks of people paying');
+                                Writeln ('homage to Perun.');
+
+                                Notify_On_Objects;
+
+                            end;
 
                             Writeln ('You can go [S]outh');
                             

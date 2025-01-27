@@ -142,13 +142,13 @@ var
     inventory_counter: byte;
     potion_found: boolean;
 begin
+    Writeln;
+    
     if Is_In_Inventory(ITEM_POTION) = TRUE then begin
 
         hero.hit_points := hero.hit_points + ITEM_POTION_VALUE;
         inventory_counter := 0;
         potion_found := FALSE;
-
-        Writeln;
 
         repeat
 
@@ -164,7 +164,7 @@ begin
         until (inventory_counter = MAX_INVENTORY) or (potion_found = TRUE);
         
     end else begin
-        Writeln ('Oh no! You do not have a strength potion in your inventory.');
+        Writeln ('You don''t have a strength potion in your inventory.');
     end;
 end;
 

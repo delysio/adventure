@@ -4,12 +4,14 @@ begin
     monsters[LOCATION_LAKE].hit_points := 5;
     monsters[LOCATION_LAKE].defence := 2;
     monsters[LOCATION_LAKE].attack := 5;
-    monsters[LOCATION_LAKE].dexterity := 0;
     
     monsters[LOCATION_SPRING].hit_points := 9;
     monsters[LOCATION_SPRING].defence := 5;
     monsters[LOCATION_SPRING].attack := 9;
-    monsters[LOCATION_SPRING].dexterity := 0;
+
+    monsters[LOCATION_FOREST_1].hit_points := 6;
+    monsters[LOCATION_FOREST_1].defence := 2;
+    monsters[LOCATION_FOREST_1].attack := 2;
 end;
 
 
@@ -43,63 +45,63 @@ begin
 
     { weapons }
 
-    weapons[20].id := 20;                            { dagger }
-    weapons[20].kind := 0;
-    weapons[20].modifier := 1;
+    weapons[WEAPON_DAGGER].id := 20;                            { dagger }
+    weapons[WEAPON_DAGGER].kind := 0;
+    weapons[WEAPON_DAGGER].modifier := 1;
 
-    weapons[21].id := 21;                       { short sword }
-    weapons[21].kind := 0;
-    weapons[21].modifier := 3;
+    weapons[WEAPON_SHORT_SWORD].id := 21;                       { short sword }
+    weapons[WEAPON_SHORT_SWORD].kind := 0;
+    weapons[WEAPON_SHORT_SWORD].modifier := 3;
 
-    weapons[22].id := 22;                        { long sword }
-    weapons[22].kind := 0;
-    weapons[22].modifier := 5;
+    weapons[WEAPON_LONG_SWORD].id := 22;                        { long sword }
+    weapons[WEAPON_LONG_SWORD].kind := 0;
+    weapons[WEAPON_LONG_SWORD].modifier := 5;
 
-    weapons[23].id := 23;                       { elite sword }
-    weapons[23].kind := 0;
-    weapons[23].modifier := 7;
+    weapons[WEAPON_ELITE_SWORD].id := 23;                       { elite sword }
+    weapons[WEAPON_ELITE_SWORD].kind := 0;
+    weapons[WEAPON_ELITE_SWORD].modifier := 7;
 
     { shields }
 
-    weapons[30].id := 30;                     { wooden shield }
-    weapons[30].kind := 10;
-    weapons[30].modifier := 1;
+    weapons[WEAPON_WOODEN_SHIELD].id := 30;                     { wooden shield }
+    weapons[WEAPON_WOODEN_SHIELD].kind := 10;
+    weapons[WEAPON_WOODEN_SHIELD].modifier := 1;
 
-    weapons[31].id := 31;                      { steel shield }
-    weapons[31].kind := 10;
-    weapons[31].modifier := 3;
+    weapons[WEAPON_STEEL_SHIELD].id := 31;                      { steel shield }
+    weapons[WEAPON_STEEL_SHIELD].kind := 10;
+    weapons[WEAPON_STEEL_SHIELD].modifier := 3;
 
-    weapons[32].id := 32;                     { dragon shield }
-    weapons[32].kind := 10;
-    weapons[32].modifier := 5;
+    weapons[WEAPON_DRAGON_SHIELD].id := 32;                     { dragon shield }
+    weapons[WEAPON_DRAGON_SHIELD].kind := 10;
+    weapons[WEAPON_DRAGON_SHIELD].modifier := 5;
 
     { weapon magic stones }
 
-    weapons[40].id := 40;                    { bronze stone }
-    weapons[40].kind := 20;
-    weapons[40].modifier := 2;
+    weapons[WEAPON_BRONZE_STONE].id := 40;                    { bronze stone }
+    weapons[WEAPON_BRONZE_STONE].kind := 20;
+    weapons[WEAPON_BRONZE_STONE].modifier := 2;
 
-    weapons[41].id := 41;                      { gold stone }
-    weapons[41].kind := 20;
-    weapons[41].modifier := 5;
+    weapons[WEAPON_GOLD_STONE].id := 41;                      { gold stone }
+    weapons[WEAPON_GOLD_STONE].kind := 20;
+    weapons[WEAPON_GOLD_STONE].modifier := 5;
 
-    weapons[42].id := 42;                   { diamond stone }
-    weapons[42].kind := 20;
-    weapons[42].modifier := 10;
+    weapons[WEAPON_DIAMOND_STONE].id := 42;                   { diamond stone }
+    weapons[WEAPON_DIAMOND_STONE].kind := 20;
+    weapons[WEAPON_DIAMOND_STONE].modifier := 10;
 
     { shield magic stones }
 
-    weapons[50].id := 50;                    { bronze stone}
-    weapons[50].kind := 20;
-    weapons[50].modifier := 2;
+    weapons[SHIELD_BRONZE_STONE].id := 50;                    { bronze stone}
+    weapons[SHIELD_BRONZE_STONE].kind := 20;
+    weapons[SHIELD_BRONZE_STONE].modifier := 2;
 
-    weapons[51].id := 51;                      { gold stone }
-    weapons[51].kind := 20;
-    weapons[51].modifier := 5;
+    weapons[SHIELD_GOLD_STONE].id := 51;                      { gold stone }
+    weapons[SHIELD_GOLD_STONE].kind := 20;
+    weapons[SHIELD_GOLD_STONE].modifier := 5;
 
-    weapons[52].id := 52;                   { diamond stone }
-    weapons[52].kind := 20;
-    weapons[52].modifier := 10;
+    weapons[SHIELD_DIAMOND_STONE].id := 52;                   { diamond stone }
+    weapons[SHIELD_DIAMOND_STONE].kind := 20;
+    weapons[SHIELD_DIAMOND_STONE].modifier := 10;
 
 end;
 
@@ -107,14 +109,14 @@ end;
 { Initialisation of locations, contains information on whether or not items have been taken.}
 procedure Init_Locations;
 var
-    i, j: byte;
+    map_index, item_index: byte;
 begin
 
     { Clear map }
 
-    for i := 0 to MAP_SIZE do begin
-        for j := 0 to MAX_ITEM_NUMBER do begin
-            location_items[i,j] := ITEM_NONE;
+    for map_index := 0 to MAP_SIZE do begin
+        for item_index := 0 to MAX_ITEM_NUMBER do begin
+            location_items[map_index, item_index] := ITEM_NONE;
         end;
     end;
 
@@ -135,10 +137,10 @@ end;
 { Initialisation of items carried }
 procedure Init_Inventory;
 var 
-    i: byte;
+    inventory_index: byte;
 begin
     target_items_number := 0;
-    for i := 0 to MAX_INVENTORY do inventory_items[i] := ITEM_NONE;
+    for inventory_index := 0 to MAX_INVENTORY do inventory_items[inventory_index] := ITEM_NONE;
 end;
 
 

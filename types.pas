@@ -10,7 +10,6 @@ type
         hit_points  : integer;
         defence     : byte;
         attack      : byte;
-        dexterity   : byte;
     end;
 
     Tarmor = record

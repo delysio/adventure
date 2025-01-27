@@ -1,16 +1,16 @@
 { Organises the array with the items, the empty spaces are always placed at the end of the array }
 procedure Organise_Item_Array;
-var i, j: byte;
+var inventory_index, secondary_index: byte;
 begin
-    j := 0;
+    secondary_index := 0;
 
-    for i := 0 to MAX_INVENTORY do
+    for inventory_index := 0 to MAX_INVENTORY do
     begin
-        if inventory_items[i] <> ITEM_NONE then
+        if inventory_items[inventory_index] <> ITEM_NONE then
         begin
-            inventory_items[j] := inventory_items[i];
-            if j <> i then inventory_items[i] := ITEM_NONE;
-            j := j + 1;
+            inventory_items[secondary_index] := inventory_items[inventory_index];
+            if secondary_index <> inventory_index then inventory_items[inventory_index] := ITEM_NONE;
+            secondary_index := secondary_index + 1;
         end;
     end;
 
@@ -93,7 +93,6 @@ procedure Drop_Item(item: byte);
 var 
     location_index: byte;
     inventory_index: byte;
-    can_drop: boolean;
 begin
 
     { Items with index >= 20 are weapons or armory }
@@ -154,10 +153,6 @@ begin
 
         if inventory_items[item] <> ITEM_NONE then begin
 
-            { Check if item can be dropped off }
-
-            can_drop := FALSE;
-
             for location_index := 0 to MAX_ITEM_NUMBER do begin
 
                 if location_items[current_location, location_index] = ITEM_NONE then begin
@@ -173,9 +168,7 @@ begin
                             Writeln;
                             Writeln ('You have dropped ', ITEM_DESCRIPTIONS[item]);
 
-                            can_drop := TRUE;
                             Organise_Item_Array;
-
                             exit;
 
                         end;
@@ -185,8 +178,6 @@ begin
                 end;
 
             end;
-
-            if can_drop = FALSE then Writeln ('You can''t drop this item here.');
 
         end;
 
