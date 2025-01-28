@@ -12,6 +12,10 @@ begin
     monsters[LOCATION_FOREST_1].hit_points := 6;
     monsters[LOCATION_FOREST_1].defence := 2;
     monsters[LOCATION_FOREST_1].attack := 2;
+
+    monsters[SVAROGS_STONE_CIRCLE].hit_points := 15;
+    monsters[SVAROGS_STONE_CIRCLE].defence := 4;
+    monsters[SVAROGS_STONE_CIRCLE].attack := 8;
 end;
 
 
@@ -115,7 +119,7 @@ begin
     { Clear map }
 
     for map_index := 0 to MAP_SIZE do begin
-        for item_index := 0 to MAX_ITEM_NUMBER do begin
+        for item_index := 0 to MAX_ITEMS_IN_LOCATION do begin
             location_items[map_index, item_index] := ITEM_NONE;
         end;
     end;

@@ -1,25 +1,27 @@
 const
 
     MAP_SIZE        = 35;        { size of map }
-    MAX_ITEM_NUMBER =  8;        { maximum number of items in one location }
+    MAX_ITEMS_IN_LOCATION = 6;        { maximum number of items in one location }
     MAX_INVENTORY   =  4;        { maximum number of items in backpack }
     MAX_ITEMS       = 98;        { number of items carried }
-    MAX_STORAGE     =  9;        { number of items in storage }
 
     STATE_TITLE = 1;                { state ids }
     STATE_GAME  = 2;
     STATE_EXIT  = 3;
     
-    LOCATION_LAKE     =  9;           { location ids }
-    LOCATION_ISLAND   = 10;
-    LOCATION_BUSHES   = 14;
-    LOCATION_START    = 15;
-    LOCATION_FOREST_1 = 19;
-    LOCATION_STREAM   = 20;
-    LOCATION_FOREST_2 = 25;
-    LOCATION_SPRING   = 26;
-    LOCATION_ROCKS    = 27;
-    LOCATION_CAVE     = 21;
+    LOCATION_LAKE        =  9;           { location ids }
+    LOCATION_ISLAND      = 10;
+    LOCATION_BUSHES      = 14;
+    LOCATION_START       = 15;
+    LOCATION_FOREST_1    = 19;
+    LOCATION_STREAM      = 20;
+    LOCATION_FOREST_2    = 25;
+    LOCATION_SPRING      = 26;
+    LOCATION_ROCKS       = 27;
+    LOCATION_CAVE        = 21;
+    LOCATION_FOREST_3    = 31;
+    SVAROGS_STONE_CIRCLE = 32;
+    THE_LESHY_VALLEY     = 33;
     
     INITIAL_HIT_POINTS = 50;       { configuration of hero starting stats }
     INITIAL_DEFENCE    = 1;
