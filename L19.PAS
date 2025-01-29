@@ -19,12 +19,15 @@ Writeln;
 
                             end;
 
-                            Writeln ('You can go [E]ast, [S]outh');
+                            Writeln ('You can go [E]ast, [N]orth, [S]outh');
                             
                             key_hit := ReadKey;
                     
                             case UpCase(key_hit) of
                                 
+                                'N': begin
+                                    current_location := LOCATION_GOLDEN_FIELD;
+                                end;
                                 'E': begin
                                     current_location := LOCATION_STREAM;
                                 end;

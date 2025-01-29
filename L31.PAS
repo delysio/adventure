@@ -11,7 +11,7 @@ Writeln;
                     
                             case UpCase(key_hit) of
                                 'E': begin
-                                    current_location := SVAROGS_STONE_CIRCLE;
+                                    current_location := LOCATION_SVAROGS_STONE_CIRCLE;
                                 end;
                                 'N': begin
                                     current_location := LOCATION_FOREST_2;

@@ -51,9 +51,9 @@ begin
             
                 ClrScr;
                 Writeln;
-                Writeln ('Adventure by NG');
+                Writeln (#27'[7mAdventure by NG'#27'[0m');
                 Writeln;
-                Writeln ('Press [S] to start, [Q] to exit to OS.');
+                Writeln ('Press '#27'[7m[S]'#27'[0m to start, '#27'[7m[Q]'#27'[0m to exit to OS.');
 
                 repeat
                 
@@ -103,6 +103,28 @@ begin
                             
                         end;
 
+                        LOCATION_SACRED_GROVE:
+
+                        begin
+
+                        {$I L01.PAS}
+
+                        end;
+
+                        LOCATION_STONE_THRESHOLD:
+                        begin
+
+                        {$I L07.PAS}
+                            
+                        end;
+
+                        LOCATION_GOLDEN_FIELD:
+                        begin
+
+                        {$I L13.PAS}
+                            
+                        end;
+
                         LOCATION_BUSHES:
                         begin
 
@@ -145,14 +167,14 @@ begin
                             
                         end;
 
-                        SVAROGS_STONE_CIRCLE:
+                        LOCATION_SVAROGS_STONE_CIRCLE:
                         begin
 
                         {$I L32.PAS}
                             
                         end;
 
-                        THE_LESHY_VALLEY:
+                        LOCATION_THE_LESHY_VALLEY:
                         begin
 
                         {$I L33.PAS}

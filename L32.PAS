@@ -15,7 +15,7 @@ Writeln;
 
                             if (monsters[current_location].hit_points = 0) then begin
 
-                                Writeln ('The monster''s corpse sprawled across the stone circles revealing a passage');
+                                Writeln ('The Leshy''s corpse sprawled across the stone circles revealing a passage');
                                 Writeln ('into the valley revealed a passage between them');
                                 Notify_On_Objects;
                                 Writeln ('You can go [E]ast or [W]est');
@@ -30,10 +30,10 @@ Writeln;
                     
                             case UpCase(key_hit) of
                                 'E': begin
-                                    current_location := LOCATION_FOREST_3;
+                                    current_location := LOCATION_THE_LESHY_VALLEY;
                                 end;
                                 'W': begin
-                                    current_location := THE_LESHY_VALLEY;
+                                    current_location := LOCATION_FOREST_3;
                                 end;
                                 'F': begin
                                     Fight;
@@ -61,4 +61,4 @@ Writeln;
                                 end;
             
                             end;
-                            previous_location := SVAROGS_STONE_CIRCLE;
+                            previous_location := LOCATION_SVAROGS_STONE_CIRCLE;

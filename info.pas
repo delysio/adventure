@@ -57,7 +57,7 @@ begin
     Writeln ('Your weapons and armory:');
 
     value := armory.weapon + armory.weapon_slot;
-    Write ('WEAPON: +', value); 
+    Write ('SWORD: +', value); 
     if armory.weapon > 0 then begin Writeln (' ', armory.weapon_name); end else begin Writeln end;   
 
     Write ('   weapon slot: +', armory.weapon_slot);
@@ -136,7 +136,7 @@ begin
         end;
 
         { wstaw na mapę}
-        for location_index := 0 to MAX_ITEM_NUMBER do begin
+        for location_index := 0 to MAX_ITEMS_IN_LOCATION do begin
 
             if location_items[current_location, location_index] = ITEM_NONE then begin
 
@@ -153,7 +153,7 @@ begin
 
         if inventory_items[item] <> ITEM_NONE then begin
 
-            for location_index := 0 to MAX_ITEM_NUMBER do begin
+            for location_index := 0 to MAX_ITEMS_IN_LOCATION do begin
 
                 if location_items[current_location, location_index] = ITEM_NONE then begin
 

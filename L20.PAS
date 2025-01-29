@@ -4,7 +4,7 @@ Writeln;
 
                             Notify_On_Objects;
 
-                            Writeln ('You can go [N]orth, [S]outh, [E]ast');
+                            Writeln ('You can go [N]orth, [S]outh, [W]est');
                             
                             key_hit := ReadKey;
                     
@@ -16,7 +16,7 @@ Writeln;
                                 'S': begin
                                     current_location := LOCATION_SPRING;
                                 end;
-                                'E': begin
+                                'W': begin
                                     current_location := LOCATION_FOREST_1;
                                 end;
                                 'G': begin

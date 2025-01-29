@@ -8,7 +8,7 @@ Writeln;
                     
                             case UpCase(key_hit) of
                                 'E': begin
-                                    current_location := SVAROGS_STONE_CIRCLE;
+                                    current_location := LOCATION_SVAROGS_STONE_CIRCLE;
                                 end;
                                 'G': begin
                                     if Item_Exists(current_location) = TRUE then begin
@@ -33,4 +33,4 @@ Writeln;
                                 end;
             
                             end;
-                            previous_location := THE_LESHY_VALLEY;
+                            previous_location := LOCATION_THE_LESHY_VALLEY;
