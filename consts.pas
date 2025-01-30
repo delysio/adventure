@@ -3,7 +3,7 @@ const
     MAP_SIZE        = 35;        { size of map }
     MAX_ITEMS_IN_LOCATION = 6;   { maximum number of items in one location }
     MAX_INVENTORY   =  4;        { maximum number of items in backpack }
-    MAX_ITEMS       = 98;        { number of items carried }
+    MAX_ITEMS       = 98;        { number of different items }
 
     STATE_TITLE = 1;                { state ids }
     STATE_GAME  = 2;
@@ -26,7 +26,7 @@ const
     LOCATION_THE_LESHY_VALLEY      = 33;
     LOCATION_STONE_THRESHOLD       = 7;
     
-    INITIAL_HIT_POINTS = 50;       { configuration of hero starting stats }
+    INITIAL_HIT_POINTS = 100;       { configuration of hero starting stats }
     INITIAL_DEFENCE    = 1;
     INITIAL_ATTACK     = 5;
     INITIAL_DEXTERITY  = 2;
@@ -37,6 +37,7 @@ const
 
     ITEM_TORCH            = 0;        { item ids }
     ITEM_MACHETE          = 1;
+    ITEM_BONDCUTTER       = 2;
     ITEM_PERUNS_STONE     = 15;
     ITEM_SVAROGS_HAMMER   = 16;
     ITEM_DAZHBOGS_DIAMOND = 17;
@@ -62,7 +63,7 @@ const
     BOOTS_WINGS_OF_THE_WIND = 90;
 
     ITEM_DESCRIPTIONS: array [0..MAX_ITEMS] of string[17] = (
-        'TORCH', 'MACHETE', '', '', '', '', '', '', '', '',
+        'TORCH', 'MACHETE', 'BONDCUTTER', '', '', '', '', '', '', '',
         '', '', '', '', '', 'PERUN''S STONE', 'SVAROG''S HAMMER', 'DAZHBOG''S DIAMOND', 'SVIATOVID''S HORN', 'POTION',
         'Night Thorn', 'Blood Harvest', 'Soul Vanquisher', 'Thunderstrike', '', '', '', '', '', '',
         'Wooden shield', 'Iron Stronghold', 'Diamond Seal', '', '', '', '', '', '', '',

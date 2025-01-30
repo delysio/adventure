@@ -6,9 +6,9 @@ Writeln;
 
                             Writeln ('You can go [N]orth, [S]outh, [W]est');
                             
-                            key_hit := ReadKey;
+                            key_hit := UpCase(ReadKey);
                     
-                            case UpCase(key_hit) of
+                            case key_hit of
 
                                 'N': begin
                                     current_location := LOCATION_BUSHES;
@@ -24,22 +24,8 @@ Writeln;
                                         success := Add_To_Inventory(current_location);
                                     end;
                                 end;
-                                'C': begin
-                                    Print_Player_Stats;
-                                    key_legal := TRUE;
-                                end;
-                                'I': begin
-                                    Print_Inventory;
-                                    key_legal := TRUE;
-                                end;
-                                'P': begin
-                                    Drink_Potion;
-                                    key_legal := TRUE;
-                                end;
-                                'X': begin
-                                    current_state := STATE_TITLE;
-                                    key_legal := TRUE;
-                                end;
             
                             end;
+
+                            Process_Default_Keys(key_hit);
                             previous_location := LOCATION_STREAM;

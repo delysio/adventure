@@ -18,7 +18,7 @@ Writeln;
                                 Writeln ('The Leshy''s corpse sprawled across the stone circles revealing a passage');
                                 Writeln ('into the valley revealed a passage between them');
                                 Notify_On_Objects;
-                                Writeln ('You can go [E]ast or [W]est');
+                                Writeln ('You can go [E]ast or [N]orth');
 
                             end else begin
 
@@ -26,14 +26,14 @@ Writeln;
 
                             end;
                             
-                            key_hit := ReadKey;
+                            key_hit := UpCase(ReadKey);
                     
-                            case UpCase(key_hit) of
+                            case key_hit of
                                 'E': begin
                                     current_location := LOCATION_THE_LESHY_VALLEY;
                                 end;
-                                'W': begin
-                                    current_location := LOCATION_FOREST_3;
+                                'N': begin
+                                    current_location := LOCATION_SPRING;
                                 end;
                                 'F': begin
                                     Fight;
@@ -43,22 +43,8 @@ Writeln;
                                         success := Add_To_Inventory(current_location);
                                     end;
                                 end;
-                                'C': begin
-                                    Print_Player_Stats;
-                                    key_legal := TRUE;
-                                end;
-                                'I': begin
-                                    Print_Inventory;
-                                    key_legal := TRUE;
-                                end;
-                                'P': begin
-                                    Drink_Potion;
-                                    key_legal := TRUE;
-                                end;
-                                'X': begin
-                                    current_state := STATE_TITLE;
-                                    key_legal := TRUE;
-                                end;
-            
+                                
                             end;
+
+                            Process_Default_Keys(key_hit);
                             previous_location := LOCATION_SVAROGS_STONE_CIRCLE;

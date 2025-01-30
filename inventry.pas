@@ -1,12 +1,13 @@
 { Adding items to inventory}
 function Add_To_Inventory(location: byte): boolean;
 var i, j, item: byte;
+    success: boolean;
 begin
 
     Writeln;
 
     { iterating on objects in a location }
-    for j := 0 to MAX_ITEM_NUMBER do begin
+    for j := 0 to MAX_ITEMS_IN_LOCATION do begin
 
         item := location_items[location, j];
 
@@ -15,6 +16,8 @@ begin
 
             { if id >= 20, it is a weapon or armour }
             if item >= 20 then begin
+
+                success := TRUE;
 
                 { najpierw wyrzuć, jeśli coś tej samej klasy jest niesione }
 
@@ -40,14 +43,24 @@ begin
                                 armory.shield_name := ITEM_DESCRIPTIONS[item]; 
                             end;
                     40..49: begin 
-                                armory.weapon_slot_id := item;
-                                armory.weapon_slot := weapons[item].modifier; 
-                                armory.weapon_slot_name := ITEM_DESCRIPTIONS[item]; 
+                                if armory.weapon > 0 then begin
+                                    armory.weapon_slot_id := item;
+                                    armory.weapon_slot := weapons[item].modifier; 
+                                    armory.weapon_slot_name := ITEM_DESCRIPTIONS[item]; 
+                                end else begin
+                                Writeln ('You can''t take the magic stone because you don''t have a weapon to put it on.');
+                                success := FALSE;
+                                end;
                             end;
                     50..59: begin 
-                                armory.shield_slot_id := item;
-                                armory.shield_slot := weapons[item].modifier; 
-                                armory.shield_slot_name := ITEM_DESCRIPTIONS[item]; 
+                                if armory.shield > 0 then begin
+                                    armory.shield_slot_id := item;
+                                    armory.shield_slot := weapons[item].modifier; 
+                                    armory.shield_slot_name := ITEM_DESCRIPTIONS[item]; 
+                                end else begin
+                                Writeln ('You can''t take the magic stone because you don''t have a shield to put it on.');
+                                success := FALSE;
+                                end;
                             end;
                     60..69: begin 
                                 armory.head_id := item;
@@ -72,9 +85,14 @@ begin
                     
                 end;
 
-                location_items[location, j] := ITEM_NONE;
-                Writeln ('You equipped the ', ITEM_DESCRIPTIONS[item]);
-                Add_To_Inventory := TRUE;
+                if success = true then begin
+
+                    location_items[location, j] := ITEM_NONE;
+                    Writeln ('You equipped the ', ITEM_DESCRIPTIONS[item]);
+                    Add_To_Inventory := TRUE;
+
+                end;
+
                 exit;
 
             { and if not, it is an action item }
@@ -127,7 +145,7 @@ function Item_Exists(location: byte): boolean;
 var i: byte;
 begin
     Item_Exists := FALSE;
-    for i := 0 to MAX_ITEM_NUMBER do begin
+    for i := 0 to MAX_ITEMS_IN_LOCATION do begin
         if location_items[current_location, i] <> ITEM_NONE then begin
             Item_Exists := TRUE;
             exit;
@@ -143,7 +161,7 @@ var
     potion_found: boolean;
 begin
     Writeln;
-    
+
     if Is_In_Inventory(ITEM_POTION) = TRUE then begin
 
         hero.hit_points := hero.hit_points + ITEM_POTION_VALUE;

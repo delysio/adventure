@@ -15,6 +15,7 @@ copy %GAME_PATH%init.pas %CPM_PATH%INIT.PAS
 copy %GAME_PATH%inventry.pas %CPM_PATH%INVENTRY.PAS
 copy %GAME_PATH%intro.pas %CPM_PATH%INTRO.PAS
 copy %GAME_PATH%types.pas %CPM_PATH%TYPES.PAS
+copy %GAME_PATH%defkeys.pas %CPM_PATH%DEFKEYS.PAS
 copy %GAME_PATH%l01.pas %CPM_PATH%L01.PAS
 copy %GAME_PATH%l07.pas %CPM_PATH%L07.PAS
 copy %GAME_PATH%l09.pas %CPM_PATH%L09.PAS

@@ -146,6 +146,8 @@ begin
     location_items[LOCATION_CAVE, 1] := ITEM_PERUNS_STONE;
     location_items[LOCATION_GOLDEN_FIELD, 0] := BOOTS_WINGS_OF_THE_WIND;
     location_items[LOCATION_SACRED_GROVE, 0] := SHIELD_STONE_OF_DZIVOGON;
+    location_items[LOCATION_SVAROGS_STONE_CIRCLE, 0] := WEAPON_BRONZE_STONE;
+    location_items[LOCATION_SACRED_GROVE, 0] := ITEM_BONDCUTTER;
 
 end;
 

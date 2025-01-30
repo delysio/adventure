@@ -28,6 +28,7 @@ var
 {$I FIGHT.PAS}
 {$I INIT.PAS}
 {$I INVENTRY.PAS}
+{$I DEFKEYS.PAS}
 
 { Main program}
 begin
@@ -53,7 +54,7 @@ begin
                 Writeln;
                 Writeln (#27'[7mAdventure by NG'#27'[0m');
                 Writeln;
-                Writeln ('Press '#27'[7m[S]'#27'[0m to start, '#27'[7m[Q]'#27'[0m to exit to OS.');
+                Writeln ('Press '#27'p[S]'#27'q to start, '#27#83'[Q]'#27#84' to exit to OS.');
 
                 repeat
                 
@@ -73,7 +74,7 @@ begin
             STATE_GAME:
             begin
                 
-                current_location := LOCATION_START;
+                current_location := LOCATION_SACRED_GROVE;
                 game_over := FALSE;
             
                 {$I INTRO.PAS }
