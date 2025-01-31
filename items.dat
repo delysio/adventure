@@ -44,11 +44,11 @@ Inventory items:
     1 - machete
 
 Weapons:
-    0..9: armory.weapon
-    10..19: armory.shield
-    20..29: armory.weapon_slot
-    30..39: armory.shield_slot
-    40..49: armory.head
-    50..59: armory.body
-    60..69: armory.gloves
-    70..79: armory.boots
+    20..29: armory.weapon
+    30..39: armory.shield
+    40..49: armory.weapon_slot
+    50..59: armory.shield_slot
+    60..69: armory.head
+    70..79: armory.body
+    80..89: armory.gloves
+    90..99: armory.boots

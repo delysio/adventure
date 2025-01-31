@@ -23,15 +23,14 @@ Writeln;
                             key_hit := UpCase(ReadKey);
                     
                             case key_hit of
-                                'E': begin
+                                'W': begin
                                     if Is_In_Inventory(ITEM_BONDCUTTER) then begin
                                         current_location := LOCATION_SVAROGS_STONE_CIRCLE;
                                     end;
                                 end;
-                                'W': begin
-                                        current_location := LOCATION_SVAROGS_STONE_CIRCLE;
+                                'E': begin
+                                        current_location := LOCATION_LAKE_NIGHT_DAY;
                                     end;
-                                end;
                                 'G': begin
                                     if Item_Exists(current_location) = TRUE then begin
                                         success := Add_To_Inventory(current_location);

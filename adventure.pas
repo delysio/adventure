@@ -52,9 +52,12 @@ begin
             
                 ClrScr;
                 Writeln;
-                Writeln (#27'[7mAdventure by NG'#27'[0m');
+                Writeln (#27'pA Tale of Ancient Land'#27'q');
                 Writeln;
-                Writeln ('Press '#27'p[S]'#27'q to start, '#27#83'[Q]'#27#84' to exit to OS.');
+                Writeln ('A world where gods walk the earth and ancient monsters lurk in the shadows');
+                Writeln ('of every tree.');
+                Writeln;
+                Writeln ('Press '#27'p[S]'#27'q to start, '#27'p[Q]'#27'q to exit to OS.');
 
                 repeat
                 
@@ -74,7 +77,7 @@ begin
             STATE_GAME:
             begin
                 
-                current_location := LOCATION_SACRED_GROVE;
+                current_location := LOCATION_START;
                 game_over := FALSE;
             
                 {$I INTRO.PAS }
@@ -161,6 +164,13 @@ begin
                             
                         end;
 
+                        LOCATION_MORANA_CIRCLE:
+                        begin
+
+                        {$I L28.PAS}
+                            
+                        end;
+
                         LOCATION_FOREST_3:
                         begin
 
@@ -179,6 +189,13 @@ begin
                         begin
 
                         {$I L33.PAS}
+                            
+                        end;
+
+                        LOCATION_LAKE_NIGHT_DAY:
+                        begin
+
+                        {$I L34.PAS}
                             
                         end;
 

@@ -20,6 +20,10 @@ begin
     monsters[LOCATION_SACRED_GROVE].hit_points := 10;
     monsters[LOCATION_SACRED_GROVE].defence := 5;
     monsters[LOCATION_SACRED_GROVE].attack := 5;
+
+    monsters[LOCATION_MORANA_CIRCLE].hit_points := 15;
+    monsters[LOCATION_MORANA_CIRCLE].defence := 7;
+    monsters[LOCATION_MORANA_CIRCLE].attack := 6;
 end;
 
 
@@ -111,6 +115,26 @@ begin
     weapons[SHIELD_RUSALKAS_EYE].kind := 3;
     weapons[SHIELD_RUSALKAS_EYE].modifier := 10;
 
+    { armory - head }
+
+    weapons[HEAD_SOUTHERN_SUN].id := 60;
+    weapons[HEAD_SOUTHERN_SUN].kind := 4;
+    weapons[HEAD_SOUTHERN_SUN].modifier := 2;
+
+    weapons[HEAD_THUNDERER].id := 61;
+    weapons[HEAD_THUNDERER].kind := 4;
+    weapons[HEAD_THUNDERER].modifier := 5;
+
+    { armory - body }
+
+    weapons[BODY_CLOAK_OF_WELES].id := 70;
+    weapons[BODY_CLOAK_OF_WELES].kind := 5;
+    weapons[BODY_CLOAK_OF_WELES].modifier := 2;
+
+    weapons[BODY_WINTER_WHIRLWIND].id := 71;
+    weapons[BODY_WINTER_WHIRLWIND].kind := 5;
+    weapons[BODY_WINTER_WHIRLWIND].modifier := 5;
+
     { armory - boots }
 
     weapons[BOOTS_WINGS_OF_THE_WIND].id := 90;
@@ -148,6 +172,9 @@ begin
     location_items[LOCATION_SACRED_GROVE, 0] := SHIELD_STONE_OF_DZIVOGON;
     location_items[LOCATION_SVAROGS_STONE_CIRCLE, 0] := WEAPON_BRONZE_STONE;
     location_items[LOCATION_SACRED_GROVE, 0] := ITEM_BONDCUTTER;
+    location_items[LOCATION_LAKE_NIGHT_DAY, 0] := BODY_CLOAK_OF_WELES;
+    location_items[LOCATION_MORANA_CIRCLE, 0] := ITEM_SVAROGS_HAMMER;
+    location_items[LOCATION_MORANA_CIRCLE, 1] := WEAPON_IRON_STRONGHOLD;
 
 end;
 

@@ -17,6 +17,19 @@ begin
 end;
 
 
+{ Procedure triggered when you hand over items to the Witch }
+procedure Drop_Special_Item(item: byte);
+var index: byte;
+begin
+    for index := 0 to MAX_INVENTORY do begin
+        if inventory_items[index] = item then begin
+            inventory_items[index] := ITEM_NONE; 
+            Organise_Item_Array;
+        end;
+    end;
+end;
+
+
 { Prints hero stats }
 procedure Print_Hero_Stats;
 var 
@@ -26,12 +39,13 @@ var
 begin
     
     hit_points := hero.hit_points;
-    defence    := hero.defence + armory.shield + armory.shield_slot + armory.head + armory.gloves + armory.boots;
-    attack     := hero.attack + armory.weapon + armory.weapon_slot;
+    defence := hero.defence + armory.shield + armory.shield_slot + armory.head + armory.body + armory.gloves + armory.boots;
+    attack := hero.attack + armory.weapon + armory.weapon_slot;
     
     Write ('Hero stats: HP ', hit_points);
     Write (', DEF ', defence);
-    Writeln (', ATT ', attack);
+    Write (', ATT ', attack);
+    Writeln (', DEX ', hero.dexterity);
     
 end;
 
@@ -151,27 +165,23 @@ begin
 
     end else begin
 
-        if inventory_items[item] <> ITEM_NONE then begin
+        for location_index := 0 to MAX_ITEMS_IN_LOCATION do begin
 
-            for location_index := 0 to MAX_ITEMS_IN_LOCATION do begin
+            if location_items[current_location, location_index] = ITEM_NONE then begin
 
-                if location_items[current_location, location_index] = ITEM_NONE then begin
+                for inventory_index := 0 to MAX_INVENTORY do begin
 
-                    for inventory_index := 0 to MAX_INVENTORY do begin
+                    if inventory_items[inventory_index] = item then begin
 
-                        if inventory_items[inventory_index] = item then begin
+                        { wyczyść w ekwipunku }
+                        inventory_items[inventory_index] := ITEM_NONE;
+                        { wstaw na mapę}
+                        location_items[current_location, location_index] := item;
+                        Writeln;
+                        Writeln ('You have dropped ', ITEM_DESCRIPTIONS[item]);
 
-                            { wyczyść w ekwipunku }
-                            inventory_items[inventory_index] := ITEM_NONE;
-                            { wstaw na mapę}
-                            location_items[current_location, location_index] := item;
-                            Writeln;
-                            Writeln ('You have dropped ', ITEM_DESCRIPTIONS[item]);
-
-                            Organise_Item_Array;
-                            exit;
-
-                        end;
+                        Organise_Item_Array;
+                        exit;
 
                     end;
 
