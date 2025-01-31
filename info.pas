@@ -252,3 +252,18 @@ begin
     end;
 
 end;
+
+
+{ Displays information about the encountered monster }
+procedure Pre_Fight(mname: monster_name);
+begin
+
+    Writeln;
+    Writeln (mname, ' appeared!');
+
+    Print_Monster_Stats(current_location);
+    Writeln;
+    Writeln ('Press [F] to fight');
+    Writeln;
+
+end;

@@ -45,5 +45,7 @@ type
         modifier    : byte;         { How many bonus points it adds }
     end;
 
+    monster_name = string[15];
+
     Tmonsters = array[0..36] of Tmonster;
     Tweapons  = array[0..99] of Titem;

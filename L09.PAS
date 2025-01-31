@@ -5,12 +5,7 @@ Writeln;
                             
                             if monsters[current_location].hit_points > 0 then begin
                             
-                                Writeln;
-                                Writeln ('Drowner appeared!');
-                                Print_Monster_Stats(current_location);
-                                Writeln;
-                                Writeln ('Press [F] to fight');
-                                Writeln;
+                                Pre_Fight ('Drowner');
                             
                             end;
 

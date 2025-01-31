@@ -3,13 +3,8 @@ Writeln;
                             Writeln ('and the wind carries the scent of flowers.');
 
                             if monsters[current_location].hit_points > 0 then begin
-                            
-                                Writeln;
-                                Writeln ('Striga appeared!');
-                                Print_Monster_Stats(current_location);
-                                Writeln;
-                                Writeln ('Press [F] to fight');
-                                Writeln;
+
+                                Pre_Fight ('Striga');
                             
                             end;
 

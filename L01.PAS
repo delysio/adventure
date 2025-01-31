@@ -5,13 +5,8 @@
                             Writeln ('in front of it');
 
                             if monsters[current_location].hit_points > 0 then begin
-                            
-                                Writeln;
-                                Writeln ('Planetnik appeared!');
-                                Print_Monster_Stats(current_location);
-                                Writeln;
-                                Writeln ('Press [F] to fight');
-                                Writeln;
+                                
+                                Pre_Fight ('Planetnik');
                             
                             end;
 
