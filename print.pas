@@ -1,9 +1,11 @@
-procedure Print_Padded_Text(left_margin, chars_per_line: Integer; input_text: String);
+{ Prints the given text on the screen, taking into account the left margin, 
+  the number of characters in the line and breaks the text }
+procedure Print_Formatted_Text (input_text: unformatted_text);
 var
-    i, j, txt_len: Integer;
-    txt_word, txt_line: String;
+    i, j, txt_len: byte;
+    txt_word: String[81];
 begin
-    txt_line := '';
+
     txt_word := '';
     txt_len := 0;
 
@@ -19,7 +21,7 @@ begin
             
                 WriteLn;
 
-                for j := 1 to left_margin do begin
+                for j := 0 to left_margin do begin
 
                     Write(' ');
                     txt_len := 0;

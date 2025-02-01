@@ -49,3 +49,5 @@ type
 
     Tmonsters = array[0..36] of Tmonster;
     Tweapons  = array[0..99] of Titem;
+
+    unformatted_text = String[255];

@@ -1,29 +1,29 @@
-                            Writeln;
-                            Writeln ('In front of you is a field of ripe grain, whose ears sway like a golden wave');
-                            Writeln ('in the wind, hiding in its thicket the secrets of ancient rituals and the ');
-                            Writeln ('whispers of the spirits of the crop''s guardians.');
+Writeln;
+Print_Formatted_Text ('In front of you is a field of ripe grain, whose ears sway like a golden wave ' +
+                   'in the wind, hiding in its thicket the secrets of ancient rituals and the ' +
+                   'whispers of the spirits of the crop''s guardians.');
 
-                            Notify_On_Objects;
+Notify_On_Objects;
 
-                            Writeln ('You can go [N]orth, [S]outh');
-                            
-                            key_hit := UpCase(ReadKey);
-                    
-                            case key_hit of
+Print_Formatted_Text ('You can go [N]orth, [S]outh');
 
-                                'N': begin
-                                    current_location := LOCATION_STONE_THRESHOLD;
-                                end;
-                                'S': begin
-                                    current_location := LOCATION_FOREST_1;
-                                end;
-                                'G': begin
-                                    if Item_Exists(current_location) = TRUE then begin
-                                        success := Add_To_Inventory(current_location);
-                                    end;
-                                end;
-            
-                            end;
+key_hit := UpCase(ReadKey);
 
-                            Process_Default_Keys(key_hit);
-                            previous_location := LOCATION_GOLDEN_FIELD;
+case key_hit of
+
+    'N': begin
+        current_location := LOCATION_STONE_THRESHOLD;
+    end;
+    'S': begin
+        current_location := LOCATION_FOREST_1;
+    end;
+    'G': begin
+        if Item_Exists(current_location) = TRUE then begin
+            success := Add_To_Inventory(current_location);
+        end;
+    end;
+
+end;
+
+Process_Default_Keys(key_hit);
+previous_location := LOCATION_GOLDEN_FIELD;

@@ -3,6 +3,7 @@ procedure Fight;
 var 
     damage: integer;
     player_run: boolean;
+    tmp_string: string[3];
 begin
 
     {current_monster := @monsters[current_location];}
@@ -12,7 +13,7 @@ begin
     if monsters[current_location].hit_points <= 0 then exit;
 
     Writeln;
-    Writeln('Fighting!');
+    Print_Formatted_Text ('Fighting!');
     Writeln;
     
     repeat 
@@ -27,12 +28,14 @@ begin
         
         if damage <= 0 then begin
 
-            Writeln ('Monster dodged your attack');
+            Print_Formatted_Text ('Monster dodged your attack');
         
         end else begin
         
             monsters[current_location].hit_points := monsters[current_location].hit_points - damage;
-            Writeln ('Your hit: ', damage);
+            Str(damage, tmp_string);
+            concated_text := Concat('Your hit: ', tmp_string);
+            Print_Formatted_Text (concated_text);
             
         end;
         
@@ -45,18 +48,20 @@ begin
             
             if damage <= 0 then begin
             
-                Writeln ('You have blocked a monster attack');
+                Print_Formatted_Text ('You have blocked a monster attack');
             
             end else begin
             
                 hero.hit_points := hero.hit_points - damage;
-                Writeln ('Monster hits you: ', damage);
+                Str(damage, tmp_string);
+                concated_text := Concat('Monster hits you: ', tmp_string);
+                Print_Formatted_Text (concated_text);
             
             end;
         
         end else begin
 
-            Writeln ('Monster is dead.');
+            Print_Formatted_Text ('Monster is dead.');
             monsters[current_location].hit_points := 0;
 
         end;
@@ -65,7 +70,7 @@ begin
 
         if (monsters[current_location].hit_points > 0) and (hero.hit_points > 0) then begin
         
-            Writeln ('Continue [F]ighting or [R]un away');
+            Print_Formatted_Text ('Continue [F]ighting or [R]un away');
             Writeln;
             
             repeat
@@ -76,7 +81,7 @@ begin
                 
                     'R': begin
                     
-                        Writeln ('You ran...');
+                        Print_Formatted_Text ('You ran...');
                         player_run := TRUE;
                         current_location := previous_location;
                     
@@ -92,11 +97,11 @@ begin
 
     if hero.hit_points <= 0 then begin
         
-        Writeln ('Monster killed you.');
+        Print_Formatted_Text ('Monster killed you.');
         Writeln;
-        Writeln ('Game over.');
+        Print_Formatted_Text ('Game over.');
         Writeln;
-        Writeln ('Press any key to return to title screen.');
+        Print_Formatted_Text ('Press any key to return to title screen.');
 
         repeat until KeyPressed;
 

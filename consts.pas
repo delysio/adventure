@@ -80,3 +80,6 @@ const
         '', '', '', '', '', '', '', '', '', '',
         'Wings of the Wind', '', '', '', '', '', '', '', ''
     ); { array with item names }
+
+    REVERSE_START_VT52 = #27'p';
+    REVERSE_EXIT_VT52  = #27'q';

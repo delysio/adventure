@@ -36,26 +36,41 @@ var
     hit_points: byte;
     defence: byte;
     attack: byte;
+    tmp_string: string[100];
+    s_hit_points: string[3];
+    s_defence: string[3];
+    s_attack: string[3];
+    s_dexterity: string[3];
 begin
     
     hit_points := hero.hit_points;
     defence := hero.defence + armory.shield + armory.shield_slot + armory.head + armory.body + armory.gloves + armory.boots;
     attack := hero.attack + armory.weapon + armory.weapon_slot;
+
+    Str(hit_points, s_hit_points);
+    Str(defence, s_defence);
+    Str(attack, s_attack);
+    Str(hero.dexterity, s_dexterity);
+
+    tmp_string := Concat('Hero stats: HP ', s_hit_points, ', DEF ', s_defence, ', ATT ', s_attack, ', DEX ', s_dexterity);
     
-    Write ('Hero stats: HP ', hit_points);
-    Write (', DEF ', defence);
-    Write (', ATT ', attack);
-    Writeln (', DEX ', hero.dexterity);
+    Print_Formatted_Text (tmp_string);
     
 end;
 
 
 { Prints monster stats }
 procedure Print_Monster_Stats(monster_id: byte);
+var s_hit_points, s_defence, s_attack: string[3];
+    tmp_string: string[80];
 begin
-    Write ('Monster stats: HP ', monsters[current_location].hit_points);
-    Write (', DEF ', monsters[current_location].defence);
-    Writeln (', ATT ', monsters[current_location].attack);
+    Str(monsters[current_location].hit_points, s_hit_points);
+    Str(monsters[current_location].defence, s_defence);
+    Str(monsters[current_location].attack, s_attack);
+
+    tmp_string := Concat('Monster stats: HP ', s_hit_points, ', DEF ', s_defence, ', ATT ', s_attack);
+
+    Print_Formatted_Text (tmp_string);
 end;
 
 
@@ -63,40 +78,50 @@ end;
 procedure Print_Player_Stats;
 var
     value: byte;
+    s_value: string[3];
+    tmp_string: string[80];
 begin
     
     Writeln;
     Print_Hero_Stats;
     Writeln;
-    Writeln ('Your weapons and armory:');
+    Print_Formatted_Text ('Your weapons and armory:');
 
     value := armory.weapon + armory.weapon_slot;
-    Write ('SWORD: +', value); 
-    if armory.weapon > 0 then begin Writeln (' ', armory.weapon_name); end else begin Writeln end;   
+    Str(value, s_value);
+    tmp_string := Concat('SWORD: +', s_value);
 
-    Write ('   weapon slot: +', armory.weapon_slot);
+    if armory.weapon > 0 then begin tmp_string := Concat(tmp_string, ' ', armory.weapon_name); end; 
+    Print_Formatted_Text (tmp_string);
+
+    Write ('     weapon slot: +', armory.weapon_slot);
     if armory.weapon_slot > 0 then begin Writeln (' ', armory.weapon_slot_name); end else begin Writeln end; 
 
     value := armory.shield + armory.shield_slot;
-    Write ('SHIELD: +', value);
-    if armory.shield > 0 then begin Writeln (' ', armory.shield_name); end else begin Writeln end;
+    Str(value, s_value);
+    tmp_string := Concat('SHIELD: +', s_value);
 
-    Write ('   shield slot: +', armory.shield_slot);
+    if armory.shield > 0 then begin tmp_string := Concat(tmp_string, ' ', armory.shield_name); end;
+    Print_Formatted_Text (tmp_string);
+
+    Write ('     shield slot: +', armory.shield_slot);
     if armory.shield_slot > 0 then begin Writeln (' ', armory.shield_slot_name); end else begin Writeln end;
 
     value := armory.head + armory.body + armory.gloves + armory.boots;
-    Writeln ('ARMORY: +', value);
+    Str(value, s_value);
+    tmp_string := Concat('ARMORY: +', s_value);
+    Print_Formatted_Text (tmp_string);
 
-    Write ('   helmet: +', armory.head);
+    Write ('     helmet: +', armory.head);
     if armory.head > 0 then begin Writeln (' ', armory.head_name); end else begin Writeln end;
 
-    Write ('   armour: +', armory.body);
+    Write ('     armour: +', armory.body);
     if armory.body > 0 then begin Writeln (' ', armory.body_name); end else begin Writeln end;
 
-    Write ('   gloves: +', armory.gloves);
+    Write ('     gloves: +', armory.gloves);
     if armory.gloves > 0 then begin Writeln (' ', armory.gloves_name); end else begin Writeln end;
     
-    Write ('   boots:  +', armory.boots);
+    Write ('     boots:  +', armory.boots);
     if armory.boots > 0 then begin Writeln (' ', armory.boots_name); end else begin Writeln end;
 
 end;
@@ -161,7 +186,8 @@ begin
         end;
 
         Writeln;
-        Writeln ('You have dropped ', ITEM_DESCRIPTIONS[item]);
+        concated_text := Concat('You have dropped ', ITEM_DESCRIPTIONS[item]);
+        Print_Formatted_Text (concated_text);
 
     end else begin
 
@@ -178,7 +204,8 @@ begin
                         { wstaw na mapę}
                         location_items[current_location, location_index] := item;
                         Writeln;
-                        Writeln ('You have dropped ', ITEM_DESCRIPTIONS[item]);
+                        concated_text := Concat('You have dropped ', ITEM_DESCRIPTIONS[item]);
+                        Print_Formatted_Text (concated_text);
 
                         Organise_Item_Array;
                         exit;
@@ -202,6 +229,7 @@ var
     items_index, descriptions_index, number_of_items, global_index: byte;
     count : byte;
     key: char;
+    tmp_string: string[2];
 begin
 
     Writeln;
@@ -213,10 +241,13 @@ begin
 
     for items_index := 0 to MAX_INVENTORY do begin
 
+        Str(count, tmp_string);
+
         if inventory_items[items_index] <> ITEM_NONE then begin
             
             descriptions_index := inventory_items[items_index];
-            Writeln ('[', count, '] ', ITEM_DESCRIPTIONS[descriptions_index]);
+            concated_text := Concat('[', tmp_string, '] ', ITEM_DESCRIPTIONS[descriptions_index]);
+            Print_Formatted_Text (concated_text);
             count := count + 1;
             number_of_items := number_of_items + 1;
         
@@ -229,7 +260,7 @@ begin
     if number_of_items > 0 then begin
 
         Writeln;
-        Writeln ('Press the corresponding number to drop the item or [X] to exit inventory');
+        Print_Formatted_Text ('Press key to drop the item or [X] to exit inventory');
 
         repeat
             key := ReadKey;
@@ -247,7 +278,7 @@ begin
 
     end else begin
 
-        Writeln ('Inventory is empty.');
+        Print_Formatted_Text ('Inventory is empty.');
 
     end;
 
@@ -259,11 +290,12 @@ procedure Pre_Fight(mname: monster_name);
 begin
 
     Writeln;
-    Writeln (mname, ' appeared!');
+    concated_text := Concat(mname, ' appeared!');
+    Print_Formatted_Text (concated_text);
 
     Print_Monster_Stats(current_location);
     Writeln;
-    Writeln ('Press [F] to fight');
+    Print_Formatted_Text ('Press [F] to fight');
     Writeln;
 
 end;

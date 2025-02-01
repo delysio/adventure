@@ -2,6 +2,7 @@
 function Add_To_Inventory(location: byte): boolean;
 var i, j, item: byte;
     success: boolean;
+    tmp_string: string[3];
 begin
 
     Writeln;
@@ -48,7 +49,8 @@ begin
                                     armory.weapon_slot := weapons[item].modifier; 
                                     armory.weapon_slot_name := ITEM_DESCRIPTIONS[item]; 
                                 end else begin
-                                Writeln ('You can''t take the magic stone because you don''t have a weapon to put it on.');
+                                Print_Formatted_Text ('You can''t take the magic stone because you don''t have ' +
+                                                   'a weapon to put it on.');
                                 success := FALSE;
                                 end;
                             end;
@@ -58,7 +60,8 @@ begin
                                     armory.shield_slot := weapons[item].modifier; 
                                     armory.shield_slot_name := ITEM_DESCRIPTIONS[item]; 
                                 end else begin
-                                Writeln ('You can''t take the magic stone because you don''t have a shield to put it on.');
+                                Print_Formatted_Text ('You can''t take the magic stone because you don''t have a ' + 
+                                                   'shield to put it on.');
                                 success := FALSE;
                                 end;
                             end;
@@ -88,7 +91,9 @@ begin
                 if success = true then begin
 
                     location_items[location, j] := ITEM_NONE;
-                    Writeln ('You equipped the ', ITEM_DESCRIPTIONS[item]);
+
+                    concated_text := Concat('You equipped the ', ITEM_DESCRIPTIONS[item]);
+                    Print_Formatted_Text (concated_text);
                     Add_To_Inventory := TRUE;
 
                 end;
@@ -106,7 +111,9 @@ begin
 
                         inventory_items[i] := item;
                         location_items[location, j] := ITEM_NONE;
-                        Writeln ('You took the ', ITEM_DESCRIPTIONS[item]);
+
+                        concated_text := Concat('You took the ', ITEM_DESCRIPTIONS[item]);
+                        Print_Formatted_Text (concated_text);
                         Add_To_Inventory := TRUE;
                         exit;
 
@@ -121,7 +128,7 @@ begin
     end;
 
     Add_To_Inventory := FALSE;
-    Writeln ('Inventory is full');
+    Print_Formatted_Text ('Inventory is full');
     
 end;
 
@@ -172,7 +179,7 @@ begin
 
             if inventory_items[inventory_counter] = ITEM_POTION then begin
                 inventory_items[inventory_counter] := ITEM_NONE;
-                Writeln ('You feel a sudden wave of strength');              
+                Print_Formatted_Text ('You feel a sudden wave of strength');              
                 Organise_Item_Array;
                 potion_found := TRUE;
             end;
@@ -182,7 +189,7 @@ begin
         until (inventory_counter = MAX_INVENTORY) or (potion_found = TRUE);
         
     end else begin
-        Writeln ('You don''t have a strength potion in your inventory.');
+        Print_Formatted_Text ('You don''t have a strength potion in your inventory.');
     end;
 end;
 
@@ -197,12 +204,10 @@ begin
         i := Random(3);
 
         case i of 
-            0: Write('You see something lying on the ground.');
-            1: Write('There is something shining next to you.');
-            2: Write('Something on the ground caught your eye.');
+            0: Print_Formatted_Text ('You see something lying on the ground. Press [G] to pick up.');
+            1: Print_Formatted_Text ('There is something shining next to you. Press [G] to pick up.');
+            2: Print_Formatted_Text ('Something on the ground caught your eye. Press [G] to pick up.');
         end;
-
-        Writeln (' Press [G] to pick up.');    
 
     end;
 

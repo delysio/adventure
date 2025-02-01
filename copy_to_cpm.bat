@@ -16,6 +16,7 @@ copy %GAME_PATH%\inventry.pas %CPM_PATH%\INVENTRY.PAS
 copy %GAME_PATH%\intro.pas %CPM_PATH%\INTRO.PAS
 copy %GAME_PATH%\types.pas %CPM_PATH%\TYPES.PAS
 copy %GAME_PATH%\defkeys.pas %CPM_PATH%\DEFKEYS.PAS
+copy %GAME_PATH%\print.pas %CPM_PATH%\PRINT.PAS
 copy %GAME_PATH%\l01.pas %CPM_PATH%\L01.PAS
 copy %GAME_PATH%\l07.pas %CPM_PATH%\L07.PAS
 copy %GAME_PATH%\l09.pas %CPM_PATH%\L09.PAS
@@ -51,6 +52,7 @@ echo Deleting old files from dsk image
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk ERA TYPES.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk ERA READKEY.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk ERA DEFKEYS.PAS
+%CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk ERA PRINT.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk ERA ADV.COM
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk ERA L01.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk ERA L07.PAS
@@ -83,6 +85,7 @@ echo Writing updated files to dsk image
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk w %CPM_PATH%\TYPES.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk w %CPM_PATH%\READKEY.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk w %CPM_PATH%\DEFKEYS.PAS
+%CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk w %CPM_PATH%\PRINT.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk w %CPM_PATH%\L01.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk w %CPM_PATH%\L07.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk w %CPM_PATH%\L09.PAS
