@@ -24,6 +24,10 @@ begin
     monsters[LOCATION_MORANA_CIRCLE].hit_points := 15;
     monsters[LOCATION_MORANA_CIRCLE].defence := 7;
     monsters[LOCATION_MORANA_CIRCLE].attack := 6;
+
+    monsters[LOCATION_MOUND_INSIDE].hit_points := 20;
+    monsters[LOCATION_MOUND_INSIDE].defence := 9;
+    monsters[LOCATION_MOUND_INSIDE].attack := 8;
 end;
 
 
@@ -175,6 +179,7 @@ begin
     location_items[LOCATION_LAKE_NIGHT_DAY, 0] := BODY_CLOAK_OF_WELES;
     location_items[LOCATION_MORANA_CIRCLE, 0] := ITEM_SVAROGS_HAMMER;
     location_items[LOCATION_MORANA_CIRCLE, 1] := WEAPON_IRON_STRONGHOLD;
+    location_items[LOCATION_MOUND_INSIDE, 1] := HEAD_SOUTHERN_SUN;
 
 end;
 

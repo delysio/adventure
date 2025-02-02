@@ -15,8 +15,10 @@ const
     LOCATION_GOLDEN_FIELD          = 13;
     LOCATION_BUSHES                = 14;
     LOCATION_START                 = 15;
+    LOCATION_MOUND_INSIDE          = 16;
     LOCATION_FOREST_1              = 19;
     LOCATION_STREAM                = 20;
+    LOCATION_MOUND                 = 22;
     LOCATION_FOREST_2              = 25;
     LOCATION_SPRING                = 26;
     LOCATION_ROCKS                 = 27;
@@ -83,3 +85,7 @@ const
 
     REVERSE_START_VT52 = #27'p';
     REVERSE_EXIT_VT52  = #27'q';
+    REVERSE_START_BOSMAN = #27'S';
+    REVERSE_EXIT_BOSMAN = #27'T';
+    REVERSE_START_ANSI = #27'[7m';
+    REVERSE_EXIT_ANSI = #27'[0m';

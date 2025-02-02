@@ -18,16 +18,18 @@ var
   armory              : Tarmor;
   key_legal           : boolean;
   target_items_number : byte;
-  left_margin         : byte;
-  chars_per_line      : byte;
+  left_margin         : integer;
+  chars_per_line      : integer;
   concated_text       : string[80];
-  reverse_start_code  : string[3];
-  reverse_exit_code   : string[3];
+  r_start             : string[4]; { reverse start code }
+  r_exit              : string[4]; { reverse exit code }
+  val_result          : integer;
   
   location_items   : array [0..MAP_SIZE, 0..MAX_ITEMS_IN_LOCATION] of byte;
   inventory_items  : array [0..MAX_INVENTORY] of byte;
   
 {$I READKEY.PAS} { This function is only for Turbo Pascal 3.0 }
+{$I CONF.PAS}
 {$I PRINT.PAS}
 {$I INFO.PAS}
 {$I FIGHT.PAS}
@@ -39,50 +41,8 @@ var
 begin
 
   ClrScr;
-  Writeln ('    Welcome to the game configuration.');
-  WriteLn;
-  Writeln ('    Look at your monitor and select the appropriate left');
-  WriteLn ('    margin setting.');
-  Writeln ('[0] 0');
-  Writeln (' [1] 1');
-  Writeln ('  [2] 2');
-  Writeln ('   [3] 3');
-  Writeln ('    [4] 4');
-
-  repeat
-
-    key_hit := ReadKey;
-
-  until (key_hit = '0') or (key_hit = '1') or (key_hit = '2') or (key_hit = '3') or (key_hit = '4');
-
-  case key_hit of
-
-    '0': left_margin := 0;
-    '1': left_margin := 1;
-    '2': left_margin := 2;
-    '3': left_margin := 3;
-    '4': left_margin := 4;
   
-  end;
-
-  WriteLn;
-
-  Writeln ('    How many characters per line does your terminal display?');
-  Writeln ('    [6] 64 characters');
-  Writeln ('    [8] 80 characters');
-
-  repeat
-
-    key_hit := ReadKey;
-
-  until (key_hit = '6') or (key_hit = '8');
-
-  case key_hit of
-
-    '6': chars_per_line := 63;
-    '8': chars_per_line := 79;
-  
-  end;
+  Read_Configuration;
 
   current_state := STATE_TITLE;
   
@@ -103,12 +63,12 @@ begin
       
         ClrScr;
         Writeln;
-        Print_Formatted_Text (REVERSE_START_VT52 + 'A Tale of Ancient Land' + REVERSE_EXIT_VT52);
+        Print_Formatted_Text (r_start + 'A Tale of Ancient Land' + r_exit);
         Writeln;
         Print_Formatted_Text ('A world where gods walk the earth and ancient monsters lurk in the shadows of every tree.');
         Writeln;
-        Print_Formatted_Text ('Press ' + REVERSE_START_VT52 + '[S]' + REVERSE_EXIT_VT52 +' to start' +
-                              ' '+ REVERSE_START_VT52 + '[Q]' + REVERSE_EXIT_VT52 +' to exit to OS.');
+        Print_Formatted_Text ('Press [S] ' +
+                              'to start [Q]' + r_exit +' to exit to OS.');
 
         repeat
         
@@ -128,7 +88,7 @@ begin
       STATE_GAME:
       begin
         
-        current_location := LOCATION_START;
+        current_location := LOCATION_MOUND;
         game_over := FALSE;
       
         {$I INTRO.PAS }
@@ -187,11 +147,25 @@ begin
               
             end;
 
+            LOCATION_MOUND_INSIDE:
+            begin
+
+            {$I L16.PAS}
+              
+            end;
+
             LOCATION_STREAM:
             begin
 
             {$I L20.PAS}
               
+            end;
+
+            LOCATION_MOUND:
+            begin
+
+            {$I L22.PAS}
+
             end;
 
             LOCATION_SPRING:

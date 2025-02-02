@@ -11,7 +11,8 @@ end;
 
 if monsters[current_location].hit_points = 0 then Notify_On_Objects;
 
-Print_Formatted_Text ('You can go [S]outh, or sail [E]ast to the island');
+Print_Formatted_Text ('You can go [S]outh, or sail [E]ast ' + 
+                     'to the island');
 
 key_hit := UpCase(ReadKey);
 

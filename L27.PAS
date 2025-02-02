@@ -1,6 +1,6 @@
 Writeln;
 Print_Formatted_Text ('Squeezing between the narrow rocks takes almost an eternity, fortunately ' +
-                   'a cave can be seen in the distance.');
+                      'a cave can be seen in the distance.');
 
 Notify_On_Objects;
 

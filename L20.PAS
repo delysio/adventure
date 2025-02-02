@@ -4,7 +4,8 @@ Print_Formatted_Text ('A narrow stream meandering between the rocks whispers soo
 
 Notify_On_Objects;
 
-Print_Formatted_Text ('You can go [N]orth, [S]outh, [W]est');
+Print_Formatted_Text ('You can go [N]orth, [S]outh,' +
+                      ' [W]est');
 
 key_hit := UpCase(ReadKey);
 

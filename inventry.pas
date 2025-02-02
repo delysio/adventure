@@ -199,16 +199,19 @@ procedure Notify_On_Objects;
 var i: byte;
 begin
 
-    if Item_Exists(current_location) = TRUE then begin
+  if Item_Exists(current_location) = TRUE then begin
 
-        i := Random(3);
+      i := Random(3);
 
-        case i of 
-            0: Print_Formatted_Text ('You see something lying on the ground. Press [G] to pick up.');
-            1: Print_Formatted_Text ('There is something shining next to you. Press [G] to pick up.');
-            2: Print_Formatted_Text ('Something on the ground caught your eye. Press [G] to pick up.');
-        end;
-
+    case i of 
+        0: Print_Formatted_Text ('You see something lying on the ground. Press [G]' + 
+           r_exit +' to pick up.');
+        1: Print_Formatted_Text ('There is something shining next to you. Press [G]' + 
+           r_exit +' to pick up.');
+        2: Print_Formatted_Text ('Something on the ground caught your eye. Press [G]' + 
+           r_exit +' to pick up.');
     end;
+
+  end;
 
 end;

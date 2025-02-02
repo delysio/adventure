@@ -13,7 +13,8 @@ if (monsters[current_location].hit_points = 0) then begin
 
 end;
 
-Print_Formatted_Text ('You can go [E]ast, [N]orth, [S]outh');
+Print_Formatted_Text ('You can go [E]ast, [N]orth,' + 
+                      ' [S]outh');
 
 key_hit := UpCase(ReadKey);
 
