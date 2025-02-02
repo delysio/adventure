@@ -43,6 +43,8 @@ copy %GAME_PATH%\l31.pas %CPM_PATH%\L31.PAS
 copy %GAME_PATH%\l32.pas %CPM_PATH%\L32.PAS
 copy %GAME_PATH%\l33.pas %CPM_PATH%\L33.PAS
 copy %GAME_PATH%\l34.pas %CPM_PATH%\L34.PAS
+copy %GAME_PATH%\l35.pas %CPM_PATH%\L35.PAS
+copy %GAME_PATH%\l36.pas %CPM_PATH%\L36.PAS
 
 echo disabling use crt from main files
 
@@ -88,6 +90,8 @@ echo Deleting old files from dsk image
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk ERA L32.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk ERA L33.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk ERA L34.PAS
+%CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk ERA L35.PAS
+%CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk ERA L36.PAS
 
 echo Writing updated files to dsk image
 
@@ -127,6 +131,8 @@ echo Writing updated files to dsk image
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk w %CPM_PATH%\L32.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk w %CPM_PATH%\L33.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk w %CPM_PATH%\L34.PAS
+%CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk w %CPM_PATH%\L35.PAS
+%CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk w %CPM_PATH%\L36.PAS
 
 pause
 

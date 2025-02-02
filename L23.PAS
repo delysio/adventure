@@ -1,8 +1,8 @@
 Writeln;
 Print_Formatted_Text ('A narrow, rocky path leads through high mountains where the wind howls like ' +
                       'a man possessed and the ground is strewn with the bones of those who did not ' +
-                      'survive the journey. It is said to be the place where the elements meet, and ' +
-                      'every step could be the last. ');
+                      'survive the journey.');
+Print_Formatted_Text ('It is said to be the place where the elements meet, and every step could be the last.');
 
 Notify_On_Objects;
 

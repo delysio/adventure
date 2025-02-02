@@ -11,6 +11,7 @@ const
     
     LOCATION_SACRED_GROVE          =  1;           { location ids }
     LOCATION_LAKE                  =  9;           
+    LOCATION_STONE_THRESHOLD       =  7;
     LOCATION_ISLAND                = 10;
     LOCATION_GOLDEN_FIELD          = 13;
     LOCATION_BUSHES                = 14;
@@ -30,7 +31,8 @@ const
     LOCATION_SVAROGS_STONE_CIRCLE  = 32;
     LOCATION_THE_LESHY_VALLEY      = 33;
     LOCATION_LAKE_NIGHT_DAY        = 34;
-    LOCATION_STONE_THRESHOLD       = 7;
+    LOCATION_DARK_HARBOUR          = 35;
+    LOCATION_BLOODY_ROOTS          = 36;
     
     INITIAL_HIT_POINTS = 100;       { configuration of hero starting stats }
     INITIAL_DEFENCE    = 100;

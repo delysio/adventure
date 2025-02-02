@@ -27,7 +27,7 @@ case key_hit of
     'S': begin
         if Is_In_Inventory(ITEM_BONE_TOKEN) then begin
             Drop_Special_Item(ITEM_BONE_TOKEN);
-            current_location := LOCATION_WIND_AND_BONE_PASS;
+            current_location := LOCATION_DARK_HARBOUR;
         end;
     end;
     'N': begin

@@ -154,10 +154,24 @@ begin
               
             end;
 
+            LOCATION_FOREST_1:
+            begin
+
+            {$I L19.PAS}
+              
+            end;
+
             LOCATION_STREAM:
             begin
 
             {$I L20.PAS}
+              
+            end;
+
+            LOCATION_CAVE:
+            begin
+
+            {$I L21.PAS}
               
             end;
 
@@ -175,6 +189,13 @@ begin
 
             end;
 
+            LOCATION_FOREST_2:
+            begin
+
+            {$I L25.PAS}
+              
+            end;
+
             LOCATION_SPRING:
             begin
 
@@ -182,17 +203,10 @@ begin
               
             end;
 
-            LOCATION_FOREST_1:
+            LOCATION_ROCKS:
             begin
 
-            {$I L19.PAS}
-              
-            end;
-
-            LOCATION_FOREST_2:
-            begin
-
-            {$I L25.PAS}
+            {$I L27.PAS}
               
             end;
 
@@ -238,17 +252,18 @@ begin
               
             end;
 
-            LOCATION_ROCKS:
+            LOCATION_DARK_HARBOUR:
             begin
 
-            {$I L27.PAS}
+            {$I L35.PAS}
               
             end;
 
-            LOCATION_CAVE:
+
+            LOCATION_BLOODY_ROOTS:
             begin
 
-            {$I L21.PAS}
+            {$I L36.PAS}
               
             end;
           
