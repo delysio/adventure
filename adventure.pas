@@ -168,6 +168,13 @@ begin
 
             end;
 
+            LOCATION_WIND_AND_BONE_PASS:
+            begin
+
+            {$I L23.PAS}
+
+            end;
+
             LOCATION_SPRING:
             begin
 
@@ -193,6 +200,13 @@ begin
             begin
 
             {$I L28.PAS}
+              
+            end;
+
+            LOCATION_LAKE_OF_SOULS:
+            begin
+
+            {$I L29.PAS}
               
             end;
 

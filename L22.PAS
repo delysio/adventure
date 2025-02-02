@@ -6,12 +6,15 @@ Print_Formatted_Text ('It is said that anyone who dares to go inside will be tes
 
 Notify_On_Objects;
 
-Print_Formatted_Text ('You can go [N]orth, [S]outh');
+Print_Formatted_Text ('You can go [N]orth, [S]outh, [E]ast');
 
 key_hit := UpCase(ReadKey);
 
 case key_hit of
-    
+
+    'E': begin
+        current_location := LOCATION_WIND_AND_BONE_PASS;
+    end;
     'N': begin
         current_location := LOCATION_MOUND_INSIDE;
     end;

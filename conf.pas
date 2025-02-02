@@ -2,15 +2,15 @@
 procedure Read_Configuration;
 var
   file_var: Text;
-  file_name: string[14];
   s_left_margin: string[1];
   s_chars_per_line: string[2];
+  
+const
+  FILE_NAME = 'ADVCONF.DAT';
 
 begin
 
-  file_name := 'ADVCONF.DAT';
-
-  Assign (file_var, file_name);
+  Assign (file_var, FILE_NAME);
   Reset (file_var);
   Readln (file_var, s_left_margin);
   Readln (file_var, s_chars_per_line);

@@ -19,11 +19,13 @@ const
     LOCATION_FOREST_1              = 19;
     LOCATION_STREAM                = 20;
     LOCATION_MOUND                 = 22;
+    LOCATION_CAVE                  = 21;
+    LOCATION_WIND_AND_BONE_PASS    = 23;
     LOCATION_FOREST_2              = 25;
     LOCATION_SPRING                = 26;
     LOCATION_ROCKS                 = 27;
-    LOCATION_CAVE                  = 21;
     LOCATION_MORANA_CIRCLE         = 28;
+    LOCATION_LAKE_OF_SOULS         = 29;
     LOCATION_FOREST_3              = 31;
     LOCATION_SVAROGS_STONE_CIRCLE  = 32;
     LOCATION_THE_LESHY_VALLEY      = 33;
@@ -42,6 +44,7 @@ const
     ITEM_TORCH            = 0;        { item ids }
     ITEM_MACHETE          = 1;
     ITEM_BONDCUTTER       = 2;
+    ITEM_BONE_TOKEN       = 3;
     ITEM_PERUNS_STONE     = 15;
     ITEM_SVAROGS_HAMMER   = 16;
     ITEM_DAZHBOGS_DIAMOND = 17;
@@ -71,7 +74,7 @@ const
     BOOTS_WINGS_OF_THE_WIND     = 90;
 
     ITEM_DESCRIPTIONS: array [0..MAX_ITEMS] of string[17] = (
-        'TORCH', 'MACHETE', 'BONDCUTTER', '', '', '', '', '', '', '',
+        'TORCH', 'MACHETE', 'BONDCUTTER', 'BONE TOKEN', '', '', '', '', '', '',
         '', '', '', '', '', 'PERUN''S STONE', 'SVAROG''S HAMMER', 'DAZHBOG''S DIAMOND', 'SVIATOVID''S HORN', 'POTION',
         'Night Thorn', 'Blood Harvest', 'Soul Vanquisher', 'Thunderstrike', '', '', '', '', '', '',
         'Wooden shield', 'Iron Stronghold', 'Diamond Seal', '', '', '', '', '', '', '',

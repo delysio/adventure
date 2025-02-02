@@ -33,10 +33,12 @@ copy %GAME_PATH%\l19.pas %CPM_PATH%\L19.PAS
 copy %GAME_PATH%\l20.pas %CPM_PATH%\L20.PAS
 copy %GAME_PATH%\l21.pas %CPM_PATH%\L21.PAS
 copy %GAME_PATH%\l22.pas %CPM_PATH%\L22.PAS
+copy %GAME_PATH%\l23.pas %CPM_PATH%\L23.PAS
 copy %GAME_PATH%\l25.pas %CPM_PATH%\L25.PAS
 copy %GAME_PATH%\l26.pas %CPM_PATH%\L26.PAS
 copy %GAME_PATH%\l27.pas %CPM_PATH%\L27.PAS
 copy %GAME_PATH%\l28.pas %CPM_PATH%\L28.PAS
+copy %GAME_PATH%\l29.pas %CPM_PATH%\L29.PAS
 copy %GAME_PATH%\l31.pas %CPM_PATH%\L31.PAS
 copy %GAME_PATH%\l32.pas %CPM_PATH%\L32.PAS
 copy %GAME_PATH%\l33.pas %CPM_PATH%\L33.PAS
@@ -76,10 +78,12 @@ echo Deleting old files from dsk image
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk ERA L20.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk ERA L21.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk ERA L22.PAS
+%CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk ERA L23.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk ERA L25.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk ERA L26.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk ERA L27.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk ERA L28.PAS
+%CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk ERA L29.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk ERA L31.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk ERA L32.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk ERA L33.PAS
@@ -113,10 +117,12 @@ echo Writing updated files to dsk image
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk w %CPM_PATH%\L20.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk w %CPM_PATH%\L21.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk w %CPM_PATH%\L22.PAS
+%CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk w %CPM_PATH%\L23.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk w %CPM_PATH%\L25.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk w %CPM_PATH%\L26.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk w %CPM_PATH%\L27.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk w %CPM_PATH%\L28.PAS
+%CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk w %CPM_PATH%\L29.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk w %CPM_PATH%\L31.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk w %CPM_PATH%\L32.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk w %CPM_PATH%\L33.PAS
