@@ -2,7 +2,6 @@
 function Add_To_Inventory(location: byte): boolean;
 var i, j, item: byte;
     success: boolean;
-    tmp_string: string[3];
 begin
 
     Writeln;
@@ -49,8 +48,8 @@ begin
                                     armory.weapon_slot := weapons[item].modifier; 
                                     armory.weapon_slot_name := ITEM_DESCRIPTIONS[item]; 
                                 end else begin
-                                Print_Formatted_Text ('You can''t take the magic stone because you don''t have ' +
-                                                   'a weapon to put it on.');
+                                  Print_Formatted_Text ('You can''t take the magic stone because you don''t have ' +
+                                                        'a weapon to put it on.');
                                 success := FALSE;
                                 end;
                             end;
@@ -60,8 +59,8 @@ begin
                                     armory.shield_slot := weapons[item].modifier; 
                                     armory.shield_slot_name := ITEM_DESCRIPTIONS[item]; 
                                 end else begin
-                                Print_Formatted_Text ('You can''t take the magic stone because you don''t have a ' + 
-                                                   'shield to put it on.');
+                                  Print_Formatted_Text ('You can''t take the magic stone because you don''t have a ' + 
+                                                        'shield to put it on.');
                                 success := FALSE;
                                 end;
                             end;
@@ -91,9 +90,7 @@ begin
                 if success = true then begin
 
                     location_items[location, j] := ITEM_NONE;
-
-                    concated_text := Concat('You equipped the ', ITEM_DESCRIPTIONS[item]);
-                    Print_Formatted_Text (concated_text);
+                    Print_Formatted_Text ('You equipped the ' + ITEM_DESCRIPTIONS[item]);
                     Add_To_Inventory := TRUE;
 
                 end;
@@ -112,8 +109,7 @@ begin
                         inventory_items[i] := item;
                         location_items[location, j] := ITEM_NONE;
 
-                        concated_text := Concat('You took the ', ITEM_DESCRIPTIONS[item]);
-                        Print_Formatted_Text (concated_text);
+                        Print_Formatted_Text ('You took the ' + ITEM_DESCRIPTIONS[item]);
                         Add_To_Inventory := TRUE;
                         exit;
 
@@ -148,7 +144,7 @@ end;
 
 
 { Checks whether there are any items in a particular location }
-function Item_Exists(location: byte): boolean;
+function Item_Exists: boolean;
 var i: byte;
 begin
     Item_Exists := FALSE;
@@ -167,30 +163,30 @@ var
     inventory_counter: byte;
     potion_found: boolean;
 begin
-    Writeln;
+  Writeln;
 
-    if Is_In_Inventory(ITEM_POTION) = TRUE then begin
+  if Is_In_Inventory(ITEM_POTION) = TRUE then begin
 
-        hero.hit_points := hero.hit_points + ITEM_POTION_VALUE;
-        inventory_counter := 0;
-        potion_found := FALSE;
+    hero.hit_points := hero.hit_points + ITEM_POTION_VALUE;
+    inventory_counter := 0;
+    potion_found := FALSE;
 
-        repeat
+    repeat
 
-            if inventory_items[inventory_counter] = ITEM_POTION then begin
-                inventory_items[inventory_counter] := ITEM_NONE;
-                Print_Formatted_Text ('You feel a sudden wave of strength');              
-                Organise_Item_Array;
-                potion_found := TRUE;
-            end;
+      if inventory_items[inventory_counter] = ITEM_POTION then begin
+        inventory_items[inventory_counter] := ITEM_NONE;
+        Print_Formatted_Text ('You feel a sudden wave of strength');              
+        Organise_Item_Array;
+        potion_found := TRUE;
+      end;
 
-            inventory_counter := inventory_counter + 1;
+      inventory_counter := inventory_counter + 1;
 
-        until (inventory_counter = MAX_INVENTORY) or (potion_found = TRUE);
-        
-    end else begin
-        Print_Formatted_Text ('You don''t have a strength potion in your inventory.');
-    end;
+    until (inventory_counter = MAX_INVENTORY) or (potion_found = TRUE);
+      
+  end else begin
+      Print_Formatted_Text ('You don''t have a strength potion in your inventory.');
+  end;
 end;
 
 
@@ -199,19 +195,15 @@ procedure Notify_On_Objects;
 var i: byte;
 begin
 
-  if Item_Exists(current_location) = TRUE then begin
+  if Item_Exists = TRUE then begin
 
-      i := Random(3);
+    i := Random(3);
 
     case i of 
-        0: Print_Formatted_Text ('You see something lying on the ground. Press [G]' + 
-           r_exit +' to pick up.');
-        1: Print_Formatted_Text ('There is something shining next to you. Press [G]' + 
-           r_exit +' to pick up.');
-        2: Print_Formatted_Text ('Something on the ground caught your eye. Press [G]' + 
-           r_exit +' to pick up.');
+      0: Print_Formatted_Text ('You see something lying on the ground. Press [G] to pick up.');
+      1: Print_Formatted_Text ('There is something shining next to you. Press [G] to pick up.');
+      2: Print_Formatted_Text ('Something on the ground caught your eye. Press [G] to pick up.');
     end;
 
   end;
-
 end;

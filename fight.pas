@@ -34,8 +34,7 @@ begin
         
             monsters[current_location].hit_points := monsters[current_location].hit_points - damage;
             Str(damage, tmp_string);
-            concated_text := Concat('Your hit: ', tmp_string);
-            Print_Formatted_Text (concated_text);
+            Print_Formatted_Text ('Your hit: ' + tmp_string);
             
         end;
         
@@ -54,8 +53,7 @@ begin
             
                 hero.hit_points := hero.hit_points - damage;
                 Str(damage, tmp_string);
-                concated_text := Concat('Monster hits you: ', tmp_string);
-                Print_Formatted_Text (concated_text);
+                Print_Formatted_Text ('Monster hits you: ' + tmp_string);
             
             end;
         

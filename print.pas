@@ -17,7 +17,7 @@ begin
 
         if (input_text[i] = ' ') or (i = Length(input_text)) then begin
 
-            if (txt_len + Length(txt_word)) > chars_per_line - left_margin then begin
+            if (txt_len + Length(txt_word)) > chars_per_line - left_margin - 1 then begin
             
                 WriteLn;
 

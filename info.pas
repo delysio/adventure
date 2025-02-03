@@ -36,7 +36,6 @@ var
     hit_points: byte;
     defence: byte;
     attack: byte;
-    tmp_string: string[100];
     s_hit_points: string[3];
     s_defence: string[3];
     s_attack: string[3];
@@ -51,10 +50,9 @@ begin
     Str(defence, s_defence);
     Str(attack, s_attack);
     Str(hero.dexterity, s_dexterity);
-
-    tmp_string := Concat('Hero stats: HP ', s_hit_points, ', DEF ', s_defence, ', ATT ', s_attack, ', DEX ', s_dexterity);
-    
-    Print_Formatted_Text (tmp_string);
+   
+    Print_Formatted_Text ('Hero stats: HP ' + s_hit_points + ', DEF ' + s_defence + ', ATT ' + 
+                          s_attack + ', DEX ' + s_dexterity);
     
 end;
 
@@ -62,15 +60,12 @@ end;
 { Prints monster stats }
 procedure Print_Monster_Stats(monster_id: byte);
 var s_hit_points, s_defence, s_attack: string[3];
-    tmp_string: string[80];
 begin
     Str(monsters[current_location].hit_points, s_hit_points);
     Str(monsters[current_location].defence, s_defence);
     Str(monsters[current_location].attack, s_attack);
 
-    tmp_string := Concat('Monster stats: HP ', s_hit_points, ', DEF ', s_defence, ', ATT ', s_attack);
-
-    Print_Formatted_Text (tmp_string);
+    Print_Formatted_Text ('Monster stats: HP ' + s_hit_points + ', DEF ' + s_defence + ', ATT ' + s_attack);
 end;
 
 
@@ -109,8 +104,7 @@ begin
 
     value := armory.head + armory.body + armory.gloves + armory.boots;
     Str(value, s_value);
-    tmp_string := Concat('ARMORY: +', s_value);
-    Print_Formatted_Text (tmp_string);
+    Print_Formatted_Text ('ARMORY: +' + s_value);
 
     Write ('     helmet: +', armory.head);
     if armory.head > 0 then begin Writeln (' ', armory.head_name); end else begin Writeln end;
@@ -186,8 +180,7 @@ begin
         end;
 
         Writeln;
-        concated_text := Concat('You have dropped ', ITEM_DESCRIPTIONS[item]);
-        Print_Formatted_Text (concated_text);
+        Print_Formatted_Text ('You have dropped ' + ITEM_DESCRIPTIONS[item]);
 
     end else begin
 
@@ -204,8 +197,7 @@ begin
                         { wstaw na mapę}
                         location_items[current_location, location_index] := item;
                         Writeln;
-                        concated_text := Concat('You have dropped ', ITEM_DESCRIPTIONS[item]);
-                        Print_Formatted_Text (concated_text);
+                        Print_Formatted_Text ('You have dropped ' + ITEM_DESCRIPTIONS[item]);
 
                         Organise_Item_Array;
                         exit;
@@ -246,8 +238,7 @@ begin
         if inventory_items[items_index] <> ITEM_NONE then begin
             
             descriptions_index := inventory_items[items_index];
-            concated_text := Concat('[', tmp_string, '] ', ITEM_DESCRIPTIONS[descriptions_index]);
-            Print_Formatted_Text (concated_text);
+            Print_Formatted_Text ('[' + tmp_string + '] ' + ITEM_DESCRIPTIONS[descriptions_index]);
             count := count + 1;
             number_of_items := number_of_items + 1;
         
@@ -290,8 +281,7 @@ procedure Pre_Fight(mname: monster_name);
 begin
 
     Writeln;
-    concated_text := Concat(mname, ' appeared!');
-    Print_Formatted_Text (concated_text);
+    Print_Formatted_Text (mname + ' appeared!');
 
     Print_Monster_Stats(current_location);
     Writeln;

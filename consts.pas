@@ -1,6 +1,6 @@
 const
 
-    MAP_SIZE        = 35;        { size of map }
+    MAP_SIZE        = 36;        { size of map }
     MAX_ITEMS_IN_LOCATION = 6;   { maximum number of items in one location }
     MAX_INVENTORY   =  4;        { maximum number of items in backpack }
     MAX_ITEMS       = 98;        { number of different items }

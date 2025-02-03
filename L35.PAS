@@ -5,9 +5,9 @@ Print_Formatted_Text ('Dark silhouettes without faces stand silently on the shor
 Print_Formatted_Text ('They don''t move, they don''t breathe - they merely wait, silently and impatiently, as ' +
                       'if every moment were an eternity for them.');
 
-Print_Formatted_Text ('You can go [E]ast');
-
 Notify_On_Objects;
+
+Print_Formatted_Text ('You can go [E]ast');
 
 key_hit := UpCase(ReadKey);
 
@@ -17,7 +17,7 @@ case key_hit of
         current_location := LOCATION_BLOODY_ROOTS;
     end;
     'G': begin
-        if Item_Exists(current_location) = TRUE then begin
+        if Item_Exists = TRUE then begin
             success := Add_To_Inventory(current_location);
         end;
     end;

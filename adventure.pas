@@ -20,7 +20,6 @@ var
   target_items_number : byte;
   left_margin         : integer;
   chars_per_line      : integer;
-  concated_text       : string[80];
   r_start             : string[4]; { reverse start code }
   r_exit              : string[4]; { reverse exit code }
   val_result          : integer;
