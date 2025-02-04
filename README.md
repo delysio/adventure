@@ -6,7 +6,7 @@ A text-based RPG written in Turbo Pascal 3.0 for various retro systems. Designed
 
 - Windows terminal (ANSI)
 - Commodore 128 (ADM31)
-- Amstrad CPC 128
+- Amstrad CPC 6128
 - Elwro 800 Junior
 - BOSMAN-8
 
