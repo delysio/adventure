@@ -8,6 +8,7 @@ var
     chars_per_line      : byte;
     r_start             : string[4]; { reverse start code }
     r_exit              : string[4]; { reverse exit code }
+    s_clrscr            : string[4]; { clear screen code }
 
 const
     REVERSE_START_VT52 = #27'p';
@@ -16,6 +17,13 @@ const
     REVERSE_EXIT_BOSMAN = #27'T';
     REVERSE_START_ANSI = #27'[7m';
     REVERSE_EXIT_ANSI = #27'[0m';
+    REVERSE_START_ADM31 = #27'G4';
+    REVERSE_EXIT_ADM31 = #27'G0';
+
+    CLR_VT52    = #27'H'#27'J';
+    CLR_BOSMAN  = #27'H'#27'J';
+    CLR_ANSI    = #27'c';
+    CLR_ADM31   = #27'*'; 
 
 {$I READKEY.PAS}
 
@@ -26,6 +34,15 @@ var
   file_name: string[14];
 
 begin
+
+  WriteLn;
+  WriteLn;
+  WriteLn;
+  WriteLn;
+  WriteLn;
+  WriteLn;
+  WriteLn;
+  WriteLn;
 
   Writeln ('    Welcome to the game configuration.');
   WriteLn;
@@ -79,19 +96,21 @@ begin
   Writeln ('    in reverse video');
   Writeln ('    [1] ' + REVERSE_START_VT52 + 'reverse' + REVERSE_EXIT_VT52 + 
            ', [2] ' + REVERSE_START_BOSMAN + 'reverse' + REVERSE_EXIT_BOSMAN +
-           ', [3] ' + REVERSE_START_ANSI + 'reverse' + REVERSE_EXIT_ANSI);
+           ', [3] ' + REVERSE_START_ANSI + 'reverse' + REVERSE_EXIT_ANSI + 
+           ', [4] ' + REVERSE_START_ADM31 + 'reverse' + REVERSE_EXIT_ADM31);
 
   repeat
 
     key_hit := ReadKey;
 
-  until (key_hit = '1') or (key_hit = '2') or (key_hit = '3');
+  until (key_hit = '1') or (key_hit = '2') or (key_hit = '3') or (key_hit = '4');
 
   case key_hit of
 
-    '1': begin r_start := REVERSE_START_VT52; r_exit := REVERSE_EXIT_VT52; end;
-    '2': begin r_start := REVERSE_START_BOSMAN; r_exit := REVERSE_EXIT_BOSMAN; end;
-    '3': begin r_start := REVERSE_START_ANSI; r_exit := REVERSE_EXIT_ANSI; end;
+    '1': begin r_start := REVERSE_START_VT52; r_exit := REVERSE_EXIT_VT52; s_clrscr := CLR_VT52; end;
+    '2': begin r_start := REVERSE_START_BOSMAN; r_exit := REVERSE_EXIT_BOSMAN; s_clrscr := CLR_BOSMAN; end;
+    '3': begin r_start := REVERSE_START_ANSI; r_exit := REVERSE_EXIT_ANSI; s_clrscr := CLR_ANSI; end;
+    '4': begin r_start := REVERSE_START_ADM31; r_exit := REVERSE_EXIT_ADM31; s_clrscr := CLR_ADM31; end;
   
   end;
 
@@ -104,6 +123,7 @@ begin
   Writeln (file_var, chars_per_line);
   Writeln (file_var, r_start);
   Writeln (file_var, r_exit);
+  Writeln (file_var, s_clrscr);
   Close (file_var);
 
   Writeln;

@@ -2,37 +2,38 @@ const
 
     MAP_SIZE        = 36;        { size of map }
     MAX_ITEMS_IN_LOCATION = 6;   { maximum number of items in one location }
-    MAX_INVENTORY   =  4;        { maximum number of items in backpack }
+    MAX_INVENTORY   =  2;        { maximum number of items in backpack }
     MAX_ITEMS       = 98;        { number of different items }
 
     STATE_TITLE = 1;                { state ids }
     STATE_GAME  = 2;
     STATE_EXIT  = 3;
     
-    LOCATION_SACRED_GROVE          =  1;           { location ids }
-    LOCATION_LAKE                  =  9;           
-    LOCATION_STONE_THRESHOLD       =  7;
-    LOCATION_ISLAND                = 10;
-    LOCATION_GOLDEN_FIELD          = 13;
-    LOCATION_BUSHES                = 14;
-    LOCATION_START                 = 15;
-    LOCATION_MOUND_INSIDE          = 16;
-    LOCATION_FOREST_1              = 19;
-    LOCATION_STREAM                = 20;
-    LOCATION_MOUND                 = 22;
-    LOCATION_CAVE                  = 21;
-    LOCATION_WIND_AND_BONE_PASS    = 23;
-    LOCATION_FOREST_2              = 25;
-    LOCATION_SPRING                = 26;
-    LOCATION_ROCKS                 = 27;
-    LOCATION_MORANA_CIRCLE         = 28;
-    LOCATION_LAKE_OF_SOULS         = 29;
-    LOCATION_FOREST_3              = 31;
-    LOCATION_SVAROGS_STONE_CIRCLE  = 32;
-    LOCATION_THE_LESHY_VALLEY      = 33;
-    LOCATION_LAKE_NIGHT_DAY        = 34;
-    LOCATION_DARK_HARBOUR          = 35;
-    LOCATION_BLOODY_ROOTS          = 36;
+    LOCATION_SACRED_GROVE           =  1;           { location ids }
+    LOCATION_LAKE                   =  9;           
+    LOCATION_STONE_THRESHOLD        =  7;
+    LOCATION_ISLAND                 = 10;
+    LOCATION_GOLDEN_FIELD           = 13;
+    LOCATION_BUSHES                 = 14;
+    LOCATION_START                  = 15;
+    LOCATION_MOUND_INSIDE           = 16;
+    LOCATION_ECHOES_OF_THE_ANCIENTS = 17;
+    LOCATION_FOREST_1               = 19;
+    LOCATION_STREAM                 = 20;
+    LOCATION_MOUND                  = 22;
+    LOCATION_CAVE                   = 21;
+    LOCATION_WIND_AND_BONE_PASS     = 23;
+    LOCATION_FOREST_2               = 25;
+    LOCATION_SPRING                 = 26;
+    LOCATION_ROCKS                  = 27;
+    LOCATION_MORANA_CIRCLE          = 28;
+    LOCATION_LAKE_OF_SOULS          = 29;
+    LOCATION_FOREST_3               = 31;
+    LOCATION_SVAROGS_STONE_CIRCLE   = 32;
+    LOCATION_THE_LESHY_VALLEY       = 33;
+    LOCATION_LAKE_NIGHT_DAY         = 34;
+    LOCATION_DARK_HARBOUR           = 35;
+    LOCATION_BLOODY_ROOTS           = 36;
     
     INITIAL_HIT_POINTS = 100;       { configuration of hero starting stats }
     INITIAL_DEFENCE    = 100;
@@ -88,9 +89,16 @@ const
         'Wings of the Wind', '', '', '', '', '', '', '', ''
     ); { array with item names }
 
-    REVERSE_START_VT52 = #27'p';
-    REVERSE_EXIT_VT52  = #27'q';
-    REVERSE_START_BOSMAN = #27'S';
-    REVERSE_EXIT_BOSMAN = #27'T';
-    REVERSE_START_ANSI = #27'[7m';
-    REVERSE_EXIT_ANSI = #27'[0m';
+    REVERSE_START_VT52      = #27'p';
+    REVERSE_EXIT_VT52       = #27'q';
+    REVERSE_START_BOSMAN    = #27'S';
+    REVERSE_EXIT_BOSMAN     = #27'T';
+    REVERSE_START_ANSI      = #27'[7m';
+    REVERSE_EXIT_ANSI       = #27'[0m';
+    REVERSE_START_ADM31     = #27'G4';
+    REVERSE_EXIT_ADM31      = #27'G0';
+
+    CLR_VT52    = #27'H'#27'J';
+    CLR_BOSMAN  = #27'H'#27'J';
+    CLR_ANSI    = #27'c';
+    CLR_ADM31   = #27'*'; 

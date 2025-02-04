@@ -29,6 +29,7 @@ copy %GAME_PATH%\l13.pas %CPM_PATH%\L13.PAS
 copy %GAME_PATH%\l14.pas %CPM_PATH%\L14.PAS
 copy %GAME_PATH%\l15.pas %CPM_PATH%\L15.PAS
 copy %GAME_PATH%\l16.pas %CPM_PATH%\L16.PAS
+copy %GAME_PATH%\l17.pas %CPM_PATH%\L17.PAS
 copy %GAME_PATH%\l19.pas %CPM_PATH%\L19.PAS
 copy %GAME_PATH%\l20.pas %CPM_PATH%\L20.PAS
 copy %GAME_PATH%\l21.pas %CPM_PATH%\L21.PAS
@@ -76,6 +77,7 @@ echo Deleting old files from dsk image
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk ERA L14.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk ERA L15.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk ERA L16.PAS
+%CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk ERA L17.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk ERA L19.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk ERA L20.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk ERA L21.PAS
@@ -117,6 +119,7 @@ echo Writing updated files to dsk image
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk w %CPM_PATH%\L14.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk w %CPM_PATH%\L15.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk w %CPM_PATH%\L16.PAS
+%CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk w %CPM_PATH%\L17.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk w %CPM_PATH%\L19.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk w %CPM_PATH%\L20.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk w %CPM_PATH%\L21.PAS
@@ -134,6 +137,7 @@ echo Writing updated files to dsk image
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk w %CPM_PATH%\L35.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk w %CPM_PATH%\L36.PAS
 
-pause
+cd "f:\!_emulacja\CPM\run-cpm22\"
+run.bat
 
 

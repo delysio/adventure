@@ -22,6 +22,7 @@ var
   chars_per_line      : integer;
   r_start             : string[4]; { reverse start code }
   r_exit              : string[4]; { reverse exit code }
+  s_clrscr            : string[4]; { clear screen code }
   val_result          : integer;
   
   location_items   : array [0..MAP_SIZE, 0..MAX_ITEMS_IN_LOCATION] of byte;
@@ -39,9 +40,9 @@ var
 { Main program}
 begin
 
-  ClrScr;
-  
   Read_Configuration;
+
+  Write(s_clrscr);
 
   current_state := STATE_TITLE;
   
@@ -59,8 +60,8 @@ begin
         Init_Locations;
         Init_Inventory;
         Init_Hero;
-      
-        ClrScr;
+
+        Write(CLR_ANSI);
         Writeln;
         Print_Formatted_Text (r_start + 'A Tale of Ancient Land' + r_exit);
         Writeln;
@@ -150,6 +151,13 @@ begin
             begin
 
             {$I L16.PAS}
+              
+            end;
+
+            LOCATION_ECHOES_OF_THE_ANCIENTS:
+            begin
+
+            {$I L17.PAS}
               
             end;
 

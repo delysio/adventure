@@ -1,4 +1,4 @@
-{}
+{ Reads stored configuration }
 procedure Read_Configuration;
 var
   file_var: Text;
@@ -16,6 +16,7 @@ begin
   Readln (file_var, s_chars_per_line);
   Readln (file_var, r_start);
   Readln (file_var, r_exit);
+  Readln (file_var, s_clrscr);
 
   Val (s_left_margin, left_margin, val_result);
   Val (s_chars_per_line, chars_per_line, val_result);

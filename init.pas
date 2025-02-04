@@ -180,7 +180,8 @@ begin
     location_items[LOCATION_MORANA_CIRCLE, 0] := ITEM_SVAROGS_HAMMER;
     location_items[LOCATION_MORANA_CIRCLE, 1] := WEAPON_IRON_STRONGHOLD;
     location_items[LOCATION_MOUND_INSIDE, 0] := HEAD_SOUTHERN_SUN;
-    location_items[LOCATION_MOUND_INSIDE, 1] := ITEM_BONE_TOKEN;
+    location_items[LOCATION_MOUND_INSIDE, 1] := ITEM_TORCH;
+    location_items[LOCATION_ECHOES_OF_THE_ANCIENTS, 0] := ITEM_BONE_TOKEN;
     location_items[LOCATION_WIND_AND_BONE_PASS, 0] := ITEM_POTION;
 
 end;
