@@ -33,7 +33,6 @@ if Is_In_Inventory(ITEM_DAZHBOGS_DIAMOND) then begin
     Print_Formatted_Text ('(Witch) You never cease to amaze me traveller! Until now, no one has managed to ' + 
                        'acquire so many artefacts. I''ll keep the Dadagod Diamond with me and ' +
                        'improve your dexterity as a reward.');
-    WriteLn;
     Print_Formatted_Text ('You can feel your weapons suddenly becoming lighter and handier.');
 
     hero.dexterity := hero.dexterity + 5;
@@ -41,14 +40,6 @@ if Is_In_Inventory(ITEM_DAZHBOGS_DIAMOND) then begin
 
     { zabierz diament Dadźbboga }
     Drop_Special_Item(ITEM_DAZHBOGS_DIAMOND);
-
-end;
-if target_items_number = 3 then begin
-
-    Writeln;
-    Print_Formatted_Text ('(Witch) The power of the three artefacts will allow me to open a passage to the spirit ' +
-                          'world at the stone threshold. Head there to get the last item that will allow you to ' +
-                          'open a portal to Rarog''s abode.');
 
 end;
 
@@ -69,7 +60,7 @@ case key_hit of
         current_location := LOCATION_BUSHES;
     end;
     'G': begin
-        if Item_Exists then begin
+        if Item_Exists(current_location) then begin
             success := Add_To_Inventory(current_location);
         end;
     end;

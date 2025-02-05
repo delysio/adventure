@@ -1,6 +1,6 @@
 Writeln;
-Print_Formatted_Text ('Narrow stone corridors lead to a subterranean chamber where the air is heavy with the ' + 
-                      'smell of mustiness and ancient sacrifices.');
+Print_Formatted_Text ('Narrow stone corridors lead to a subterranean chamber where the air is heavy with the smell of ' + 
+                      'mustiness and ancient sacrifices.');
 Print_Formatted_Text ('The walls are covered with frescoes depicting battles and rituals, and in ' +
                       'the centre of the room stands a stone sarcophagus, surrounded by flickering flames.');
 
@@ -18,11 +18,10 @@ if (monsters[current_location].hit_points = 0) then begin
 
   if Is_In_Inventory(ITEM_TORCH) then begin
 
-    Print_Formatted_Text ('Shining your torch, you noticed that a dark breach had opened up among the tangled ' + 
-                          'roots and weathered boulders - a tunnel whose interior seemed to absorb the light.');
-    Print_Formatted_Text ('A cold, damp breeze wafted from within, carrying the smell of mustiness and something ' +
-                          'unnamed... something waiting for the daredevil ready to cross the threshold of an ' +
-                          'unknown world.');
+    Print_Formatted_Text ('Shining your torch, you noticed that a dark breach had opened up among the tangled roots ' + 
+                          'and weathered boulders - a tunnel whose interior seemed to absorb the light. A cold, damp ' +
+                          'breeze wafted from within, carrying the smell of mustiness and something unnamed... ' +
+                          'something waiting for the daredevil ready to cross the threshold of an unknown world.');
 
     Notify_On_Objects;
 

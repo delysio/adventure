@@ -1,8 +1,7 @@
 Writeln;
-Print_Formatted_Text ('A vast, misty valley where the air vibrates with the whispers of long-forgotten voices. ' +
-                      'Ruins buried in the ground seem to pulsate with ancient power, and shadows of the past ' +
-                      'flit between crumbling stone pillars.');
-Print_Formatted_Text ('Every step echoes, as if the place remembers every word and deed of ' +
+Print_Formatted_Text ('A vast, misty valley where the air vibrates with the whispers of long-forgotten voices. Ruins ' +
+                      'buried in the ground seem to pulsate with ancient power, and shadows of the past flit between ' +
+                      'crumbling stone pillars. Every step echoes, as if the place remembers every word and deed of ' +
                       'those who were once here... and never left. ');
 
 Notify_On_Objects;

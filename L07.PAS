@@ -7,25 +7,12 @@ Print_Formatted_Text ('It is said to be the place where Jarylo, the god of sprin
 
 Notify_On_Objects;
 
-if target_items_number = 3 then begin
-
-    Print_Formatted_Text ('You can go [N]orth, [S]outh, [E]ast');
-
-end else begin
-
-    Print_Formatted_Text ('You can go [N]orth, [S]outh');
-
-end;
+Print_Formatted_Text ('You can go [N]orth, [S]outh');
 
 key_hit := UpCase(ReadKey);
 
 case key_hit of
 
-    'E': begin
-        if target_items_number = 3 then begin
-            current_location := LOCATION_SOUNDLESS_PASS;
-        end;
-    end;
     'N': begin
         current_location := LOCATION_SACRED_GROVE;
     end;
@@ -33,7 +20,7 @@ case key_hit of
         current_location := LOCATION_GOLDEN_FIELD;
     end;
     'G': begin
-        if Item_Exists = TRUE then begin
+        if Item_Exists(current_location) = TRUE then begin
             success := Add_To_Inventory(current_location);
         end;
     end;
