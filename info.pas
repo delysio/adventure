@@ -17,7 +17,7 @@ begin
 end;
 
 
-{ Procedure triggered when you hand over items to the Witch }
+{ Procedure triggered when you hand over items to the Witch or NPC }
 procedure Drop_Special_Item(item: byte);
 var index: byte;
 begin
@@ -43,7 +43,7 @@ var
 begin
     
     hit_points := hero.hit_points;
-    defence := hero.defence + armory.shield + armory.shield_slot + armory.head + armory.body + armory.gloves + armory.boots;
+    defence := hero.defence + armory.shield + armory.shield_slot + armory.head + armory.body + armory.boots;
     attack := hero.attack + armory.weapon + armory.weapon_slot;
 
     Str(hit_points, s_hit_points);
@@ -102,7 +102,7 @@ begin
     Write ('     shield slot: +', armory.shield_slot);
     if armory.shield_slot > 0 then begin Writeln (' ', armory.shield_slot_name); end else begin Writeln end;
 
-    value := armory.head + armory.body + armory.gloves + armory.boots;
+    value := armory.head + armory.body + armory.boots;
     Str(value, s_value);
     Print_Formatted_Text ('ARMORY: +' + s_value);
 
@@ -111,9 +111,6 @@ begin
 
     Write ('     armour: +', armory.body);
     if armory.body > 0 then begin Writeln (' ', armory.body_name); end else begin Writeln end;
-
-    Write ('     gloves: +', armory.gloves);
-    if armory.gloves > 0 then begin Writeln (' ', armory.gloves_name); end else begin Writeln end;
     
     Write ('     boots:  +', armory.boots);
     if armory.boots > 0 then begin Writeln (' ', armory.boots_name); end else begin Writeln end;
@@ -156,10 +153,6 @@ begin
             70..79: begin 
                         armory.body := INITIAL_ARMORY; 
                         armory.body_name := INITIAL_DESCRIPTION; 
-                    end;
-            80..89: begin 
-                        armory.gloves := INITIAL_ARMORY; 
-                        armory.gloves_name := INITIAL_DESCRIPTION; 
                     end;
             90..99: begin 
                         armory.boots := INITIAL_ARMORY; 
@@ -288,4 +281,14 @@ begin
     Print_Formatted_Text ('Press [F] to fight');
     Writeln;
 
+end;
+
+
+{ Displays a list of keys available at any time }
+Procedure Print_Keys;
+begin
+    Writeln;
+    Print_Formatted_Text ('Press anytime: ');
+    Print_Formatted_Text (' [X] - exit,  [I] - inventory, ');
+    Print_Formatted_Text (' [C] - stats, [P] - potion, [H] - this help');
 end;

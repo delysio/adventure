@@ -43,7 +43,7 @@ begin
         if monsters[current_location].hit_points > 0 then begin
         
             damage := Random(monsters[current_location].attack) - Random(hero.defence) - armory.shield; 
-            damage := damage - armory.shield_slot - armory.head - armory.body - armory.gloves - armory.boots;
+            damage := damage - armory.shield_slot - armory.head - armory.body - armory.boots;
             
             if damage <= 0 then begin
             

@@ -88,7 +88,7 @@ begin
       STATE_GAME:
       begin
         
-        current_location := LOCATION_MOUND;
+        current_location := LOCATION_START;
         game_over := FALSE;
       
         {$I INTRO.PAS }
@@ -104,13 +104,6 @@ begin
               
             end;
             
-            LOCATION_LAKE:
-            begin
-              
-            {$I L09.PAS}
-              
-            end;
-
             LOCATION_ISLAND:
             begin
 
@@ -130,6 +123,20 @@ begin
             begin
 
             {$I L07.PAS}
+              
+            end;
+
+            LOCATION_SOUNDLESS_PASS:
+            begin
+              
+            {$I L08.PAS}
+              
+            end;
+
+            LOCATION_LAKE:
+            begin
+              
+            {$I L09.PAS}
               
             end;
 
@@ -228,6 +235,13 @@ begin
             begin
 
             {$I L29.PAS}
+              
+            end;
+
+            LOCATION_MELT_SWAMP:
+            begin
+
+            {$I L30.PAS}
               
             end;
 

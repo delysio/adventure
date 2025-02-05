@@ -1,5 +1,6 @@
 Writeln;
-Print_Formatted_Text ('The dark forest surrounds you on almost all sides. You hear wolves howling and leaves rustling.');
+Print_Formatted_Text ('The dark forest surrounds you on almost all sides. You hear wolves howling ' +
+                      'and leaves rustling.');
 
 if monsters[current_location].hit_points > 0 then begin
 
@@ -33,7 +34,7 @@ case key_hit of
         Fight;
     end;
     'G': begin
-        if (monsters[current_location].hit_points=0) and (Item_Exists(current_location)=TRUE) 
+        if (monsters[current_location].hit_points=0) and (Item_Exists=TRUE) 
         then begin
             success := Add_To_Inventory(current_location);
         end;

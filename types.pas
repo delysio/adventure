@@ -31,9 +31,6 @@ type
         body        : byte;
         body_name   : string[17];
         body_id : byte;
-        gloves      : byte;
-        gloves_name : string[17];
-        gloves_id : byte;
         boots       : byte;
         boots_name  : string[17];
         boots_id : byte;
@@ -45,7 +42,7 @@ type
         modifier    : byte;         { How many bonus points it adds }
     end;
 
-    monster_name = string[15];
+    monster_name = string[16];
 
     Tmonsters = array[0..36] of Tmonster;
     Tweapons  = array[0..99] of Titem;

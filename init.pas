@@ -28,6 +28,10 @@ begin
     monsters[LOCATION_MOUND_INSIDE].hit_points := 20;
     monsters[LOCATION_MOUND_INSIDE].defence := 9;
     monsters[LOCATION_MOUND_INSIDE].attack := 8;
+
+    monsters[LOCATION_MELT_SWAMP].hit_points := 25;
+    monsters[LOCATION_MELT_SWAMP].defence := 11;
+    monsters[LOCATION_MELT_SWAMP].attack := 11;
 end;
 
 
@@ -47,8 +51,6 @@ begin
     armory.head_name := INITIAL_DESCRIPTION;
     armory.body := INITIAL_ARMORY;
     armory.body_name := INITIAL_DESCRIPTION;
-    armory.gloves := INITIAL_ARMORY;
-    armory.gloves_name := INITIAL_DESCRIPTION;
     armory.boots := INITIAL_ARMORY;
     armory.boots_name := INITIAL_DESCRIPTION;
     
@@ -73,23 +75,23 @@ begin
     weapons[WEAPON_SOUL_VANQUISHER].kind := 0;
     weapons[WEAPON_SOUL_VANQUISHER].modifier := 5;
 
-    weapons[WEAPON_SOUL_THUNDERSTRIKE].id := 23;                       { elite sword }
-    weapons[WEAPON_SOUL_THUNDERSTRIKE].kind := 0;
-    weapons[WEAPON_SOUL_THUNDERSTRIKE].modifier := 7;
+    weapons[WEAPON_THUNDERSTRIKE].id := 23;                       { elite sword }
+    weapons[WEAPON_THUNDERSTRIKE].kind := 0;
+    weapons[WEAPON_THUNDERSTRIKE].modifier := 7;
 
     { shields }
 
-    weapons[WEAPON_WOODEN_SHIELD].id := 30;                     { wooden shield }
-    weapons[WEAPON_WOODEN_SHIELD].kind := 1;
-    weapons[WEAPON_WOODEN_SHIELD].modifier := 1;
+    weapons[SHIELD_WOODEN_SHIELD].id := 30;                     { wooden shield }
+    weapons[SHIELD_WOODEN_SHIELD].kind := 1;
+    weapons[SHIELD_WOODEN_SHIELD].modifier := 1;
 
-    weapons[WEAPON_IRON_STRONGHOLD].id := 31;                      { steel shield }
-    weapons[WEAPON_IRON_STRONGHOLD].kind := 1;
-    weapons[WEAPON_IRON_STRONGHOLD].modifier := 3;
+    weapons[SHIELD_IRON_STRONGHOLD].id := 31;                      { steel shield }
+    weapons[SHIELD_IRON_STRONGHOLD].kind := 1;
+    weapons[SHIELD_IRON_STRONGHOLD].modifier := 3;
 
-    weapons[WEAPON_DIAMOND_SEAL].id := 32;                     { dragon shield }
-    weapons[WEAPON_DIAMOND_SEAL].kind := 1;
-    weapons[WEAPON_DIAMOND_SEAL].modifier := 5;
+    weapons[SHIELD_DIAMOND_SEAL].id := 32;                     { dragon shield }
+    weapons[SHIELD_DIAMOND_SEAL].kind := 1;
+    weapons[SHIELD_DIAMOND_SEAL].modifier := 5;
 
     { weapon magic stones }
 
@@ -129,6 +131,10 @@ begin
     weapons[HEAD_THUNDERER].kind := 4;
     weapons[HEAD_THUNDERER].modifier := 5;
 
+    weapons[HEAD_SVAROG_CROWN].id := 62;
+    weapons[HEAD_SVAROG_CROWN].kind := 4;
+    weapons[HEAD_SVAROG_CROWN].modifier := 10;
+
     { armory - body }
 
     weapons[BODY_CLOAK_OF_WELES].id := 70;
@@ -139,11 +145,23 @@ begin
     weapons[BODY_WINTER_WHIRLWIND].kind := 5;
     weapons[BODY_WINTER_WHIRLWIND].modifier := 5;
 
+    weapons[BODY_THUNDERER_ARMOR].id := 72;
+    weapons[BODY_THUNDERER_ARMOR].kind := 5;
+    weapons[BODY_THUNDERER_ARMOR].modifier := 10;
+
     { armory - boots }
 
     weapons[BOOTS_WINGS_OF_THE_WIND].id := 90;
     weapons[BOOTS_WINGS_OF_THE_WIND].kind := 7;
     weapons[BOOTS_WINGS_OF_THE_WIND].modifier := 2;
+    
+    weapons[BOOTS_WOLF_FEET].id := 91;
+    weapons[BOOTS_WOLF_FEET].kind := 7;
+    weapons[BOOTS_WOLF_FEET].modifier := 5;
+    
+    weapons[BOOTS_THUNDEBOLT_CLOGS].id := 92;
+    weapons[BOOTS_THUNDEBOLT_CLOGS].kind := 7;
+    weapons[BOOTS_THUNDEBOLT_CLOGS].modifier := 10;
     
 end;
 
@@ -167,7 +185,7 @@ begin
     location_items[LOCATION_LAKE, 0] := ITEM_TORCH;
     location_items[LOCATION_ISLAND, 0] := ITEM_MACHETE;
     location_items[LOCATION_START, 0] := WEAPON_NIGHT_THORN;
-    location_items[LOCATION_START, 1] := WEAPON_WOODEN_SHIELD;
+    location_items[LOCATION_START, 1] := SHIELD_WOODEN_SHIELD;
     location_items[LOCATION_START, 2] := ITEM_POTION;
     location_items[LOCATION_SPRING, 0] := ITEM_POTION;
     location_items[LOCATION_CAVE, 0] := WEAPON_BLOOD_HARVEST;
@@ -178,11 +196,13 @@ begin
     location_items[LOCATION_SACRED_GROVE, 0] := ITEM_BONDCUTTER;
     location_items[LOCATION_LAKE_NIGHT_DAY, 0] := BODY_CLOAK_OF_WELES;
     location_items[LOCATION_MORANA_CIRCLE, 0] := ITEM_SVAROGS_HAMMER;
-    location_items[LOCATION_MORANA_CIRCLE, 1] := WEAPON_IRON_STRONGHOLD;
+    location_items[LOCATION_MORANA_CIRCLE, 1] := SHIELD_IRON_STRONGHOLD;
     location_items[LOCATION_MOUND_INSIDE, 0] := HEAD_SOUTHERN_SUN;
-    location_items[LOCATION_MOUND_INSIDE, 1] := ITEM_TORCH;
     location_items[LOCATION_ECHOES_OF_THE_ANCIENTS, 0] := ITEM_BONE_TOKEN;
     location_items[LOCATION_WIND_AND_BONE_PASS, 0] := ITEM_POTION;
+    location_items[LOCATION_ECHOES_OF_THE_ANCIENTS, 1] := SHIELD_JAROVITS_BEDROCK;
+    location_items[LOCATION_MELT_SWAMP, 0] := ITEM_DAZHBOGS_DIAMOND;
+    location_items[LOCATION_MELT_SWAMP, 1] := WEAPON_PERUNS_FLASH;
 
 end;
 

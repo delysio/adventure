@@ -11,7 +11,23 @@ const
 begin
 
   Assign (file_var, FILE_NAME);
+
+  {$I-}
+
   Reset (file_var);
+
+  {$I+}
+
+  if (IOresult <> 0) then begin
+
+    Writeln;
+    Writeln ('Configuration file doesn''t exist.');
+    Writeln ('Run game configuration app first!');
+    Writeln;
+    halt;
+
+  end;
+
   Readln (file_var, s_left_margin);
   Readln (file_var, s_chars_per_line);
   Readln (file_var, r_start);

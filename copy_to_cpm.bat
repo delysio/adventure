@@ -23,6 +23,7 @@ copy %GAME_PATH%\print.pas %CPM_PATH%\PRINT.PAS
 copy %GAME_PATH%\conf.pas %CPM_PATH%\CONF.PAS
 copy %GAME_PATH%\l01.pas %CPM_PATH%\L01.PAS
 copy %GAME_PATH%\l07.pas %CPM_PATH%\L07.PAS
+copy %GAME_PATH%\l08.pas %CPM_PATH%\L08.PAS
 copy %GAME_PATH%\l09.pas %CPM_PATH%\L09.PAS
 copy %GAME_PATH%\l10.pas %CPM_PATH%\L10.PAS
 copy %GAME_PATH%\l13.pas %CPM_PATH%\L13.PAS
@@ -40,6 +41,7 @@ copy %GAME_PATH%\l26.pas %CPM_PATH%\L26.PAS
 copy %GAME_PATH%\l27.pas %CPM_PATH%\L27.PAS
 copy %GAME_PATH%\l28.pas %CPM_PATH%\L28.PAS
 copy %GAME_PATH%\l29.pas %CPM_PATH%\L29.PAS
+copy %GAME_PATH%\l30.pas %CPM_PATH%\L30.PAS
 copy %GAME_PATH%\l31.pas %CPM_PATH%\L31.PAS
 copy %GAME_PATH%\l32.pas %CPM_PATH%\L32.PAS
 copy %GAME_PATH%\l33.pas %CPM_PATH%\L33.PAS
@@ -71,6 +73,7 @@ echo Deleting old files from dsk image
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk ERA ADV.COM
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk ERA L01.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk ERA L07.PAS
+%CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk ERA L08.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk ERA L09.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk ERA L10.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk ERA L13.PAS
@@ -88,6 +91,7 @@ echo Deleting old files from dsk image
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk ERA L27.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk ERA L28.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk ERA L29.PAS
+%CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk ERA L30.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk ERA L31.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk ERA L32.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk ERA L33.PAS
@@ -113,6 +117,7 @@ echo Writing updated files to dsk image
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk w %CPM_PATH%\CONF.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk w %CPM_PATH%\L01.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk w %CPM_PATH%\L07.PAS
+%CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk w %CPM_PATH%\L08.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk w %CPM_PATH%\L09.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk w %CPM_PATH%\L10.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk w %CPM_PATH%\L13.PAS
@@ -130,6 +135,7 @@ echo Writing updated files to dsk image
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk w %CPM_PATH%\L27.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk w %CPM_PATH%\L28.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk w %CPM_PATH%\L29.PAS
+%CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk w %CPM_PATH%\L30.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk w %CPM_PATH%\L31.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk w %CPM_PATH%\L32.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk w %CPM_PATH%\L33.PAS

@@ -20,7 +20,7 @@ const
     REVERSE_START_ADM31 = #27'G4';
     REVERSE_EXIT_ADM31 = #27'G0';
 
-    CLR_VT52    = #27'H'#27'J';
+    CLR_VT52    = #27'H'#27'E';
     CLR_BOSMAN  = #27'H'#27'J';
     CLR_ANSI    = #27'c';
     CLR_ADM31   = #27'*'; 
@@ -117,18 +117,31 @@ begin
   file_name := 'ADVCONF.DAT';
 
   Assign (file_var, file_name);
-  Reset (file_var);
-  Rewrite (file_var);
-  Writeln (file_var, left_margin);
-  Writeln (file_var, chars_per_line);
-  Writeln (file_var, r_start);
-  Writeln (file_var, r_exit);
-  Writeln (file_var, s_clrscr);
-  Close (file_var);
 
-  Writeln;
-  Writeln ('Configuration saved.');
-  Writeln;
+  {$I-}
+  Rewrite (file_var);
+  {$I+}
+
+  if IOresult = 0 then begin
+
+    Writeln (file_var, left_margin);
+    Writeln (file_var, chars_per_line);
+    Writeln (file_var, r_start);
+    Writeln (file_var, r_exit);
+    Writeln (file_var, s_clrscr);
+    Close (file_var);
+
+    Writeln;
+    Writeln ('    Configuration saved.');
+    Writeln;
+
+  end else begin
+
+    Writeln;
+    Writeln ('    Can''t write configuration file.');
+    Writeln;
+
+  end;
 
 end;
 

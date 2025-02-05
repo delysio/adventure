@@ -10,7 +10,5 @@ Print_Formatted_Text ('The Witch will help you on your adventure by collecting t
 Writeln;
 Print_Formatted_Text ('At the beginning of your journey, the Witch will give you some basic items. You will find ' +
                       'more and better ones during your adventure.');
-Writeln;
-Print_Formatted_Text ('Press anytime: ');
-Print_Formatted_Text (' [X] - exit,  [I] - inventory, ');
-Print_Formatted_Text (' [C] - stats, [P] - potion');
+
+Print_Keys;

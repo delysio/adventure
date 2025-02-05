@@ -2,7 +2,7 @@ const
 
     MAP_SIZE        = 36;        { size of map }
     MAX_ITEMS_IN_LOCATION = 6;   { maximum number of items in one location }
-    MAX_INVENTORY   =  2;        { maximum number of items in backpack }
+    MAX_INVENTORY   =  3;        { maximum number of items in backpack }
     MAX_ITEMS       = 98;        { number of different items }
 
     STATE_TITLE = 1;                { state ids }
@@ -12,6 +12,7 @@ const
     LOCATION_SACRED_GROVE           =  1;           { location ids }
     LOCATION_LAKE                   =  9;           
     LOCATION_STONE_THRESHOLD        =  7;
+    LOCATION_SOUNDLESS_PASS         =  8;
     LOCATION_ISLAND                 = 10;
     LOCATION_GOLDEN_FIELD           = 13;
     LOCATION_BUSHES                 = 14;
@@ -28,6 +29,7 @@ const
     LOCATION_ROCKS                  = 27;
     LOCATION_MORANA_CIRCLE          = 28;
     LOCATION_LAKE_OF_SOULS          = 29;
+    LOCATION_MELT_SWAMP             = 30;
     LOCATION_FOREST_3               = 31;
     LOCATION_SVAROGS_STONE_CIRCLE   = 32;
     LOCATION_THE_LESHY_VALLEY       = 33;
@@ -60,10 +62,10 @@ const
     WEAPON_NIGHT_THORN          = 20;
     WEAPON_BLOOD_HARVEST        = 21;
     WEAPON_SOUL_VANQUISHER      = 22;
-    WEAPON_SOUL_THUNDERSTRIKE   = 23;
-    WEAPON_WOODEN_SHIELD        = 30;
-    WEAPON_IRON_STRONGHOLD      = 31;
-    WEAPON_DIAMOND_SEAL         = 32;
+    WEAPON_THUNDERSTRIKE        = 23;
+    SHIELD_WOODEN_SHIELD        = 30;
+    SHIELD_IRON_STRONGHOLD      = 31;
+    SHIELD_DIAMOND_SEAL         = 32;
     WEAPON_BRONZE_STONE         = 40;
     WEAPON_PERUNS_FLASH         = 41;
     WEAPON_MOKOSHS_TEARS        = 42;
@@ -72,9 +74,13 @@ const
     SHIELD_RUSALKAS_EYE         = 52;
     HEAD_SOUTHERN_SUN           = 60;
     HEAD_THUNDERER              = 61;
+    HEAD_SVAROG_CROWN           = 62;
     BODY_CLOAK_OF_WELES         = 70;
     BODY_WINTER_WHIRLWIND       = 71;
+    BODY_THUNDERER_ARMOR        = 72;
     BOOTS_WINGS_OF_THE_WIND     = 90;
+    BOOTS_WOLF_FEET             = 91;
+    BOOTS_THUNDEBOLT_CLOGS      = 92;
 
     ITEM_DESCRIPTIONS: array [0..MAX_ITEMS] of string[17] = (
         'TORCH', 'MACHETE', 'BONDCUTTER', 'BONE TOKEN', '', '', '', '', '', '',
@@ -83,10 +89,10 @@ const
         'Wooden shield', 'Iron Stronghold', 'Diamond Seal', '', '', '', '', '', '', '',
         'Bronze stone', 'Perun''s Flash', 'Mokosh''s Tears', '', '', '', '', '', '', '',
         'Stone of Dzivogon', 'Jarovit''s Bedrock', 'Rusalka''s Eye', '', '', '', '', '', '', '',
-        'Southern Sun', 'Thunderer', '', '', '', '', '', '', '', '',
-        'Cloak of Weles', 'Winter Whirlwind', '', '', '', '', '', '', '', '',
+        'Southern Sun', 'Thunderer', 'Svarog Crown', '', '', '', '', '', '', '',
+        'Cloak of Weles', 'Winter Whirlwind', 'Thunderer Armor', '', '', '', '', '', '', '',
         '', '', '', '', '', '', '', '', '', '',
-        'Wings of the Wind', '', '', '', '', '', '', '', ''
+        'Wings of the Wind', 'Wolf Feet', 'Thunderbolt clogs', '', '', '', '', '', ''
     ); { array with item names }
 
     REVERSE_START_VT52      = #27'p';
@@ -98,7 +104,7 @@ const
     REVERSE_START_ADM31     = #27'G4';
     REVERSE_EXIT_ADM31      = #27'G0';
 
-    CLR_VT52    = #27'H'#27'J';
+    CLR_VT52    = #27'H'#27'E';
     CLR_BOSMAN  = #27'H'#27'J';
     CLR_ANSI    = #27'c';
     CLR_ADM31   = #27'*'; 

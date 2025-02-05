@@ -18,6 +18,10 @@ begin
             current_state := STATE_TITLE;
             key_legal := TRUE;
         end;
+        'H': begin
+            Print_Keys;
+            key_legal := TRUE;
+        end;
     end;
 
 end;

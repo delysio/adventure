@@ -27,7 +27,6 @@ begin
                 if (weapons[item].kind = 3) and (armory.shield_slot > 0) then Drop_Item(armory.shield_slot_id);
                 if (weapons[item].kind = 4) and (armory.head > 0) then Drop_Item(armory.head_id);
                 if (weapons[item].kind = 5) and (armory.body > 0) then Drop_Item(armory.body_id);
-                if (weapons[item].kind = 6) and (armory.gloves > 0) then Drop_Item(armory.gloves_id);
                 if (weapons[item].kind = 7) and (armory.boots > 0) then Drop_Item(armory.boots_id);
 
                 case item of
@@ -73,11 +72,6 @@ begin
                                 armory.body_id := item;
                                 armory.body := weapons[item].modifier; 
                                 armory.body_name := ITEM_DESCRIPTIONS[item]; 
-                            end;
-                    80..89: begin 
-                                armory.gloves_id := item;
-                                armory.gloves := weapons[item].modifier; 
-                                armory.gloves_name := ITEM_DESCRIPTIONS[item]; 
                             end;
                     90..99: begin 
                                 armory.boots_id := item;
@@ -182,7 +176,7 @@ begin
 
       inventory_counter := inventory_counter + 1;
 
-    until (inventory_counter = MAX_INVENTORY) or (potion_found = TRUE);
+    until (inventory_counter = MAX_INVENTORY + 1) or (potion_found = TRUE);
       
   end else begin
       Print_Formatted_Text ('You don''t have a strength potion in your inventory.');
@@ -193,6 +187,7 @@ end;
 { Notifies of visible objects }
 procedure Notify_On_Objects;
 var i: byte;
+const press_string = ' Press [G] to pick up.';
 begin
 
   if Item_Exists = TRUE then begin
@@ -200,9 +195,9 @@ begin
     i := Random(3);
 
     case i of 
-      0: Print_Formatted_Text ('You see something lying on the ground. Press [G] to pick up.');
-      1: Print_Formatted_Text ('There is something shining next to you. Press [G] to pick up.');
-      2: Print_Formatted_Text ('Something on the ground caught your eye. Press [G] to pick up.');
+      0: Print_Formatted_Text ('You see something lying on the ground.' + press_string);
+      1: Print_Formatted_Text ('There is something shining next to you.' + press_string);
+      2: Print_Formatted_Text ('Something on the ground caught your eye.' + press_string);
     end;
 
   end;
