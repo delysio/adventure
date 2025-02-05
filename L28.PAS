@@ -17,8 +17,8 @@ if (monsters[current_location].hit_points = 0) then begin
                           'and a glow of warm spring light emerged. Frozen flowers bloomed and the stone ' +
                           'circle began to lose its gloomy aura.');
     Print_Formatted_Text ('The smell of fresh earth and hope wafted through the air, and the voice of the goddess, ' +
-                          'though faint, whispered: You have overcome winter, but remember that spring is always born ' +
-                          'from its end.');
+                          'though faint, whispered: You have overcome winter, but remember that spring is always ' +
+                          'born from its end.');
     Notify_On_Objects;
     Print_Formatted_Text ('You can go [N]orth, [S]outh');
 
@@ -43,7 +43,7 @@ case key_hit of
         Fight;
     end;
     'G': begin
-        if (Item_Exists(current_location) = TRUE) and (monsters[current_location].hit_points = 0) then begin
+        if (Item_Exists = TRUE) and (monsters[current_location].hit_points = 0) then begin
             success := Add_To_Inventory(current_location);
         end;
     end;

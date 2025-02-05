@@ -1,10 +1,10 @@
 Writeln;
 Print_Formatted_Text ('A green valley where the trees move as if they were alive. A dense forest ' +
-                   'surrounds you on all sides, and the trees seem to live a life of their own. ' +
-                   'Their tangled branches form an impenetrable, magical barrier, whispering in ' +
-                   'an unknown language. ');
+                      'surrounds you on all sides, and the trees seem to live a life of their own. ' +
+                      'Their tangled branches form an impenetrable, magical barrier, whispering in ' +
+                      'an unknown language.');
 Print_Formatted_Text ('The air is heavy with moisture and the smell of moss, '+
-                   'and the ominous hiss of wolves can be heard in the distance.');
+                      'and the ominous hiss of wolves can be heard in the distance.');
 
 if Is_In_Inventory(ITEM_BONDCUTTER) then begin
 
@@ -15,6 +15,7 @@ if Is_In_Inventory(ITEM_BONDCUTTER) then begin
 end else begin
 
     Print_Formatted_Text ('It takes a magical act to move on.');
+    Writeln;
     Print_Formatted_Text ('You can go [E]ast');
 
 end;
@@ -32,7 +33,7 @@ case key_hit of
             current_location := LOCATION_LAKE_NIGHT_DAY;
         end;
     'G': begin
-        if Item_Exists(current_location) = TRUE then begin
+        if Item_Exists = TRUE then begin
             success := Add_To_Inventory(current_location);
         end;
     end;
