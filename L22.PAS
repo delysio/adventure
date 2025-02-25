@@ -1,33 +1,40 @@
 Writeln;
-Print_Formatted_Text ('A huge earthen mound, overgrown with grass and flowers, hides the graves of ancient warriors ' + 
-                      'inside. Wooden totems, carved with images of the gods, stand around the barrow, and echoes ' +
-                      'of ancient battle songs can be heard at night.');
-Print_Formatted_Text ('It is said that anyone who dares to go inside will be tested by the spirits of the ancestors.');
+Get_Narration(current_location);
 
 Notify_On_Objects;
 
 Print_Formatted_Text ('You can go [N]orth, [S]outh, [E]ast');
 
-key_hit := UpCase(ReadKey);
+repeat
 
-case key_hit of
+    key_legal := FALSE;
+    key_hit := UpCase(ReadKey);
 
-    'E': begin
-        current_location := LOCATION_WIND_AND_BONE_PASS;
-    end;
-    'N': begin
-        current_location := LOCATION_MOUND_INSIDE;
-    end;
-    'S': begin
-        current_location := LOCATION_MORANA_CIRCLE;
-    end;
-    'G': begin
-        if Item_Exists(current_location) = TRUE then begin
-            success := Add_To_Inventory(current_location);
+    case key_hit of
+
+        'E': begin
+            current_location := LOCATION_WIND_AND_BONE_PASS;
+            key_legal := TRUE;
         end;
+        'N': begin
+            current_location := LOCATION_MOUND_INSIDE;
+            key_legal := TRUE;
+        end;
+        'S': begin
+            current_location := LOCATION_MORANA_CIRCLE;
+            key_legal := TRUE;
+        end;
+        'G': begin
+            if Item_Exists = TRUE then begin
+                success := Add_To_Inventory(current_location);
+                key_legal := TRUE;
+            end;
+        end;
+        
     end;
-    
-end;
 
-Process_Default_Keys(key_hit);
+    Process_Default_Keys(key_hit);
+
+until key_legal = TRUE;
+
 previous_location := LOCATION_MOUND;

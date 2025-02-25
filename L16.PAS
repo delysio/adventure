@@ -1,8 +1,5 @@
 Writeln;
-Print_Formatted_Text ('Narrow stone corridors lead to a subterranean chamber where the air is heavy with the ' + 
-                      'smell of mustiness and ancient sacrifices.');
-Print_Formatted_Text ('The walls are covered with frescoes depicting battles and rituals, and in ' +
-                      'the centre of the room stands a stone sarcophagus, surrounded by flickering flames.');
+Get_Narration(current_location);
 
 if monsters[current_location].hit_points > 0 then begin
 
@@ -12,17 +9,12 @@ end;
 
 if (monsters[current_location].hit_points = 0) then begin
 
-  Print_Formatted_Text ('As the Night Preacher crumbles into dust and his last scream dies away, the chamber fills ' +
-                        'with glee. On the walls, frescoes begin to flicker, revealing the history of those who ' +
-                        'rest here.');
+  Get_Narration(161);
 
   if Is_In_Inventory(ITEM_TORCH) then begin
 
-    Print_Formatted_Text ('Shining your torch, you noticed that a dark breach had opened up among the tangled ' + 
-                          'roots and weathered boulders - a tunnel whose interior seemed to absorb the light.');
-    Print_Formatted_Text ('A cold, damp breeze wafted from within, carrying the smell of mustiness and something ' +
-                          'unnamed... something waiting for the daredevil ready to cross the threshold of an ' +
-                          'unknown world.');
+    Get_Narration(162);
+    Get_Narration(163);
 
     Notify_On_Objects;
 
@@ -36,32 +28,42 @@ if (monsters[current_location].hit_points = 0) then begin
 
   end;                   
 
-  
-
 end;
 
-key_hit := UpCase(ReadKey);
+repeat
 
-case key_hit of
+    key_legal := FALSE;
+    key_hit := UpCase(ReadKey);
 
-    'E': begin
-      if Is_In_Inventory(ITEM_TORCH) then begin
-        current_location := LOCATION_ECHOES_OF_THE_ANCIENTS;
+  case key_hit of
+
+      'E': begin
+        if Is_In_Inventory(ITEM_TORCH) then begin
+          current_location := LOCATION_ECHOES_OF_THE_ANCIENTS;
+          key_legal := TRUE;
+        end;
       end;
-    end;
-    'S': begin
-      current_location := LOCATION_MOUND;
-    end;
-    'F': begin
-      Fight;
-    end;
-    'G': begin
-      if (Item_Exists = TRUE) and (monsters[current_location].hit_points = 0) then begin
-        success := Add_To_Inventory(current_location);
+      'S': begin
+        current_location := LOCATION_MOUND;
+        key_legal := TRUE;
       end;
-    end;
-    
-end;
+      'F': begin
+        if monsters[current_location].hit_points > 0 then begin
+          Fight;
+          key_legal := TRUE;
+        end;
+      end;
+      'G': begin
+        if (Item_Exists = TRUE) and (monsters[current_location].hit_points = 0) then begin
+          success := Add_To_Inventory(current_location);
+          key_legal := TRUE;
+        end;
+      end;
+      
+  end;
 
-Process_Default_Keys(key_hit);
+  Process_Default_Keys(key_hit);
+
+until key_legal = TRUE;
+
 previous_location := LOCATION_MOUND_INSIDE;

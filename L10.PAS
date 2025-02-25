@@ -1,35 +1,42 @@
 Writeln;
-Print_Formatted_Text ('Paddling hard you reached the island. A mysterious darkness has shrouded the entire island.');
+Get_Narration(current_location);
 
 if Is_In_Inventory(ITEM_TORCH) = FALSE then begin
 
-    Print_Formatted_Text ('With absolutely nothing visible, it is better not to explore it in the dark.');
+    Get_Narration(101);
 
 end else begin
 
-    Print_Formatted_Text ('It''s fortunate that you have a torch with you, which allows you to at least look around.');
+    Get_Narration(102);
     Notify_On_Objects;
 
 end;
 
 Print_Formatted_Text ('You can go [W]est, back to the lakeshore.');
 
-key_hit := UpCase(ReadKey);
+repeat
 
-case key_hit of
+    key_legal := FALSE;
+    key_hit := UpCase(ReadKey);
 
-    'W': begin
-        current_location := LOCATION_LAKE;
-    end;
-    'G': begin
-        if (Is_In_Inventory(ITEM_TORCH) = TRUE) and (Item_Exists(current_location) = TRUE) then 
-        begin
-            success := Add_To_Inventory(current_location);
+    case key_hit of
+
+        'W': begin
+            current_location := LOCATION_LAKE;
+            key_legal := TRUE;
         end;
+        'G': begin
+            if (Is_In_Inventory(ITEM_TORCH) = TRUE) and (Item_Exists = TRUE) then 
+            begin
+                success := Add_To_Inventory(current_location);
+                key_legal := TRUE;
+            end;
+        end;
+
     end;
-    
 
-end;
+    Process_Default_Keys(key_hit);
 
-Process_Default_Keys(key_hit);
+until key_legal = TRUE;
+
 previous_location := LOCATION_ISLAND;

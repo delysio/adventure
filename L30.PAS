@@ -1,16 +1,10 @@
 Writeln;
-Print_Formatted_Text ('A dense mist hovers over the black water, and the ground beneath your feet crests with ' +
-                      'every step, as if the mud wants to engulf any intruder.');
-Print_Formatted_Text ('The air is saturated with the  smell of rotting plants and dampness, and a bubbling sound ' + 
-                      'can be heard in the distance, as if something large is lurking just below the surface.');
+Get_Narration(current_location);
 
 if monsters[current_location].hit_points > 0 then begin
 
-  Print_Formatted_Text ('Among the entwined roots and fallen trees, there is suddenly a snarling, inhuman laughter ' +
-                        '- it is the King of Drowners, the bruised phantom of the marshes, lurking for unwary ' +
-                        'wanderers.');
-  Print_Formatted_Text ('Its dead eyes glisten in the gloom and its bony fingers, covered in watery slime, ' +
-                        'slowly emerge from the water, ready to drag its next victim into the depths of no return.');
+  Get_Narration(301);
+  Get_Narration(302);
 
   Pre_Fight ('King of Drowners');
 
@@ -24,23 +18,34 @@ end;
 
 Print_Formatted_Text ('You can go [S]outh');
 
-key_hit := UpCase(ReadKey);
+repeat
 
-case key_hit of
+  key_legal := FALSE;
+  key_hit := UpCase(ReadKey);
 
-    'S': begin
-      current_location := LOCATION_BLOODY_ROOTS;
-    end;
-    'F': begin
-      Fight;
-    end;
-    'G': begin
-      if (Item_Exists = TRUE) and (monsters[current_location].hit_points = 0) then begin
-        success := Add_To_Inventory(current_location);
+  case key_hit of
+
+      'S': begin
+        current_location := LOCATION_BLOODY_ROOTS;
+        key_legal := TRUE;
       end;
-    end;
-    
-end;
+      'F': begin
+        if monsters[current_location].hit_points > 0 then begin
+          Fight;
+          key_legal := TRUE;
+        end;
+      end;
+      'G': begin
+        if (Item_Exists = TRUE) and (monsters[current_location].hit_points = 0) then begin
+          success := Add_To_Inventory(current_location);
+          key_legal := TRUE;
+        end;
+      end;
+      
+  end;
 
-Process_Default_Keys(key_hit);
+  Process_Default_Keys(key_hit);
+
+until key_legal = TRUE;
+
 previous_location := LOCATION_MELT_SWAMP;

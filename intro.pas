@@ -12,3 +12,5 @@ Print_Formatted_Text ('At the beginning of your journey, the Witch will give you
                       'more and better ones during your adventure.');
 
 Print_Keys;
+
+Wait_For_key;

@@ -1,30 +1,36 @@
 Writeln;
-Print_Formatted_Text ('An ancient grove where the trees weave into twisted shapes and their roots seem to pulsate ' +
-                      'like living veins. The ground here is saturated with a dark red substance reminiscent ' +
-                      'of blood, and the air is permeated with the smell of dampness and decay.');
-Print_Formatted_Text ('In the silence of the forest, a quiet whispering can be heard - is it the wind among the ' +
-                      'boughs, or perhaps the voices of those who died here?');
+Get_Narration(current_location);
 
 Notify_On_Objects;
 
 Print_Formatted_Text ('You can go [W]est, [N]orth');
 
-key_hit := UpCase(ReadKey);
+repeat
 
-case key_hit of
-    'N': begin
-        current_location := LOCATION_MELT_SWAMP;
-    end;
-    'W': begin
-        current_location := LOCATION_DARK_HARBOUR;
-    end;
-    'G': begin
-        if (Item_Exists = TRUE) then begin
-            success := Add_To_Inventory(current_location);
+    key_legal := FALSE;
+    key_hit := UpCase(ReadKey);
+
+    case key_hit of
+
+        'N': begin
+            current_location := LOCATION_MELT_SWAMP;
+            key_legal := TRUE;
         end;
+        'W': begin
+            current_location := LOCATION_DARK_HARBOUR;
+            key_legal := TRUE;
+        end;
+        'G': begin
+            if (Item_Exists = TRUE) then begin
+                success := Add_To_Inventory(current_location);
+                key_legal := TRUE;
+            end;
+        end;
+
     end;
 
-end;
+    Process_Default_Keys(key_hit);
 
-Process_Default_Keys(key_hit);
+until key_legal = TRUE;
+
 previous_location := LOCATION_BLOODY_ROOTS;

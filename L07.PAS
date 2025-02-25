@@ -1,9 +1,5 @@
 Writeln;
-Print_Formatted_Text ('A narrow path leads to a stone threshold, beyond which stretches a dense, damp ' + 
-                   'forest. The stones are covered in moss and runes that glimmer in the moonlight, ' +
-                   'and the air is heavy with the scent of earth and flowering herbs.');
-Print_Formatted_Text ('It is said to be the place where Jarylo, the god of spring and youth, crosses ' +
-                   'the boundary between the world of the living and the spirit world.');
+Get_Narration(current_location);
 
 Notify_On_Objects;
 
@@ -17,28 +13,38 @@ end else begin
 
 end;
 
-key_hit := UpCase(ReadKey);
+repeat
 
-case key_hit of
+    key_legal := FALSE;
+    key_hit := UpCase(ReadKey);
 
-    'E': begin
-        if target_items_number = 3 then begin
-            current_location := LOCATION_SOUNDLESS_PASS;
+    case key_hit of
+
+        'E': begin
+            if target_items_number = 3 then begin
+                current_location := LOCATION_SOUNDLESS_PASS;
+                key_legal := TRUE;
+            end;
         end;
-    end;
-    'N': begin
-        current_location := LOCATION_SACRED_GROVE;
-    end;
-    'S': begin
-        current_location := LOCATION_GOLDEN_FIELD;
-    end;
-    'G': begin
-        if Item_Exists = TRUE then begin
-            success := Add_To_Inventory(current_location);
+        'N': begin
+            current_location := LOCATION_SACRED_GROVE;
+            key_legal := TRUE;
         end;
+        'S': begin
+            current_location := LOCATION_GOLDEN_FIELD;
+            key_legal := TRUE;
+        end;
+        'G': begin
+            if Item_Exists = TRUE then begin
+                success := Add_To_Inventory(current_location);
+                key_legal := TRUE;
+            end;
+        end;
+                    
     end;
-                
-end;
 
-Process_Default_Keys(key_hit);
+    Process_Default_Keys(key_hit);
+
+until key_legal = TRUE;
+
 previous_location := LOCATION_STONE_THRESHOLD;

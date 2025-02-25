@@ -1,44 +1,48 @@
 Writeln;
-Print_Formatted_Text ('Ahead of you is a thicket of bushes. The surrounding marshes are full of ' +
-                   'mist and treacherous paths. You can hear the quiet chirps of the russets ' +
-                   'as they try to lure you into the refuse.');
+Get_Narration(current_location);
 
 if Is_In_Inventory(ITEM_MACHETE) = FALSE then begin
 
-    Print_Formatted_Text ('There seems to be no passage here. ' +
-                       'The bushes are so dense that you can''t go any further...');
-    Print_Formatted_Text ('You can go [E]est');
+    Get_Narration(141);
+    Print_Formatted_Text ('You can go [E]ast');
 
 end else begin
 
-    Print_Formatted_Text ('Using a machete you pave your way through the dense bushes. ' +
-                       'The plants grow back quickly, but you manage to get through.');
-
+    Get_Narration(142);
     Notify_On_Objects;
 
     Print_Formatted_Text ('You can go [S]outh or [E]ast');
 
 end;
 
-key_hit := UpCase(ReadKey);
+repeat
 
-case key_hit of
-    
-    'E': begin
-        current_location := LOCATION_START;
-    end;
-    'S': begin
-        if Is_In_Inventory(ITEM_MACHETE) then begin
-            current_location := LOCATION_STREAM;
+    key_legal := FALSE;
+    key_hit := UpCase(ReadKey);
+
+    case key_hit of
+        
+        'E': begin
+            current_location := LOCATION_START;
+            key_legal := TRUE;
         end;
-    end;
-    'G': begin
-        if Item_Exists(current_location) = TRUE then begin
-            success := Add_To_Inventory(current_location);
+        'S': begin
+            if Is_In_Inventory(ITEM_MACHETE) then begin
+                current_location := LOCATION_STREAM;
+                key_legal := TRUE;
+            end;
         end;
+        'G': begin
+            if Item_Exists = TRUE then begin
+                success := Add_To_Inventory(current_location);
+                key_legal := TRUE;
+            end;
+        end;
+
     end;
 
-end;
+    Process_Default_Keys(key_hit);
 
-Process_Default_Keys(key_hit);
+until key_legal = TRUE;
+
 previous_location := LOCATION_BUSHES;

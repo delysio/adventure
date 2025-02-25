@@ -1,6 +1,5 @@
 Writeln;
-Print_Formatted_Text ('You see a rock from which a stream of water flows. The sun shines brightly ' +
-                      'and the wind carries the scent of flowers.');
+Get_Narration(current_location);
 
 if monsters[current_location].hit_points > 0 then begin
 
@@ -10,8 +9,8 @@ end;
 
 if (monsters[current_location].hit_points = 0) then begin
 
-    Print_Formatted_Text ('The defeated striga fell on the rocks and, splitting them open, revealed a ' +
-                          'passage between them');
+    Get_Narration(261);
+    
     Notify_On_Objects;
     Print_Formatted_Text ('You can go [N]orth or [E]ast');
 
@@ -21,29 +20,41 @@ end else begin
 
 end;
 
-key_hit := UpCase(ReadKey);
+repeat
 
-case key_hit of
-    
-    'N': begin
-        current_location := LOCATION_STREAM;
-    end;
-    'E': begin
-        if (monsters[current_location].hit_points = 0) then begin
-            current_location := LOCATION_ROCKS;
-        end;
-    end;
-    'F': begin
-        Fight;
-    end;
-    'G': begin
-        if (monsters[current_location].hit_points=0) and (Item_Exists=TRUE) 
-        then begin
-            success := Add_To_Inventory(current_location);
-        end;
-    end;
-    
-end;
+    key_legal := FALSE;
+    key_hit := UpCase(ReadKey);
 
-Process_Default_Keys(key_hit);
+    case key_hit of
+        
+        'N': begin
+            current_location := LOCATION_STREAM;
+            key_legal := TRUE;
+        end;
+        'E': begin
+            if (monsters[current_location].hit_points = 0) then begin
+                current_location := LOCATION_ROCKS;
+                key_legal := TRUE;
+            end;
+        end;
+        'F': begin
+            if monsters[current_location].hit_points > 0 then begin
+                Fight;
+                key_legal := TRUE;
+            end;
+        end;
+        'G': begin
+            if (monsters[current_location].hit_points=0) and (Item_Exists=TRUE) 
+            then begin
+                success := Add_To_Inventory(current_location);
+                key_legal := TRUE;
+            end;
+        end;
+        
+    end;
+
+    Process_Default_Keys(key_hit);
+
+until key_legal = TRUE;
+
 previous_location := LOCATION_SPRING;

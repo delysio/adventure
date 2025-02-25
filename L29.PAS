@@ -1,42 +1,49 @@
 Writeln;
-Print_Formatted_Text ('A calm, almost motionless lake whose waters are a deep emerald hue. ' +
-                      'Mists float on the surface and flickering lights can be seen in the ' +
-                      'depths, as if the souls of the dead are dancing underwater.');
-Print_Formatted_Text ('An old boat stands on the shore, and offerings of flowers and candles lie ' +
-                      'around it. Legends say you can only cross with the help of the dead, ' +
-                      'but they don''t trust everyone.');
+Get_Narration(current_location);
 
 if Is_In_Inventory(ITEM_BONE_TOKEN) then begin
 
-    Print_Formatted_Text ('(The Dead) We know the sign of the bones... We offer a crossing, but ' +
-                          'we do not promise that a return will be possible.');
+    Get_Narration(current_location);
                           
     Print_Formatted_Text ('You can go [N]orth, [S]outh');
     
+end else begin
+
+    Print_Formatted_Text ('You can go [N]orth');
+
 end;
 
 Notify_On_Objects;
 
-key_hit := UpCase(ReadKey);
+repeat
 
-case key_hit of
+    key_legal := FALSE;
+    key_hit := UpCase(ReadKey);
 
-    'S': begin
-        if Is_In_Inventory(ITEM_BONE_TOKEN) then begin
-            Drop_Special_Item(ITEM_BONE_TOKEN);
-            current_location := LOCATION_DARK_HARBOUR;
+    case key_hit of
+
+        'S': begin
+            if Is_In_Inventory(ITEM_BONE_TOKEN) then begin
+                Drop_Special_Item(ITEM_BONE_TOKEN);
+                current_location := LOCATION_DARK_HARBOUR;
+                key_legal := TRUE;
+            end;
         end;
-    end;
-    'N': begin
-        
-    end;
-    'G': begin
-        if Item_Exists = TRUE then begin
-            success := Add_To_Inventory(current_location);
+        'N': begin
+            current_location := LOCATION_WIND_AND_BONE_PASS;
+            key_legal := TRUE;
         end;
+        'G': begin
+            if Item_Exists = TRUE then begin
+                success := Add_To_Inventory(current_location);
+                key_legal := TRUE;
+            end;
+        end;
+
     end;
 
-end;
+    Process_Default_Keys(key_hit);
 
-Process_Default_Keys(key_hit);
+until key_legal = TRUE;
+
 previous_location := LOCATION_WIND_AND_BONE_PASS;

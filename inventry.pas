@@ -85,6 +85,7 @@ begin
 
                     location_items[location, j] := ITEM_NONE;
                     Print_Formatted_Text ('You equipped the ' + ITEM_DESCRIPTIONS[item]);
+                    Organise_Location_Array(location);
                     Add_To_Inventory := TRUE;
 
                 end;
@@ -102,6 +103,7 @@ begin
 
                         inventory_items[i] := item;
                         location_items[location, j] := ITEM_NONE;
+                        Organise_Location_Array(location);
 
                         Print_Formatted_Text ('You took the ' + ITEM_DESCRIPTIONS[item]);
                         Add_To_Inventory := TRUE;
@@ -111,6 +113,9 @@ begin
 
                 end;
 
+                Print_Formatted_Text ('Inventory is full');
+                exit;
+
             end;
 
         end;
@@ -118,7 +123,7 @@ begin
     end;
 
     Add_To_Inventory := FALSE;
-    Print_Formatted_Text ('Inventory is full');
+    
     
 end;
 
@@ -134,6 +139,56 @@ begin
             exit;
         end;
     end;
+end;
+
+
+{ Retrieves a location description from an external file }
+procedure Get_Narration(prefix: integer);
+var file_var        : Text;
+    line            : string[255];
+    line_prefix     : string[3];
+    line_content    : string[255];
+    separator_pos   : byte;
+    s_prefix        : string[3];
+    prev_prefix     : boolean;
+    prefix_differ   : boolean;
+
+begin
+
+    Str(prefix, s_prefix);
+
+    Assign (file_var, 'ADV.DAT');
+    Reset (file_var);
+
+    line_prefix := '';
+    prefix_differ := FALSE;
+    prev_prefix := FALSE;
+
+    while not Eof(file_var) AND (line_prefix <> '999') AND (prefix_differ = FALSE) do begin
+
+        Readln (file_var, line);
+        separator_pos := Pos(';', line);
+        
+        if separator_pos > 0 then begin
+
+            line_prefix := Copy (line, 1, separator_pos - 1);
+
+            if (prev_prefix = TRUE) and (line_prefix <> s_prefix) then prefix_differ := TRUE;
+
+            if line_prefix = s_prefix then begin
+
+                line_content := Copy (line, separator_pos + 1, Length(line));
+                Print_Formatted_Text(line_content);
+                prev_prefix := TRUE;
+
+            end;
+
+        end;
+
+    end;
+
+    Close (file_var);
+
 end;
 
 

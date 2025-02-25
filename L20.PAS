@@ -1,32 +1,40 @@
 Writeln;
-Print_Formatted_Text ('A narrow stream meandering between the rocks whispers soothingly. The ' +
-                   'water is crystal clear, and you can see the glittering stones at its bottom.');
+Get_Narration(current_location);
 
 Notify_On_Objects;
 
 Print_Formatted_Text ('You can go [N]orth, [S]outh,' +
                       ' [W]est');
 
-key_hit := UpCase(ReadKey);
+repeat
 
-case key_hit of
+    key_legal := FALSE;
+    key_hit := UpCase(ReadKey);
 
-    'N': begin
-        current_location := LOCATION_BUSHES;
-    end;
-    'S': begin
-        current_location := LOCATION_SPRING;
-    end;
-    'W': begin
-        current_location := LOCATION_FOREST_1;
-    end;
-    'G': begin
-        if Item_Exists(current_location) = TRUE then begin
-            success := Add_To_Inventory(current_location);
+    case key_hit of
+
+        'N': begin
+            current_location := LOCATION_BUSHES;
+            key_legal := TRUE;
         end;
+        'S': begin
+            current_location := LOCATION_SPRING;
+            key_legal := TRUE;
+        end;
+        'W': begin
+            current_location := LOCATION_FOREST_1;
+            key_legal := TRUE;
+        end;
+        'G': begin
+            if Item_Exists = TRUE then begin
+                success := Add_To_Inventory(current_location);
+                key_legal := TRUE;
+            end;
+        end;
+
     end;
 
-end;
+until key_legal = TRUE;
 
 Process_Default_Keys(key_hit);
 previous_location := LOCATION_STREAM;

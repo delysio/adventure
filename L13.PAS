@@ -1,29 +1,36 @@
 Writeln;
-Print_Formatted_Text ('In front of you is a field of ripe grain, whose ears sway like a golden wave ' +
-                   'in the wind, hiding in its thicket the secrets of ancient rituals and the ' +
-                   'whispers of the spirits of the crop''s guardians.');
+Get_Narration(current_location);
 
 Notify_On_Objects;
 
 Print_Formatted_Text ('You can go [N]orth, [S]outh');
 
-key_hit := UpCase(ReadKey);
+repeat
 
-case key_hit of
+    key_legal := FALSE;
+    key_hit := UpCase(ReadKey);
 
-    'N': begin
-        current_location := LOCATION_STONE_THRESHOLD;
-    end;
-    'S': begin
-        current_location := LOCATION_FOREST_1;
-    end;
-    'G': begin
-        if Item_Exists(current_location) = TRUE then begin
-            success := Add_To_Inventory(current_location);
+    case key_hit of
+
+        'N': begin
+            current_location := LOCATION_STONE_THRESHOLD;
+            key_legal := TRUE;
         end;
+        'S': begin
+            current_location := LOCATION_FOREST_1;
+            key_legal := TRUE;
+        end;
+        'G': begin
+            if Item_Exists = TRUE then begin
+                success := Add_To_Inventory(current_location);
+                key_legal := TRUE;
+            end;
+        end;
+
     end;
 
-end;
+    Process_Default_Keys(key_hit);
 
-Process_Default_Keys(key_hit);
+until key_legal = TRUE;
+
 previous_location := LOCATION_GOLDEN_FIELD;

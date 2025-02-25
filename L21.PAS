@@ -1,9 +1,9 @@
 Writeln;
-Print_Formatted_Text ('The cave is dark, you can barely see what is going on inside.');
+Get_Narration(current_location);
 
 if Is_In_Inventory(ITEM_TORCH) then begin
 
-    Print_Formatted_Text ('You light a torch and admire the engravings on the rocks of people paying homage to Perun.');
+    Get_Narration(211);
 
     Notify_On_Objects;
 
@@ -11,20 +11,27 @@ end;
 
 Writeln ('You can go [S]outh');
 
-key_hit := UpCase(ReadKey);
+repeat
 
-case key_hit of
-    
-    'S': begin
-        current_location := LOCATION_ROCKS;
-    end;
-    'G': begin
-        if Item_Exists(current_location) = TRUE then begin
-            success := Add_To_Inventory(current_location);
+    key_legal := FALSE;
+    key_hit := UpCase(ReadKey);
+
+    case key_hit of
+        
+        'S': begin
+            current_location := LOCATION_ROCKS;
+            key_legal := TRUE;
         end;
+        'G': begin
+            if Item_Exists = TRUE then begin
+                success := Add_To_Inventory(current_location);
+                key_legal := TRUE;
+            end;
+        end;
+
     end;
 
-end;
+    Process_Default_Keys(key_hit);
 
-Process_Default_Keys(key_hit);
+until key_legal = TRUE;
 previous_location := LOCATION_CAVE;

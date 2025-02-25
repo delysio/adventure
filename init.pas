@@ -1,6 +1,7 @@
 { Initialisation of monster characteristics }
 procedure Init_Monsters;
 begin
+
     monsters[LOCATION_LAKE].hit_points := 5;
     monsters[LOCATION_LAKE].defence := 2;
     monsters[LOCATION_LAKE].attack := 5;
@@ -32,6 +33,19 @@ begin
     monsters[LOCATION_MELT_SWAMP].hit_points := 25;
     monsters[LOCATION_MELT_SWAMP].defence := 11;
     monsters[LOCATION_MELT_SWAMP].attack := 11;
+
+    monsters[LOCATION_ETERNAL_WHISPER].hit_points := 25;
+    monsters[LOCATION_ETERNAL_WHISPER].defence := 11;
+    monsters[LOCATION_ETERNAL_WHISPER].attack := 11;
+
+    monsters[LOCATION_INFINITE_STAIRCASE].hit_points := 30;
+    monsters[LOCATION_INFINITE_STAIRCASE].defence := 8;
+    monsters[LOCATION_INFINITE_STAIRCASE].attack := 8;
+    
+    monsters[LOCATION_FORGOTTEN_BASIN].hit_points := 40;
+    monsters[LOCATION_FORGOTTEN_BASIN].defence := 8;
+    monsters[LOCATION_FORGOTTEN_BASIN].attack := 8;
+
 end;
 
 
@@ -180,6 +194,11 @@ begin
         end;
     end;
 
+    { Clear mysteries status }
+
+    mystery_solved_5 := false;
+    mystery_solved_6 := false;
+
     { Set items }
 
     location_items[LOCATION_LAKE, 0] := ITEM_TORCH;
@@ -191,9 +210,9 @@ begin
     location_items[LOCATION_CAVE, 0] := WEAPON_BLOOD_HARVEST;
     location_items[LOCATION_CAVE, 1] := ITEM_PERUNS_STONE;
     location_items[LOCATION_GOLDEN_FIELD, 0] := BOOTS_WINGS_OF_THE_WIND;
-    location_items[LOCATION_SACRED_GROVE, 0] := SHIELD_STONE_OF_DZIVOGON;
     location_items[LOCATION_SVAROGS_STONE_CIRCLE, 0] := WEAPON_BRONZE_STONE;
-    location_items[LOCATION_SACRED_GROVE, 0] := ITEM_BONDCUTTER;
+    location_items[LOCATION_SACRED_GROVE, 0] := SHIELD_STONE_OF_DZIVOGON;
+    location_items[LOCATION_SACRED_GROVE, 1] := ITEM_BONDCUTTER;
     location_items[LOCATION_LAKE_NIGHT_DAY, 0] := BODY_CLOAK_OF_WELES;
     location_items[LOCATION_MORANA_CIRCLE, 0] := ITEM_SVAROGS_HAMMER;
     location_items[LOCATION_MORANA_CIRCLE, 1] := SHIELD_IRON_STRONGHOLD;
@@ -203,6 +222,10 @@ begin
     location_items[LOCATION_ECHOES_OF_THE_ANCIENTS, 1] := SHIELD_JAROVITS_BEDROCK;
     location_items[LOCATION_MELT_SWAMP, 0] := ITEM_DAZHBOGS_DIAMOND;
     location_items[LOCATION_MELT_SWAMP, 1] := WEAPON_PERUNS_FLASH;
+    location_items[LOCATION_ETERNAL_WHISPER, 0] := ITEM_POTION;
+    location_items[LOCATION_TOMB_OF_THE_GODS, 0] := BODY_THUNDERER_ARMOR;
+    location_items[LOCATION_FOREST_OF_WHISPERS, 0] := HEAD_SVAROG_CROWN;
+    location_items[LOCATION_FORGOTTEN_BASIN, 0] := ITEM_SVIATOVIDS_HORN;
 
 end;
 

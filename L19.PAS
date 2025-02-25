@@ -1,6 +1,5 @@
 Writeln;
-Print_Formatted_Text ('The dark forest surrounds you on almost all sides. You hear wolves howling ' +
-                      'and leaves rustling.');
+Get_Narration(current_location);
 
 if monsters[current_location].hit_points > 0 then begin
 
@@ -17,30 +16,43 @@ end;
 Print_Formatted_Text ('You can go [E]ast, [N]orth,' + 
                       ' [S]outh');
 
-key_hit := UpCase(ReadKey);
+repeat
 
-case key_hit of
-    
-    'N': begin
-        current_location := LOCATION_GOLDEN_FIELD;
-    end;
-    'E': begin
-        current_location := LOCATION_STREAM;
-    end;
-    'S': begin
-        current_location := LOCATION_FOREST_2;
-    end;
-    'F': begin
-        Fight;
-    end;
-    'G': begin
-        if (monsters[current_location].hit_points=0) and (Item_Exists=TRUE) 
-        then begin
-            success := Add_To_Inventory(current_location);
+    key_legal := FALSE;
+    key_hit := UpCase(ReadKey);
+
+    case key_hit of
+        
+        'N': begin
+            current_location := LOCATION_GOLDEN_FIELD;
+            key_legal := TRUE;
         end;
+        'E': begin
+            current_location := LOCATION_STREAM;
+            key_legal := TRUE;
+        end;
+        'S': begin
+            current_location := LOCATION_FOREST_2;
+            key_legal := TRUE;
+        end;
+        'F': begin
+            if monsters[current_location].hit_points > 0 then begin
+                Fight;
+                key_legal := TRUE;
+            end;
+        end;
+        'G': begin
+            if (monsters[current_location].hit_points=0) and (Item_Exists=TRUE) 
+            then begin
+                success := Add_To_Inventory(current_location);
+                key_legal := TRUE;
+            end;
+        end;
+
     end;
 
-end;
+    Process_Default_Keys(key_hit);
 
-Process_Default_Keys(key_hit);
+until key_legal = TRUE;
+
 previous_location := LOCATION_FOREST_1;

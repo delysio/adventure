@@ -1,8 +1,5 @@
   Writeln;
-  Print_Formatted_Text ('A peaceful forest clearing, surrounded by tall pine trees whose tops seem to ' +
-                     'touch the sky. In its very centre stands a wooden chapel, carved with images ' +
-                     'of guardian deities and spirits, and a small eternal sacrificial fire burns ' +
-                     'in front of it.');
+  Get_Narration(current_location);
 
   if monsters[current_location].hit_points > 0 then begin
   
@@ -18,19 +15,27 @@
 
   Print_Formatted_Text ('You can go [S]outh');
   
+repeat
+
+  key_legal := FALSE;
   key_hit := UpCase(ReadKey);
   
   case key_hit of
 
   'S': begin
     current_location := LOCATION_STONE_THRESHOLD;
+    key_legal := TRUE;
   end;
   'F': begin
-    Fight;
+    if monsters[current_location].hit_points > 0 then begin
+      Fight;
+      key_legal := TRUE;
+    end;
   end;
   'G': begin
-    if (monsters[current_location].hit_points = 0) and (Item_Exists(current_location) = TRUE) then begin
-        success := Add_To_Inventory(current_location);
+    if (monsters[current_location].hit_points = 0) and (Item_Exists = TRUE) then begin
+      success := Add_To_Inventory(current_location);
+      key_legal := TRUE;
     end;
   end;
 
@@ -38,4 +43,6 @@
 
   Process_Default_Keys(key_hit);
 
-  previous_location := LOCATION_SACRED_GROVE;
+until key_legal = TRUE;
+
+previous_location := LOCATION_SACRED_GROVE;

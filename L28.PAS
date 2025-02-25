@@ -1,9 +1,5 @@
 Writeln;
-Print_Formatted_Text ('In the middle of the abandoned village stands an ancient circle of stones, ' + 
-                      'covered in moss and runes. In the centre of the circle lies a statue of ' +
-                      'Morana, the goddess of winter and death, surrounded by frozen flowers.');
-Print_Formatted_Text ('It is said that anyone who disturbs the tranquillity of this place will ' +
-                      'suffer the curse of eternal cold.');
+Get_Narration(current_location);
 
 if monsters[current_location].hit_points > 0 then begin
 
@@ -13,12 +9,9 @@ end;
 
 if (monsters[current_location].hit_points = 0) then begin
 
-    Print_Formatted_Text ('As the last echoes of the battle fell silent, the statue of Morana cracked ' +
-                          'and a glow of warm spring light emerged. Frozen flowers bloomed and the stone ' +
-                          'circle began to lose its gloomy aura.');
-    Print_Formatted_Text ('The smell of fresh earth and hope wafted through the air, and the voice of the goddess, ' +
-                          'though faint, whispered: You have overcome winter, but remember that spring is always ' +
-                          'born from its end.');
+    Get_Narration(281);
+    Get_Narration(282);
+    
     Notify_On_Objects;
     Print_Formatted_Text ('You can go [N]orth, [S]outh');
 
@@ -28,27 +21,39 @@ end else begin
 
 end;
 
-key_hit := UpCase(ReadKey);
+repeat
 
-case key_hit of
-    'N': begin
-        if monsters[current_location].hit_points = 0 then begin
-            current_location := LOCATION_MOUND;
-        end;
-    end;
-    'S': begin
-        current_location := LOCATION_LAKE_NIGHT_DAY;
-    end;
-    'F': begin
-        Fight;
-    end;
-    'G': begin
-        if (Item_Exists = TRUE) and (monsters[current_location].hit_points = 0) then begin
-            success := Add_To_Inventory(current_location);
-        end;
-    end;
-    
-end;
+    key_legal := FALSE;
+    key_hit := UpCase(ReadKey);
 
-Process_Default_Keys(key_hit);
+    case key_hit of
+        'N': begin
+            if monsters[current_location].hit_points = 0 then begin
+                current_location := LOCATION_MOUND;
+                key_legal := TRUE;
+            end;
+        end;
+        'S': begin
+            current_location := LOCATION_LAKE_NIGHT_DAY;
+            key_legal := TRUE;
+        end;
+        'F': begin
+            if monsters[current_location].hit_points > 0 then begin
+                Fight;
+                key_legal := TRUE;
+            end;
+        end;
+        'G': begin
+            if (Item_Exists = TRUE) and (monsters[current_location].hit_points = 0) then begin
+                success := Add_To_Inventory(current_location);
+                key_legal := TRUE;
+            end;
+        end;
+        
+    end;
+
+    Process_Default_Keys(key_hit);
+
+until key_legal = TRUE;
+
 previous_location := LOCATION_MORANA_CIRCLE;

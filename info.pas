@@ -8,10 +8,24 @@ begin
     begin
         if inventory_items[inventory_index] <> ITEM_NONE then
         begin
-            inventory_items[secondary_index] := inventory_items[inventory_index];
+            inventory_items[secondary_index] := inventory_items[inventory_index]; 
             if secondary_index <> inventory_index then inventory_items[inventory_index] := ITEM_NONE;
             secondary_index := secondary_index + 1;
         end;
+    end;
+
+end;
+
+{ Organises the array with the items in location, the empty spaces are always placed at the end of the array }
+procedure Organise_Location_Array(location_id: byte);
+var location_item_index, item_to_shift: byte;
+begin
+
+    for location_item_index := 1 to MAX_ITEMS_IN_LOCATION do
+    begin
+        item_to_shift := location_items[location_id, location_item_index];
+        location_items[location_id, location_item_index - 1] := item_to_shift;
+        location_items[location_id, location_item_index] := ITEM_NONE;
     end;
 
 end;
@@ -115,6 +129,12 @@ begin
     Write ('     boots:  +', armory.boots);
     if armory.boots > 0 then begin Writeln (' ', armory.boots_name); end else begin Writeln end;
 
+    Writeln;
+    Print_Formatted_Text('Press any key to continue.');
+
+    while KeyPressed do key_hit := ReadKey;
+    key_hit := ReadKey; 
+
 end;
 
 
@@ -123,6 +143,7 @@ procedure Drop_Item(item: byte);
 var 
     location_index: byte;
     inventory_index: byte;
+    succ: boolean;
 begin
 
     { Items with index >= 20 are weapons or armory }
@@ -162,15 +183,22 @@ begin
         end;
 
         { wstaw na mapę}
-        for location_index := 0 to MAX_ITEMS_IN_LOCATION do begin
+
+        location_index := 0;
+        succ := FALSE;
+
+        repeat
 
             if location_items[current_location, location_index] = ITEM_NONE then begin
 
                 location_items[current_location, location_index] := item;
+                succ := TRUE;
 
             end;
-        
-        end;
+
+            location_index := location_index + 1;
+
+        until succ = TRUE;
 
         Writeln;
         Print_Formatted_Text ('You have dropped ' + ITEM_DESCRIPTIONS[item]);

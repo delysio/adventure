@@ -1,29 +1,36 @@
 Writeln;
-Print_Formatted_Text ('A narrow, rocky path leads through high mountains where the wind howls like ' +
-                      'a man possessed and the ground is strewn with the bones of those who did not ' +
-                      'survive the journey.');
-Print_Formatted_Text ('It is said to be the place where the elements meet, and every step could be the last.');
+Get_Narration(current_location);
 
 Notify_On_Objects;
 
 Print_Formatted_Text ('You can go [W]est, [S]outh');
 
-key_hit := UpCase(ReadKey);
+repeat
 
-case key_hit of
-    'S': begin
-        current_location := LOCATION_LAKE_OF_SOULS;
-    end;
-    'W': begin
-        current_location := LOCATION_MOUND;
-    end;
-    'G': begin
-        if Item_Exists(current_location) = TRUE then begin
-            success := Add_To_Inventory(current_location);
+    key_legal := FALSE;
+    key_hit := UpCase(ReadKey);
+
+    case key_hit of
+
+        'S': begin
+            current_location := LOCATION_LAKE_OF_SOULS;
+            key_legal := TRUE;
         end;
+        'W': begin
+            current_location := LOCATION_MOUND;
+            key_legal := TRUE;
+        end;
+        'G': begin
+            if Item_Exists = TRUE then begin
+                success := Add_To_Inventory(current_location);
+                key_legal := TRUE;
+            end;
+        end;
+
     end;
 
-end;
+    Process_Default_Keys(key_hit);
 
-Process_Default_Keys(key_hit);
+until key_legal = TRUE;
+
 previous_location := LOCATION_WIND_AND_BONE_PASS;

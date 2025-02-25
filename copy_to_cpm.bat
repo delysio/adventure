@@ -8,6 +8,7 @@ set REPLACE_FILE_CONF=%CPM_PATH%\ADVCONF.PAS
 
 echo Copying files...
 
+copy %GAME_PATH%\ADV.DAT %CPM_PATH%\ADV.DAT
 copy %GAME_PATH%\adventure.pas %CPM_PATH%\ADV.PAS
 copy %GAME_PATH%\advconf.pas %CPM_PATH%\ADVCONF.PAS
 copy %GAME_PATH%\advconf.dat %CPM_PATH%\ADVCONF.DAT
@@ -22,15 +23,23 @@ copy %GAME_PATH%\defkeys.pas %CPM_PATH%\DEFKEYS.PAS
 copy %GAME_PATH%\print.pas %CPM_PATH%\PRINT.PAS
 copy %GAME_PATH%\conf.pas %CPM_PATH%\CONF.PAS
 copy %GAME_PATH%\l01.pas %CPM_PATH%\L01.PAS
+copy %GAME_PATH%\l02.pas %CPM_PATH%\L02.PAS
+copy %GAME_PATH%\l03.pas %CPM_PATH%\L03.PAS
+copy %GAME_PATH%\l04.pas %CPM_PATH%\L04.PAS
+copy %GAME_PATH%\l05.pas %CPM_PATH%\L05.PAS
+copy %GAME_PATH%\l06.pas %CPM_PATH%\L06.PAS
 copy %GAME_PATH%\l07.pas %CPM_PATH%\L07.PAS
 copy %GAME_PATH%\l08.pas %CPM_PATH%\L08.PAS
 copy %GAME_PATH%\l09.pas %CPM_PATH%\L09.PAS
 copy %GAME_PATH%\l10.pas %CPM_PATH%\L10.PAS
+copy %GAME_PATH%\l11.pas %CPM_PATH%\L11.PAS
+copy %GAME_PATH%\l12.pas %CPM_PATH%\L12.PAS
 copy %GAME_PATH%\l13.pas %CPM_PATH%\L13.PAS
 copy %GAME_PATH%\l14.pas %CPM_PATH%\L14.PAS
 copy %GAME_PATH%\l15.pas %CPM_PATH%\L15.PAS
 copy %GAME_PATH%\l16.pas %CPM_PATH%\L16.PAS
 copy %GAME_PATH%\l17.pas %CPM_PATH%\L17.PAS
+copy %GAME_PATH%\l18.pas %CPM_PATH%\L18.PAS
 copy %GAME_PATH%\l19.pas %CPM_PATH%\L19.PAS
 copy %GAME_PATH%\l20.pas %CPM_PATH%\L20.PAS
 copy %GAME_PATH%\l21.pas %CPM_PATH%\L21.PAS
@@ -56,7 +65,9 @@ powershell -Command "(Get-Content %REPLACE_FILE_CONF%) -replace 'uses crt;', '{X
 
 echo Deleting old files from dsk image
 
+%CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk ERA ADV.DAT
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk ERA ADV.PAS
+%CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk ERA ADV.COM
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk ERA ADVCONF.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk ERA ADVCONF.DAT
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk ERA CONSTS.PAS
@@ -72,15 +83,23 @@ echo Deleting old files from dsk image
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk ERA CONF.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk ERA ADV.COM
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk ERA L01.PAS
+%CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk ERA L02.PAS
+%CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk ERA L03.PAS
+%CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk ERA L04.PAS
+%CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk ERA L05.PAS
+%CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk ERA L06.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk ERA L07.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk ERA L08.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk ERA L09.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk ERA L10.PAS
+%CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk ERA L11.PAS
+%CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk ERA L12.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk ERA L13.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk ERA L14.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk ERA L15.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk ERA L16.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk ERA L17.PAS
+%CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk ERA L18.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk ERA L19.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk ERA L20.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk ERA L21.PAS
@@ -101,6 +120,7 @@ echo Deleting old files from dsk image
 
 echo Writing updated files to dsk image
 
+%CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk w %CPM_PATH%\ADV.DAT
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk w %CPM_PATH%\ADV.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk w %CPM_PATH%\ADVCONF.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk w %CPM_PATH%\ADVCONF.DAT
@@ -116,15 +136,23 @@ echo Writing updated files to dsk image
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk w %CPM_PATH%\PRINT.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk w %CPM_PATH%\CONF.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk w %CPM_PATH%\L01.PAS
+%CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk w %CPM_PATH%\L02.PAS
+%CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk w %CPM_PATH%\L03.PAS
+%CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk w %CPM_PATH%\L04.PAS
+%CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk w %CPM_PATH%\L05.PAS
+%CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk w %CPM_PATH%\L06.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk w %CPM_PATH%\L07.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk w %CPM_PATH%\L08.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk w %CPM_PATH%\L09.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk w %CPM_PATH%\L10.PAS
+%CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk w %CPM_PATH%\L11.PAS
+%CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk w %CPM_PATH%\L12.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk w %CPM_PATH%\L13.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk w %CPM_PATH%\L14.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk w %CPM_PATH%\L15.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk w %CPM_PATH%\L16.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk w %CPM_PATH%\L17.PAS
+%CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk w %CPM_PATH%\L18.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk w %CPM_PATH%\L19.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk w %CPM_PATH%\L20.PAS
 %CPMFS_PATH%\cpmfs.exe %CPMFS_PATH%\driveb.dsk w %CPM_PATH%\L21.PAS
