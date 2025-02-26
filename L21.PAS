@@ -9,7 +9,7 @@ if Is_In_Inventory(ITEM_TORCH) then begin
 
 end;
 
-Writeln ('You can go [S]outh');
+Print_Formatted_Text ('You can go [S]outh');
 
 repeat
 

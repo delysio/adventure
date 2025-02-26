@@ -34,7 +34,7 @@ repeat
             end;
         end;
         'F': begin
-            if monsters[current_location].hit_points = 0 then begin
+            if monsters[current_location].hit_points > 0 then begin
                 Fight;
                 key_legal := TRUE;
             end;

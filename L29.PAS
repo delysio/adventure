@@ -3,7 +3,7 @@ Get_Narration(current_location);
 
 if Is_In_Inventory(ITEM_BONE_TOKEN) then begin
 
-    Get_Narration(current_location);
+    Get_Narration(291);
                           
     Print_Formatted_Text ('You can go [N]orth, [S]outh');
     

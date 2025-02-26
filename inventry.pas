@@ -217,6 +217,8 @@ begin
   if Is_In_Inventory(ITEM_POTION) = TRUE then begin
 
     hero.hit_points := hero.hit_points + ITEM_POTION_VALUE;
+    if hero.hit_points > INITIAL_HIT_POINTS then hero.hit_points := INITIAL_HIT_POINTS;
+    
     inventory_counter := 0;
     potion_found := FALSE;
 
@@ -236,6 +238,7 @@ begin
   end else begin
       Print_Formatted_Text ('You don''t have a strength potion in your inventory.');
   end;
+
 end;
 
 

@@ -4,47 +4,47 @@ begin
 
     monsters[LOCATION_LAKE].hit_points := 5;
     monsters[LOCATION_LAKE].defence := 2;
-    monsters[LOCATION_LAKE].attack := 5;
+    monsters[LOCATION_LAKE].attack := 8;
     
-    monsters[LOCATION_SPRING].hit_points := 9;
+    monsters[LOCATION_SPRING].hit_points := 10;
     monsters[LOCATION_SPRING].defence := 5;
     monsters[LOCATION_SPRING].attack := 9;
 
-    monsters[LOCATION_FOREST_1].hit_points := 6;
-    monsters[LOCATION_FOREST_1].defence := 2;
-    monsters[LOCATION_FOREST_1].attack := 2;
+    monsters[LOCATION_FOREST_1].hit_points := 10;
+    monsters[LOCATION_FOREST_1].defence := 5;
+    monsters[LOCATION_FOREST_1].attack := 10;
 
-    monsters[LOCATION_SVAROGS_STONE_CIRCLE].hit_points := 15;
-    monsters[LOCATION_SVAROGS_STONE_CIRCLE].defence := 4;
-    monsters[LOCATION_SVAROGS_STONE_CIRCLE].attack := 8;
+    monsters[LOCATION_SVAROGS_STONE_CIRCLE].hit_points := 18;
+    monsters[LOCATION_SVAROGS_STONE_CIRCLE].defence := 8;
+    monsters[LOCATION_SVAROGS_STONE_CIRCLE].attack := 14;
 
-    monsters[LOCATION_SACRED_GROVE].hit_points := 10;
-    monsters[LOCATION_SACRED_GROVE].defence := 5;
-    monsters[LOCATION_SACRED_GROVE].attack := 5;
+    monsters[LOCATION_SACRED_GROVE].hit_points := 15;
+    monsters[LOCATION_SACRED_GROVE].defence := 7;
+    monsters[LOCATION_SACRED_GROVE].attack := 12;
 
     monsters[LOCATION_MORANA_CIRCLE].hit_points := 15;
     monsters[LOCATION_MORANA_CIRCLE].defence := 7;
-    monsters[LOCATION_MORANA_CIRCLE].attack := 6;
+    monsters[LOCATION_MORANA_CIRCLE].attack := 15;
 
     monsters[LOCATION_MOUND_INSIDE].hit_points := 20;
-    monsters[LOCATION_MOUND_INSIDE].defence := 9;
-    monsters[LOCATION_MOUND_INSIDE].attack := 8;
+    monsters[LOCATION_MOUND_INSIDE].defence := 13;
+    monsters[LOCATION_MOUND_INSIDE].attack := 17;
 
     monsters[LOCATION_MELT_SWAMP].hit_points := 25;
-    monsters[LOCATION_MELT_SWAMP].defence := 11;
-    monsters[LOCATION_MELT_SWAMP].attack := 11;
+    monsters[LOCATION_MELT_SWAMP].defence := 15;
+    monsters[LOCATION_MELT_SWAMP].attack := 18;
 
     monsters[LOCATION_ETERNAL_WHISPER].hit_points := 25;
     monsters[LOCATION_ETERNAL_WHISPER].defence := 11;
-    monsters[LOCATION_ETERNAL_WHISPER].attack := 11;
+    monsters[LOCATION_ETERNAL_WHISPER].attack := 20;
 
     monsters[LOCATION_INFINITE_STAIRCASE].hit_points := 30;
     monsters[LOCATION_INFINITE_STAIRCASE].defence := 8;
-    monsters[LOCATION_INFINITE_STAIRCASE].attack := 8;
+    monsters[LOCATION_INFINITE_STAIRCASE].attack := 20;
     
     monsters[LOCATION_FORGOTTEN_BASIN].hit_points := 40;
-    monsters[LOCATION_FORGOTTEN_BASIN].defence := 8;
-    monsters[LOCATION_FORGOTTEN_BASIN].attack := 8;
+    monsters[LOCATION_FORGOTTEN_BASIN].defence := 15;
+    monsters[LOCATION_FORGOTTEN_BASIN].attack := 22;
 
 end;
 
