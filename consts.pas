@@ -103,16 +103,21 @@ const
         'Wings of the Wind', 'Wolf Feet', 'Thunderbolt clogs', '', '', '', '', '', ''
     ); { array with item names }
 
-    REVERSE_START_VT52      = #27'p';
-    REVERSE_EXIT_VT52       = #27'q';
-    REVERSE_START_BOSMAN    = #27'S';
-    REVERSE_EXIT_BOSMAN     = #27'T';
-    REVERSE_START_ANSI      = #27'[7m';
-    REVERSE_EXIT_ANSI       = #27'[0m';
-    REVERSE_START_ADM31     = #27'G4';
-    REVERSE_EXIT_ADM31      = #27'G0';
+    REVERSE_START_VT52 = #27'p';
+    REVERSE_EXIT_VT52  = #27'q';
+    REVERSE_START_BOSMAN = #27'S';
+    REVERSE_EXIT_BOSMAN = #27'T';
+    REVERSE_START_ANSI = #27'[7m';
+    REVERSE_EXIT_ANSI = #27'[0m';
+    REVERSE_START_ADM31 = #27'G4';
+    REVERSE_EXIT_ADM31 = #27'G0';
+    REVERSE_START_TIMEX = #27'L';
+    REVERSE_EXIT_TIMEX = #27'M';
+    REVERSE_NONE = '';
 
-    CLR_VT52    = #27'H'#27'E';
+    CLR_VT52    = #27'H'#27'J';
     CLR_BOSMAN  = #27'H'#27'J';
     CLR_ANSI    = #27'c';
     CLR_ADM31   = #27'*'; 
+    CLR_TIMEX   = #27'H'#27'J';
+    CLR_NONE    = '';

@@ -7,23 +7,31 @@
 3;In the middle of the crossroads, three ancient stones are embedded in the ground, covered with runes that pulsate with a faint blue light. The paths diverge in three different directions, but only one leads onwards. 
 3;In order to pass, one must read the runes and choose the right path... before something lurking in the thicket decides to approach the intruder.
 301;Path 1: The quiet, soothing sound of the wind can be heard, but it echoes in an unnatural way.
-302;Path 2: Small footprints can be seen among the thorns, as if someone has walked it before.
-303;Path 3: A soft light can be seen, but on closer inspection it seems to move, as if something is tempting the player.
+301;Path 2: Small footprints can be seen among the thorns, as if someone has walked it before.
+301;Path 3: A soft light can be seen, but on closer inspection it seems to move, as if something is tempting the player.
+302;You walk ahead, listening to the gentle sound of the wind that seems to guide you forward. Your steps echo, though the ground beneath your feet is soft and quiet.
+302;Before you have time to turn back, the mist engulfs you completely and the world around you blurs into darkness. When you regain your orientation, you are once again standing in front of the Stone Threshold.
+303;A gentle light in the distance pulses softly, twinkling like a star in the gloom. With each step it seems to get closer and closer and an unexpected relief sprouts in your heart - as if you instinctively know that this is the right path.
+303;Suddenly, the ground beneath your feet begins to yield and the air thickens like thick smoke. The glow bursts into thousands of tiny lights that swirl around you like swarms of insects.
+303;Before you have time to step back, you feel a burning sting on your skin - it is not the light, but the Skylights of Darkness, hungry creatures that suck the strength and life out of you.
 4;The path narrows, leading to the edge of a precipice over which a thick, milky fog hovers. The air is dead here - there is no sound of wind or the sound of life, as if this place exists outside of time.
 4;Cracked, black boulders protrude from the ground like tombstones, and you can see carved, almost grated names - some sound strangely familiar.
 5;You see a massive stone gate, covered with cracks and inscriptions in a forgotten language. the air grows cool - you have found yourself in a vast underground chamber where shadows dance on the walls.
 501;In the middle of the chamber rests an ancient altar, and on it - an object of immense power, bathed in a faint, unearthly light. But is it a gift or a trap?
-502;On the altar, four symbols are carved - the Sun, the Moon, the Lightning and the Root. Next to them is an inscription in an ancient language, which after a while seems to form words you can understand:
-503;There were four of us, and each of us ruled a different world. The first brought light and life, but its power harmed the blind. The second guarded the night, but only the dead saw it fully.
-504;The third inspired fear, striking down those who walked too high. The fourth stuck in the ground, hiding roots that no one sees but everyone depends on.
+501;On the altar, four symbols are carved - the Sun, the Moon, the Lightning and the Root. Next to them is an inscription in an ancient language, which after a while seems to form words you can understand:
+501;There were four of us, and each of us ruled a different world. The first brought light and life, but its power harmed the blind. The second guarded the night, but only the dead saw it fully.
+501;The third inspired fear, striking down those who walked too high. The fourth stuck in the ground, hiding roots that no one sees but everyone depends on.
+502;As you stand on the slab, the air vibrates and the tomb trembles. Suddenly the altar cracks with a deafening bang, the stone blocks fall, burying the ancient artefact under tons of rubble. Silence falls anew - you have survived.
+503;Your perspicacity is amazing, the correct answer is roots because they are the basis of everything, although they remain hidden.
+503;The reward is yours.
 6;You step between twisted trees whose branches form a dense, almost closed vaulted tunnel above you. Whispers that were barely audible before now clearly reverberate around you - they are not words but broken off sounds.
 6;The path leads to a stone circle, covered in ancient runes. 
 601;In the middle lies a golden helmet shaped like flames, radiating a gentle warmth - this is the Crown of Svarog, an artefact that is said to be able to protect against fire and give the wearer the strength of the sun.
-602;To possess power, you must understand its essence. Tell me, what is Swarog''s greatest gift?
-603;Three symbols appear on the stone in front of you, each corresponding to a different answer:
-604;1. Fox - a source of cunning and guile.
-605;2. Iron - weapons and tools are forged from it.
-606;3. Water - gives life.
+601;To possess power, you must understand its essence. Tell me, what is Swarog's greatest gift?
+601;Three symbols appear on the stone in front of you, each corresponding to a different answer:
+601;1. Fox - a source of cunning and guile.
+601;2. Iron - weapons and tools are forged from it.
+601;3. Water - gives life.
 7;A narrow path leads to a stone threshold, beyond which stretches a dense, damp forest. The stones are covered in moss and runes that glimmer in the moonlight, and the air is heavy with the scent of earth and flowering herbs.
 7;It is said to be the place where Jarylo, the god of spring and youth, crosses the boundary between the world of the living and the spirit world.
 8;The world around you quiets unnaturally, as if sound never existed here. The air is still, heavy as dried ash, and the ground beneath your feet resembles a cracked shell, dead and lifeless.
@@ -47,7 +55,7 @@
 16;The walls are covered with frescoes depicting battles and rituals, and in the centre of the room stands a stone sarcophagus, surrounded by flickering flames.
 161;As the Night Preacher crumbles into dust and his last scream dies away, the chamber fills with glee. On the walls, frescoes begin to flicker, revealing the history of those who rest here.
 162;Shining your torch, you noticed that a dark breach had opened up among the tangled roots and weathered boulders - a tunnel whose interior seemed to absorb the light.
-163;A cold, damp breeze wafted from within, carrying the smell of mustiness and something unnamed... something waiting for the daredevil ready to cross the threshold of an unknown world.
+162;A cold, damp breeze wafted from within, carrying the smell of mustiness and something unnamed... something waiting for the daredevil ready to cross the threshold of an unknown world.
 17;A vast, misty valley where the air vibrates with the whispers of long-forgotten voices. Ruins buried in the ground seem to pulsate with ancient power, and shadows of the past flit between crumbling stone pillars.
 17;Every step echoes, as if the place remembers every word and deed of those who were once here... and never left. 
 18;The path to the south leads down towards a basin hidden between the cliffs. The air here is thick with a strange, ancient energy, and the ground underfoot seems to tremble with every step. 
@@ -55,8 +63,8 @@
 181;The wind suddenly intensifies into a powerful gale and a shrill swish fills the air. The fungus materialises in the form of a tall, lean silhouette with a body formed from swirling gusts and clouds of mist.
 182;The wind suddenly quiets and the mist dissipates, revealing a clear, starry sky. The Horn of the Sviatovid, now free of its guardian, emanates a calm, golden glow.
 183;With its power, you are ready to return to the Witch - but are you sure you can trust her?
-184;Suddenly a swirling rift in reality appears before you - a black, spiralling vortex illuminated by a blue glow. Within it, vague images flicker: the Witch''s hut and the altar on which everything was to be completed...
-185;A cold breeze comes from the portal, as if it doesn''t belong in this world. A magical power beckons you inside, but subconsciously you feel it is a trap. There is no turning back now.
+183;Suddenly a swirling rift in reality appears before you - a black, spiralling vortex illuminated by a blue glow. Within it, vague images flicker: the Witch's hut and the altar on which everything was to be completed...
+183;A cold breeze comes from the portal, as if it doesn't belong in this world. A magical power beckons you inside, but subconsciously you feel it is a trap. There is no turning back now.
 19;The dark forest surrounds you on almost all sides. You hear wolves howling and leaves rustling.
 20;A narrow stream meandering between the rocks whispers soothingly. The water is crystal clear, and you can see the glittering stones at its bottom.
 21;The cave is dark, you can barely see what is going on inside.
@@ -72,14 +80,14 @@
 28;In the middle of the abandoned village stands an ancient circle of stones, covered in moss and runes. In the centre of the circle lies a statue of Morana, the goddess of winter and death, surrounded by frozen flowers.
 28;It is said that anyone who disturbs the tranquillity of this place will suffer the curse of eternal cold.
 281;As the last echoes of the battle fell silent, the statue of Morana cracked and a glow of warm spring light emerged. Frozen flowers bloomed and the stone circle began to lose its gloomy aura.
-282;The smell of fresh earth and hope wafted through the air, and the voice of the goddess, though faint, whispered: You have overcome winter, but remember that spring is always born from its end.
+281;The smell of fresh earth and hope wafted through the air, and the voice of the goddess, though faint, whispered: You have overcome winter, but remember that spring is always born from its end.
 29;A calm, almost motionless lake whose waters are a deep emerald hue. Mists float on the surface and flickering lights can be seen in the depths, as if the souls of the dead are dancing underwater.
 29;An old boat stands on the shore, and offerings of flowers and candles lie around it. Legends say you can only cross with the help of the dead, but they don't trust everyone.
 291;(The Dead) We know the sign of the bones... We offer a crossing, but we do not promise that a return will be possible.
 30;A dense mist hovers over the black water, and the ground beneath your feet crests with every step, as if the mud wants to engulf any intruder.
 30;The air is saturated with the  smell of rotting plants and dampness, and a bubbling sound can be heard in the distance, as if something large is lurking just below the surface.
 304;Among the entwined roots and fallen trees, there is suddenly a snarling, inhuman laughter - it is the King of Drowners, the bruised phantom of the marshes, lurking for unwary wanderers.
-305;Its dead eyes glisten in the gloom and its bony fingers, covered in watery slime, slowly emerge from the water, ready to drag its next victim into the depths of no return.
+304;Its dead eyes glisten in the gloom and its bony fingers, covered in watery slime, slowly emerge from the water, ready to drag its next victim into the depths of no return.
 31;As you traverse one scrubland after another, you realise that this is a dense, ancient forest where trees whisper prayers to the gods and the souls of dead warriors hide in the roots.
 32;It is a place of worship, where the stone blocks arranged in a circle radiate warmth and sparks of divine fire float above them at night.
 321;The Leshy's corpse sprawled across the stone circles revealing a passage into the valley revealed a passage between them.
@@ -92,8 +100,34 @@
 35;Dark silhouettes without faces stand silently on the shore, looking out into the infinite mist hovering over the water. Their figures seem unreal, as if woven from shadow and cold air, shivering with every gust of icy wind.
 35;They don't move, they don't breathe - they merely wait, silently and impatiently, as if every moment were an eternity for them.
 351;The Dead, seeing the Diamond of the Dadzhbog, paused for a moment, their shapeless figures seeming to tremble in the pale light of the jewel.
-352;(The Dead) The Dazhbog speaks through you. Cross the waters safely, but remember - not everything that is given up can be recovered.
-353;The shadows part and the black boat emerges from the mist, ready to cross the Lake of Souls.
+351;(The Dead) The Dazhbog speaks through you. Cross the waters safely, but remember - not everything that is given up can be recovered.
+351;The shadows part and the black boat emerges from the mist, ready to cross the Lake of Souls.
 36;An ancient grove where the trees weave into twisted shapes and their roots seem to pulsate like living veins. The ground here is saturated with a dark red substance reminiscent of blood, and the air is permeated with the smell of dampness and decay.
 36;In the silence of the forest, a quiet whispering can be heard - is it the wind among the boughs, or perhaps the voices of those who died here?
+901;(Witch) I see you managed to get the Stone of Perun, that's a big achievement!
+901;(Witch) I'm taking it away, but in return I'm giving you a reward.
+901;(Witch) I cast a spell of defence on you.
+901;Your ability to defend yourself increases.
+902;(Witch) Ah, the Svarog's Hammer. I haven't seen it for a long time, there's a lot of power and magic in it. Leave it with me, it will be safe here. Meanwhile, I will transfer some of its power to you - your attacks will be stronger!
+902;You feel the growing strength.
+903;(Witch) You never cease to amaze me traveller! Until now, no one has managed to acquire so many artefacts. I'll keep the Dazhbogs Diamond with me and improve your dexterity as a reward.
+903;You can feel your weapons suddenly becoming lighter and handier.
+904;(Witch) The power of the three artefacts will allow me to open a passage to the spirit world at the stone threshold. Head there to get the last item that will allow you to open a portal to Rarog's abode.
+905;You enter the dark witch's cottage, clutching the last artefact in your hands. The air in the chamber smells of herbs, but this time you sense something else in it - something heavy, suffocating, like accumulated magic ready to be released.
+905;The witch stands by a large stone cauldron, her shadowy eyes gleaming in the dancing candlelight.
+905;(Witch) Great... You don't know how long I've waited for this moment.
+905;As you place the horn on the altar, the air around you begins to tremble. All four artefacts begin to float above the ground, surrounded by a spiral of black energy.
+906;(Witch) Rarog! It was just a myth, silly. I needed someone to find those treasures for me, and you played your part perfectly.
+906;You take a step back, feeling the magic fill the room. The witch hovers above the ground, her body seeming to change - her skin fades, her eyes light up like two white lanterns.
+906;(Witch) Now, with the power of these artefacts, I will not open any portal, but will use it to create my own kingdom. The power over this land will belong to me!
+906;So much road, so many fights, you can't afford it. You're up against a vicious Witch.
+907;As the Witch's last scream quiets and her body dissolves in a vortex of dark energy, the chamber is plunged into silence. The artefacts, which only moments ago were pulsating with power, fall on the stone altar - now dead, exhausted from the battle.
+907;Through the cracks in the walls, the rays of light penetrate the darkness. The air becomes lighter and the aura of evil that has been weighing down the entire journey disappears, as if the world has held its breath and can finally release it.
+907;You pick up the Horn of the Swiatowid - its glow, though dimmed, seems gentle and warm. You know that your mission is over and the evil that tried to take over the world has been annihilated.
+908;You walk out of the hut, leaving behind the ruins of lies and betrayal. The forest, which had previously seemed dead, now comes alive - the trees hum quietly, the birds begin to sing, as if thanking you for your rescue.
+908;The path in front of you leads towards the rising sun. Your journey is over, but the legend of the hero who defeated the Witch and saved the world from darkness is just beginning.
+910;Welcome, traveller! You are a hero traversing the ancient world of central Europe, full of mysterious gods and dangerous monsters.
+910;Your goal is to find four artefacts of power: The Stone of Perun, the Hammer of Svarog, the Diamond of Dazhbog and the Horn of Sviatovid. Each of these artefacts is hidden in remote areas of the realm, guarded by monsters or protected by riddles.
+910;The Witch will help you on your adventure by collecting the artefacts you acquire, rewarding you for bringing them. Once you've acquired them all, she'll create a portal from them that will enable you to fight Rarog.
+911;At the beginning of your journey, the Witch will give you some basic items. You will find more and better ones during your adventure.
 999;EOF

@@ -12,7 +12,7 @@ begin
 
     monsters[LOCATION_FOREST_1].hit_points := 10;
     monsters[LOCATION_FOREST_1].defence := 5;
-    monsters[LOCATION_FOREST_1].attack := 10;
+    monsters[LOCATION_FOREST_1].attack := 12;
 
     monsters[LOCATION_SVAROGS_STONE_CIRCLE].hit_points := 18;
     monsters[LOCATION_SVAROGS_STONE_CIRCLE].defence := 8;
@@ -23,8 +23,8 @@ begin
     monsters[LOCATION_SACRED_GROVE].attack := 12;
 
     monsters[LOCATION_MORANA_CIRCLE].hit_points := 15;
-    monsters[LOCATION_MORANA_CIRCLE].defence := 7;
-    monsters[LOCATION_MORANA_CIRCLE].attack := 15;
+    monsters[LOCATION_MORANA_CIRCLE].defence := 9;
+    monsters[LOCATION_MORANA_CIRCLE].attack := 17;
 
     monsters[LOCATION_MOUND_INSIDE].hit_points := 20;
     monsters[LOCATION_MOUND_INSIDE].defence := 13;
@@ -32,19 +32,23 @@ begin
 
     monsters[LOCATION_MELT_SWAMP].hit_points := 25;
     monsters[LOCATION_MELT_SWAMP].defence := 15;
-    monsters[LOCATION_MELT_SWAMP].attack := 18;
+    monsters[LOCATION_MELT_SWAMP].attack := 25;
 
     monsters[LOCATION_ETERNAL_WHISPER].hit_points := 25;
-    monsters[LOCATION_ETERNAL_WHISPER].defence := 11;
-    monsters[LOCATION_ETERNAL_WHISPER].attack := 20;
+    monsters[LOCATION_ETERNAL_WHISPER].defence := 18;
+    monsters[LOCATION_ETERNAL_WHISPER].attack := 25;
 
-    monsters[LOCATION_INFINITE_STAIRCASE].hit_points := 30;
-    monsters[LOCATION_INFINITE_STAIRCASE].defence := 8;
-    monsters[LOCATION_INFINITE_STAIRCASE].attack := 20;
+    monsters[LOCATION_INFINITE_STAIRCASE].hit_points := 35;
+    monsters[LOCATION_INFINITE_STAIRCASE].defence := 23;
+    monsters[LOCATION_INFINITE_STAIRCASE].attack := 32;
     
     monsters[LOCATION_FORGOTTEN_BASIN].hit_points := 40;
-    monsters[LOCATION_FORGOTTEN_BASIN].defence := 15;
-    monsters[LOCATION_FORGOTTEN_BASIN].attack := 22;
+    monsters[LOCATION_FORGOTTEN_BASIN].defence := 25;
+    monsters[LOCATION_FORGOTTEN_BASIN].attack := 40;
+
+    monsters[LOCATION_START].hit_points := 80;
+    monsters[LOCATION_START].defence := 25;
+    monsters[LOCATION_START].attack := 35;
 
 end;
 

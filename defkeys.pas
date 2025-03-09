@@ -1,18 +1,33 @@
 procedure Print_Items(location_id: byte);
-var a: byte;
+var item_index: byte;
+    item_count: byte;
+    item_id   : byte;
 begin
-    a := location_items[location_id, 0];
-    Writeln ('0 ' + ITEM_DESCRIPTIONS[a]);
-    a := location_items[location_id, 1];
-    Writeln ('1 ' + ITEM_DESCRIPTIONS[a]);
-    a := location_items[location_id, 2];
-    Writeln ('2 ' + ITEM_DESCRIPTIONS[a]);
-    a := location_items[location_id, 3];
-    Writeln ('3 ' + ITEM_DESCRIPTIONS[a]);
-    a := location_items[location_id, 4];
-    Writeln ('4 ' + ITEM_DESCRIPTIONS[a]);
-    a := location_items[location_id, 5];
-    Writeln ('5 ' + ITEM_DESCRIPTIONS[a]);
+
+    item_count := 0;
+
+    Writeln;
+    Print_Formatted_Text ('You look around.');
+    Writeln;
+
+    for item_index := 0 to MAX_ITEMS_IN_LOCATION - 1 do begin
+
+        if location_items[location_id, item_index] <> ITEM_NONE then begin
+
+            item_id := location_items[location_id, item_index];
+
+            Print_Formatted_Text(' - ' + ITEM_DESCRIPTIONS[item_id]);
+            item_count := item_count + 1;
+
+        end;
+    end;
+
+    if item_count = 0 then begin
+
+        Print_Formatted_Text ('There is nothing interesting here.');
+
+    end;
+
 end;
 
 

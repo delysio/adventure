@@ -11,6 +11,7 @@ var
   previous_location   : byte;
   key_hit             : char;
   game_over           : boolean;
+  game_won            : boolean;
   success             : boolean;
   hero                : Tplayer;
   monsters            : Tmonsters;
@@ -65,19 +66,31 @@ begin
         Init_Hero;
 
         Write(s_clrscr);
-        Writeln;
-        Writeln ('       ' + r_start + '  ' + r_exit + '     ' + r_start + '     ' + r_exit + '  ' + r_start + '  ' +
-                 r_exit + '       ' + r_start + '     ' + r_exit + ' ');
-        Writeln ('     ' + r_start + '      ' + r_exit + '  ' + r_start + '  ' + r_exit + '   ' + r_start + '  ' + r_exit + 
-                 ' ' + r_start + '  ' + r_exit + '      ' + r_start + '  ' + r_exit + '   ' + r_start + '  ' + r_exit);
-        Writeln ('       ' + r_start + '  ' + r_exit + '    ' + r_start + '       ' + r_exit + ' ' + r_start + '  ' + 
-                 r_exit + '      ' + r_start + '    ' + r_exit + '   ');
-        Writeln ('       ' + r_start + '  ' + r_exit + '    ' + r_start + '  ' + r_exit + '   ' + r_start + '  ' + r_exit + 
-                 ' ' + r_start + '  ' + r_exit + '   ' + r_start + '  ' + r_exit + ' ' + r_start + '  ' + r_exit + '   ' + 
-                 r_start + '  ' + r_exit);
-        Writeln ('        ' + r_start + '   ' + r_exit + '  ' + r_start + '  ' + r_exit + '   ' + r_start + '  ' + r_exit + 
-                 '  ' + r_start + '    ' + r_exit + '    ' + r_start + '     ' + r_exit + ' ');
-        WriteLn;
+
+        if r_start = '' then begin
+
+          WriteLn;
+          WriteLn;
+          WriteLn;
+          Writeln ('                T  A  L  E         ');
+
+        end else begin
+
+          Writeln;
+          Writeln ('       ' + r_start + '  ' + r_exit + '     ' + r_start + '     ' + r_exit + '  ' + r_start + '  ' +
+                  r_exit + '       ' + r_start + '     ' + r_exit + ' ');
+          Writeln ('     ' + r_start + '      ' + r_exit + '  ' + r_start + '  ' + r_exit + '   ' + r_start + '  ' + r_exit + 
+                  ' ' + r_start + '  ' + r_exit + '      ' + r_start + '  ' + r_exit + '   ' + r_start + '  ' + r_exit);
+          Writeln ('       ' + r_start + '  ' + r_exit + '    ' + r_start + '       ' + r_exit + ' ' + r_start + '  ' + 
+                  r_exit + '      ' + r_start + '    ' + r_exit + '   ');
+          Writeln ('       ' + r_start + '  ' + r_exit + '    ' + r_start + '  ' + r_exit + '   ' + r_start + '  ' + r_exit + 
+                  ' ' + r_start + '  ' + r_exit + '   ' + r_start + '  ' + r_exit + ' ' + r_start + '  ' + r_exit + '   ' + 
+                  r_start + '  ' + r_exit);
+          Writeln ('        ' + r_start + '   ' + r_exit + '  ' + r_start + '  ' + r_exit + '   ' + r_start + '  ' + r_exit + 
+                  '  ' + r_start + '    ' + r_exit + '    ' + r_start + '     ' + r_exit + ' ');
+          WriteLn;
+
+        end;
         Writeln ('      O F   A N C I E N T   L A N D');
         Writeln;
         Print_Formatted_Text ('A world where gods walk the earth and ancient monsters lurk in the shadows of every tree.');
@@ -107,6 +120,7 @@ begin
         
         current_location := LOCATION_START;
         game_over := FALSE;
+        game_won := FALSE;
       
         {$I INTRO.PAS }
         

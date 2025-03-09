@@ -94,7 +94,7 @@ begin
     Writeln;
     Print_Hero_Stats;
     Writeln;
-    Print_Formatted_Text ('Your weapons and armory:');
+    Print_Formatted_Text ('Your weapons and armour:');
 
     value := armory.weapon + armory.weapon_slot;
     Str(value, s_value);
@@ -118,7 +118,7 @@ begin
 
     value := armory.head + armory.body + armory.boots;
     Str(value, s_value);
-    Print_Formatted_Text ('ARMORY: +' + s_value);
+    Print_Formatted_Text ('ARMOUR: +' + s_value);
 
     Write ('     helmet: +', armory.head);
     if armory.head > 0 then begin Writeln (' ', armory.head_name); end else begin Writeln end;
@@ -317,6 +317,6 @@ Procedure Print_Keys;
 begin
     Writeln;
     Print_Formatted_Text ('Press anytime: ');
-    Print_Formatted_Text (' [X] - exit,  [I] - inventory, ');
-    Print_Formatted_Text (' [C] - stats, [P] - potion, [H] - this help');
+    Print_Formatted_Text ('[X] - exit,  [I] - inventory, [L] - look around');
+    Print_Formatted_Text ('[C] - stats, [P] - potion, [H] - this help');
 end;

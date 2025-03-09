@@ -18,7 +18,7 @@ begin
 
   {$I+}
 
-  if (IOresult <> 0) then begin
+  if IOresult <> 0 then begin
 
     Writeln;
     Writeln ('Configuration file doesn''t exist.');

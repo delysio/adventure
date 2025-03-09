@@ -2,10 +2,7 @@ Writeln;
 
 if Is_In_Inventory(ITEM_PERUNS_STONE) then begin
 
-    Print_Formatted_Text ('(Witch) I see you managed to get the Stone of Perun, that''s a big achievement!'); 
-    Print_Formatted_Text ('(Witch) I''m taking it away, but in return I''m giving you a reward.');
-    Print_Formatted_Text ('(Witch) I cast a spell of defence on you.');
-    Print_Formatted_Text ('Your ability to defend yourself increases.');
+    Get_Narration (901); 
 
     hero.defence := hero.defence + 5;
     target_items_number := target_items_number + 1;
@@ -18,10 +15,7 @@ if Is_In_Inventory(ITEM_PERUNS_STONE) then begin
 end;
 if Is_In_Inventory(ITEM_SVAROGS_HAMMER) then begin
 
-    Print_Formatted_Text ('(Witch) Ah, the Svarog''s Hammer. I haven''t seen it for a long time, there''s a ' +
-                       'lot of power and magic in it. Leave it with me, it will be safe here. ' +
-                       'Meanwhile, I will transfer some of its power to you - your attacks will be stronger!'); 
-    Print_Formatted_Text ('You feel the growing strength.');
+    Get_Narration(902);
 
     hero.attack := hero.attack + 10;
     target_items_number := target_items_number + 1;
@@ -34,11 +28,7 @@ if Is_In_Inventory(ITEM_SVAROGS_HAMMER) then begin
 end;
 if Is_In_Inventory(ITEM_DAZHBOGS_DIAMOND) then begin
 
-    Print_Formatted_Text ('(Witch) You never cease to amaze me traveller! Until now, no one has managed to ' + 
-                       'acquire so many artefacts. I''ll keep the Dazhbogs Diamond with me and ' +
-                       'improve your dexterity as a reward.');
-    WriteLn;
-    Print_Formatted_Text ('You can feel your weapons suddenly becoming lighter and handier.');
+    Get_Narration(903);
 
     hero.dexterity := hero.dexterity + 5;
     target_items_number := target_items_number + 1;
@@ -52,28 +42,38 @@ end;
 if (target_items_number = 3) and (Is_In_Inventory(ITEM_SVIATOVIDS_HORN) = FALSE) then begin
 
     Writeln;
-    Print_Formatted_Text ('(Witch) The power of the three artefacts will allow me to open a passage to the spirit ' +
-                          'world at the stone threshold. Head there to get the last item that will allow you to ' +
-                          'open a portal to Rarog''s abode.');
+    Get_Narration(904);
+
 end;
 if Is_In_Inventory(ITEM_SVIATOVIDS_HORN) then begin
-    Print_Formatted_Text ('You enter the dark witch''s cottage, clutching the last artefact in your hands. The air ' +
-                          'in the chamber smells of herbs, but this time you sense something else in it - something ' + 
-                          'heavy, suffocating, like accumulated magic ready to be released.');
-    Print_Formatted_Text ('The witch stands by a large stone cauldron, her shadowy eyes gleaming in the dancing ' +
-                          'candlelight.');
-    Print_Formatted_Text ('(Witch) Great... You don''t know how long I''ve waited for this moment.');
-    Print_Formatted_Text ('As you place the horn on the altar, the air around you begins to tremble. All four ' +
-                          'artefacts begin to float above the ground, surrounded by a spiral of black energy.');
 
-    Wait_For_key;
+    if (monsters[current_location].hit_points > 0) then begin
 
-    Print_Formatted_Text ('(Witch) Rarog! It was just a myth, silly. I needed someone to find those treasures for me, ' + 
-                          'and you played your part perfectly.');
-    Print_Formatted_Text ('You take a step back, feeling the magic fill the room. The witch hovers above the ground, ' + 
-                          'her body seeming to change - her skin fades, her eyes light up like two white lanterns.');
-    Print_Formatted_Text ('(Witch) Now, with the power of these artefacts, I will not open any portal, but will use ' +
-                          'it to create my own kingdom. The power over this land will belong to me!');
+        Get_Narration(905);
+
+        Wait_For_key;
+
+        WriteLn;
+
+        Get_Narration(906);
+
+        Pre_Fight('Witch');
+
+    end else begin
+
+        Get_Narration(907);
+        Wait_For_key;
+        WriteLn;
+        Get_Narration(908);
+        WriteLn;
+        Print_Formatted_Text ('Press any key to title screen.');
+
+        game_won := TRUE;
+
+        current_state := STATE_TITLE;
+
+    end;
+
 end;
 
 if (Is_In_Inventory(ITEM_SVIATOVIDS_HORN) = FALSE) then begin
@@ -106,11 +106,17 @@ repeat
                 key_legal := TRUE;
             end;
         end;
+        'F': begin
+            if Is_In_Inventory(ITEM_SVIATOVIDS_HORN) then begin
+                Fight;
+                key_legal := TRUE;
+            end;
+        end;
 
     end;
 
     Process_Default_Keys(key_hit);
 
-until key_legal = TRUE;
+until (key_legal = TRUE) or (game_won = TRUE);
 
 previous_location := LOCATION_START;

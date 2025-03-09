@@ -33,8 +33,9 @@ repeat
         end;
 
     end;
+    
+    Process_Default_Keys(key_hit);
 
 until key_legal = TRUE;
 
-Process_Default_Keys(key_hit);
 previous_location := LOCATION_STREAM;

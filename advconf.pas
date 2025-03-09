@@ -19,11 +19,16 @@ const
     REVERSE_EXIT_ANSI = #27'[0m';
     REVERSE_START_ADM31 = #27'G4';
     REVERSE_EXIT_ADM31 = #27'G0';
+    REVERSE_START_TIMEX = #27'L';
+    REVERSE_EXIT_TIMEX = #27'M';
+    REVERSE_NONE = '';
 
-    CLR_VT52    = #27'H'#27'E';
+    CLR_VT52    = #27'H'#27'J';
     CLR_BOSMAN  = #27'H'#27'J';
     CLR_ANSI    = #27'c';
     CLR_ADM31   = #27'*'; 
+    CLR_TIMEX   = #27'H'#27'J';
+    CLR_NONE    = '';
 
 {$I READKEY.PAS}
 
@@ -94,16 +99,18 @@ begin
   WriteLn;
   Writeln ('    Select the number next to the characters displayed');
   Writeln ('    in reverse video');
-  Writeln ('    [1] ' + REVERSE_START_VT52 + 'reverse' + REVERSE_EXIT_VT52 + 
-           ', [2] ' + REVERSE_START_BOSMAN + 'reverse' + REVERSE_EXIT_BOSMAN +
-           ', [3] ' + REVERSE_START_ANSI + 'reverse' + REVERSE_EXIT_ANSI + 
-           ', [4] ' + REVERSE_START_ADM31 + 'reverse' + REVERSE_EXIT_ADM31);
+  Writeln ('    [1] ' + REVERSE_START_VT52 + 'rev' + REVERSE_EXIT_VT52 + ', [2] ' + REVERSE_START_BOSMAN + 
+           'rev' + REVERSE_EXIT_BOSMAN + ', [3] ' + REVERSE_START_ANSI + 'rev' + REVERSE_EXIT_ANSI + ', [4] ' + 
+           REVERSE_START_ADM31 + 'rev' + REVERSE_EXIT_ADM31 + ', [0] NO REVERSE');
 
   repeat
 
     key_hit := ReadKey;
 
-  until (key_hit = '1') or (key_hit = '2') or (key_hit = '3') or (key_hit = '4');
+  until (key_hit = '1') or (key_hit = '2') or (key_hit = '3') or (key_hit = '4') or (key_hit = '5') or (key_hit = '0');
+
+  { Amstrad CPC   = VT52 }
+  { Commodore 128 = ADM31 }
 
   case key_hit of
 
@@ -111,6 +118,8 @@ begin
     '2': begin r_start := REVERSE_START_BOSMAN; r_exit := REVERSE_EXIT_BOSMAN; s_clrscr := CLR_BOSMAN; end;
     '3': begin r_start := REVERSE_START_ANSI; r_exit := REVERSE_EXIT_ANSI; s_clrscr := CLR_ANSI; end;
     '4': begin r_start := REVERSE_START_ADM31; r_exit := REVERSE_EXIT_ADM31; s_clrscr := CLR_ADM31; end;
+    '5': begin r_start := REVERSE_START_TIMEX; r_exit := REVERSE_EXIT_TIMEX; s_clrscr := CLR_TIMEX; end;
+    '0': begin r_start := REVERSE_NONE; r_exit := REVERSE_NONE; s_clrscr := CLR_NONE; end;
   
   end;
 
@@ -122,7 +131,13 @@ begin
   Rewrite (file_var);
   {$I+}
 
-  if IOresult = 0 then begin
+  if IOresult <> 0 then begin
+
+    Writeln;
+    Writeln ('    Can''t write configuration file.');
+    Writeln;
+
+  end else begin
 
     Writeln (file_var, left_margin);
     Writeln (file_var, chars_per_line);
@@ -133,12 +148,6 @@ begin
 
     Writeln;
     Writeln ('    Configuration saved.');
-    Writeln;
-
-  end else begin
-
-    Writeln;
-    Writeln ('    Can''t write configuration file.');
     Writeln;
 
   end;
