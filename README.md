@@ -48,21 +48,21 @@ Use a pre-made disk image or transfer files using [cpmtools](https://github.com/
 ### Atari 1090XL
 
 Use a pre-made disk image or transfer files using DOS2COPY included in CP/M bootdisk
-Note: Use 
 
 ### Atari XL/XE with Indus GT / LDW Super 2000 / California Access 2001
 
 Use a pre-made disk image or transfer files using File Explorer in [Altirra](https://www.virtualdub.org/altirra.html)
+
 Note: Altirra up to Altirra version 4.40-test8 has broken CP/M filesystem support. Use Altirra version 4.40-test9 or higher.
 
 ### Other
 
 Most systems can also be handled using the [cpmtools](https://github.com/lipro-cpm4l/cpmtools) package
 
-***
-
 Programming and story: dely / New Generation + Blowjobb.
+
 Testing: krap, Peri Noid, Bocianu, dox
+
 Additional assistance: drac030 / DLT, Steev
 
 ***
