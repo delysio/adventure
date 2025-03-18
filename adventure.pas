@@ -72,7 +72,7 @@ begin
           WriteLn;
           WriteLn;
           WriteLn;
-          Writeln ('                T  A  L  E         ');
+          Writeln ('               T  A  L  E         ');
 
         end else begin
 
@@ -93,12 +93,15 @@ begin
         end;
         Writeln ('      O F   A N C I E N T   L A N D');
         Writeln;
-        Print_Formatted_Text ('A world where gods walk the earth and ancient monsters lurk in the shadows of every tree.');
+        Print_Formatted_Text ('A world where gods walk the earth and ancient');
+        Print_Formatted_Text ('monsters lurk in the shadows of every tree.');
         Writeln;
-        Print_Formatted_Text ('2025 Blowjobb/New Generation');
-        Print_Formatted_Text ('Forever 2025 Party Version');
+        Print_Formatted_Text ('          2025 New Generation');
+        Print_Formatted_Text ('              Version 0.95   ');
         Writeln;
-        Print_Formatted_Text ('Press [S] to start [Q] to exit to OS.');
+        Print_Formatted_Text ('  Press [S] to start [Q] to exit to OS.');
+        WriteLn;
+        Writeln;
 
         repeat
         

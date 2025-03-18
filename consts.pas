@@ -51,7 +51,6 @@ const
     INITIAL_DEXTERITY               = 2;
 
     INITIAL_DESCRIPTION             = '';
-
     INITIAL_ARMORY                  = 0;
 
     ITEM_TORCH                      = 0;        { item ids }
@@ -66,6 +65,9 @@ const
     ITEM_NONE                       = 255;
 
     ITEM_POTION_VALUE               = 5;
+
+    ATTACK_CHARGE                   = 1;
+    ATTACK_DEFENSIVE                = 2;
 
     WEAPON_NIGHT_THORN              = 20;
     WEAPON_BLOOD_HARVEST            = 21;
